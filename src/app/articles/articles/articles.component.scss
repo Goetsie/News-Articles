@@ -1,0 +1,68 @@
+mat-card {
+  transition: all 0.3s ease-in-out;
+  // transition: border-color 0.9s ease;
+
+  &:hover {
+    mat-card-title {
+      color: red;
+    }
+
+    cursor: pointer;
+    filter: brightness(95%);
+    box-shadow: 0 0 15px gray;
+    padding-right: 24px;
+    padding-left:8px;
+
+    .tag {
+      padding: 2px;
+      border-top: none;
+      border-left: 5px solid green;
+      border-color: red;
+    }
+
+  }
+
+  &:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 14px;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  &:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+
+}
+
+mat-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+}
+
+.module {
+  width: 250px;
+  margin: 0 0 1em 0;
+  overflow: hidden;
+}
+
+.tag {
+  a {
+    text-decoration: none;
+    color: gray;
+    background-color: inherit;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  padding: 2px;
+  border-top: 1px solid green;
+  border-left: 3px solid green;
+}

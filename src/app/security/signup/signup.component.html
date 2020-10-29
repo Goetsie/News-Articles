@@ -1,0 +1,60 @@
+<div class="row border">
+  <div class="col-12 text-center">
+    <h1>Signup</h1>
+    <p>User: {{newUser|json}}</p>
+
+  </div>
+</div>
+
+<form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Firstname" type="text" required minlength="2" name="firstname"
+        [(ngModel)]="newUser.firstname" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Lastname" type="text" required minlength="2" name="lastname"
+        [(ngModel)]="newUser.lastname" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" required minlength="2" name="email"
+        [(ngModel)]="newUser.email" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Username" type="text" required minlength="2" name="username"
+        [(ngModel)]="newUser.username" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    Username unique?
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
+        [(ngModel)]="newUser.password" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    Repeat password?
+  </div>
+
+  <div class="col-10 offset-1">
+    <button mat-raised-button color="primary" type="submit"
+      [disabled]="!signupForm.form.valid || submitted">Signup</button>
+  </div>
+
+
+</form>

@@ -1,0 +1,47 @@
+<!-- <nav>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a></li>
+      <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a></li>
+      <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
+  
+    </ul>
+  </nav> -->
+
+<!-- <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+  
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+   -->
+<mat-toolbar color="primary">
+  <div class="container">
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <a class="align-middle" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a>
+        </li>
+        <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
+        </li>
+        <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
+        <li><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon
+              color="accent">account_circle</mat-icon></a></li>
+              <li *ngIf="loggedUser">{{loggedUser}}</li>
+      </ul>
+    </div>
+  </div>
+</mat-toolbar>

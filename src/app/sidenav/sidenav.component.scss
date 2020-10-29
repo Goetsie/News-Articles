@@ -1,0 +1,16 @@
+a {
+    text-decoration: none;
+    color: white;
+    background-color: inherit;
+
+    &:hover, &:active{
+        color: pink;
+        background-color: inherit;
+    }
+}
+
+.nav-caption{
+    display: inline-block;
+    padding-left: 6px;
+}
+
