@@ -5,6 +5,9 @@
   <div class="col-12 text-center text-danger">
     <p>Filter niet vergeten!!!</p>
   </div>
+  <div class="col-12">
+    <app-filter></app-filter>
+  </div>
 </div>
 
 <div class="row equal-height-cards">
@@ -18,8 +21,9 @@
       </mat-card-header>
       <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
       <mat-card-content>
-        <div class="text-truncate">{{a.shortSummary}} Short summary i love you to the moon and back en veeeeeeeeel verder</div>
-        <div class="text-right p-1"><span class="tag"><a href="#filterartikelsbythistag">DUMMYTAG</a></span></div>
+        <div class="text-truncate">{{a.shortSummary}} Short summary i love you to the moon and back en veeeeeeeeel
+          verder</div>
+        <div class="text-right p-1"><span class="tag"><a href="#filterartikelsbythistag">{{a.tag.name}}</a></span></div>
       </mat-card-content>
       <!-- <mat-card-actions>
         <button mat-button>LIKE</button>
