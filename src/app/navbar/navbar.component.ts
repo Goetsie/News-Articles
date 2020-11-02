@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticateService } from '../security/services/authenticate.service';
 
 @Component({
@@ -10,19 +11,29 @@ export class NavbarComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  loggedUser = null;
+  username = null;
+  loggedIn = this._authenticateService.isLoggedIn();
 
-  constructor(private _authenticateService: AuthenticateService) {
+  constructor(private _authenticateService: AuthenticateService, private router: Router) {
 
     this._authenticateService.isLoggedin.subscribe(e => {
       if (this._authenticateService.isLoggedIn()) {
-        this.loggedUser = localStorage.getItem('loggedUser');
+        this.username = localStorage.getItem('loggedUser');
+        this.loggedIn = this._authenticateService.isLoggedIn();
       } else {
-        this.loggedUser = null;
+        this.username = null;
+        this.loggedIn = this._authenticateService.isLoggedIn();
       }
     })
   }
 
+  logout(){
+    console.log("User wants to logout");
+    localStorage.removeItem("token");
+    localStorage.removeItem("loggedUser");
+    this._authenticateService.isLoggedin.next(false);
+    this.router.navigate(['']); // Redirect to home page after logout
+  }
 
 
   ngOnInit(): void {

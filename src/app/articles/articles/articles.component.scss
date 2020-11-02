@@ -53,14 +53,15 @@ mat-spinner {
 }
 
 .tag {
-  a {
+   
     text-decoration: none;
     color: gray;
     background-color: inherit;
     &:hover{
       text-decoration: underline;
     }
-  }
+  
+    z-index: 100;
 
   padding: 2px;
   border-top: 1px solid green;

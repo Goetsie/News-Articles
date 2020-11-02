@@ -37,11 +37,43 @@
         <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
         </li>
         <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
-        <li><a routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
-        <li><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon
+        <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
+        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon
               color="accent">account_circle</mat-icon></a></li>
-              <li *ngIf="loggedUser">{{loggedUser}}</li>
+        <!-- <li *ngIf="loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{username}} <mat-icon
+                color="accent">account_circle</mat-icon></a></li> -->
+          
+                <!-- <li *ngIf="loggedIn"> 
+                  <a [matMenuTriggerFor]="menu" >
+                    {{username}}<mat-icon>more_vert</mat-icon>
+                  </a>
+                </li> -->
+                <li *ngIf="loggedIn"> 
+                  <a class="profile-menu" [matMenuTriggerFor]="menu" >
+                    {{username}}<mat-icon>more_vert</mat-icon>
+                  </a>
+                  <mat-menu #menu="matMenu">
+                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                      <mat-icon>account_circle</mat-icon>
+                      <span>Profile</span>
+                    </a>
+                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                      <mat-icon>thumb_up_alt</mat-icon>
+                      <span>Likes</span>
+                    </a>
+                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                      <mat-icon>comment</mat-icon>
+                      <span>Reactions</span>
+                    </a>
+                    <hr>
+                    <a class="profile-menu-item" mat-menu-item (click)="logout()">
+                      <mat-icon color="warn">power_settings_new</mat-icon>
+                      <span>Logout</span>
+                    </a>
+                  </mat-menu>
+                </li>
       </ul>
     </div>
   </div>
 </mat-toolbar>
+
