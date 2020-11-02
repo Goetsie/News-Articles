@@ -21,20 +21,20 @@ export class FilterPipe implements PipeTransform {
       }
 
       var articleArray = [];
-      for (let i = 0; i < 22; i++) {
+      for (let i = 0; i < value.length; i++) {
         // Where to search in
-        let searchIn: string = value[i].title + value[i].body;
+        let searchIn: string = value[i].title + " " + value[i].body;
 
         // Zoeken op tagID en string
         if(sName !== "" && tagID != 0 ){
-          console.log("Search string and tag");
+          // console.log("Search string and tag");
           if (searchIn.includes(sName) && value[i].tagID == tagID) {
             articleArray.push(value[i]);
           }
         }
         // Enkel zoeken op een string
         else if (sName != "") {
-          console.log("Search string");
+          // console.log("Search string");
           if (searchIn.includes(sName)) {
             articleArray.push(value[i]);
           }
@@ -42,8 +42,7 @@ export class FilterPipe implements PipeTransform {
         }
         // Enkel zoeken op tagID 
         else if (tagID !== 0) {
-          console.log("Search tag");
-          console.log("TagID is not 0");
+          // console.log("Search tag");
           if (value[i].tagID == tagID) {
             articleArray.push(value[i]);
           }

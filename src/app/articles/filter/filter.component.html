@@ -2,51 +2,73 @@
 
 
 <div class="row">
-    <div class="col-12">
-      <mat-accordion class="" multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <!-- <mat-panel-title>
+  <div class="col-12">
+    <mat-accordion class="" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <!-- <mat-panel-title>
                 Filter
               </mat-panel-title> -->
-            <mat-panel-description class="text-center">
-              Filter articles
-              <mat-icon>filter_alt</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-  
+          <mat-panel-description class="text-center">
+            Filter articles
+            <mat-icon>filter_alt</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+
           <mat-form-field>
             <mat-label>Search (title, short summary)</mat-label>
-            <input matInput>
+            <input matInput ([ngModel])="stringFilter" formControlName="search">
           </mat-form-field>
-  
+
           <div class="row">
             <div class="col-6">
               <mat-form-field appearance="fill">
                 <mat-label>Geen idee</mat-label>
                 <mat-select>
-                  <mat-option value="option">Option</mat-option>
+                  <mat-option value="option"></mat-option>
                   <mat-option value="option">Option</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-  
+
             <div class="col-6">
               <mat-form-field appearance="fill">
                 <mat-label>Tag</mat-label>
-                <mat-select>
-                  <mat-option value="option">Option</mat-option>
-                  <mat-option value="option2">Option</mat-option>
+                <mat-select onchange="findArticles()" formControlName="tag">
+                  <mat-option value="0">-- None --</mat-option>
+                  <mat-option *ngFor="let tag of tags" [value]="tag.tagID">{{tag.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </div>
-  
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
+
+          <div class="col-12 text-center">
+            <button mat-raised-button color="primary" type="submit">Search</button>
+          </div>
+
+        </form>
+
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
-  
+</div>
+
+<!-- CHIPS -->
+<!-- <div class="row">
+  <div class="col-12">
+    <mat-chip [selectable]="selectable" [removable]="removable" (removed)="remove()" >
+      {{filterForm.value.search}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <mat-chip [selectable]="selectable" [removable]="removable" >
+      {{filterForm.value.tag}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+  </div>
+</div> -->
+
 
 <!-- <div class="row">
   <div class="col-12 text-center mb-2">
