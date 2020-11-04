@@ -13,15 +13,19 @@ import { map, tap } from 'rxjs/operators';
 })
 export class ArticleDetailComponent implements OnInit {
 
-  public articleID;
+  articleID: number = null;  // Send to child
   public article: Article;
 
-  constructor(private _articleService: ArticleService, private route: ActivatedRoute) { }
+  constructor(private _articleService: ArticleService, private route: ActivatedRoute) {
+    this.articleID = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("ArticleID in detail constructor:", this.articleID);
+   }
 
   ngOnInit() {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    // this.articleID = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log("ArticleID in detail:", this.articleID);
 
-    this._articleService.getArticle(id)
+    this._articleService.getArticle(this.articleID)
       .pipe(
         tap(t => console.log("Get Article:", t))
       )

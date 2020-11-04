@@ -45,6 +45,7 @@ export class SecurityComponent implements OnInit {
       
       this._authenticateService.isLoggedin.next(result.token ? true : false);
       localStorage.setItem("loggedUser", result.username);
+      localStorage.setItem("userID", result.userID.toString());
       this.router.navigate(['']); // Redirect to home page after logging in
     });
 
@@ -58,6 +59,7 @@ export class SecurityComponent implements OnInit {
     console.log("Logout, remove token");
     localStorage.removeItem("token");
     localStorage.removeItem("loggedUser");
+    localStorage.removeItem("userID");
     this._authenticateService.isLoggedin.next(false);
     this.router.navigate(['']); // Redirect to home page after logout
   }
