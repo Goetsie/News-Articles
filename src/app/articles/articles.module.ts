@@ -9,10 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { ReactionComponent } from './reaction/reaction.component';
 import { AddReactionComponent } from './reaction/add-reaction/add-reaction.component';
+import { UpdateReactionComponent } from './reaction/update-reaction/update-reaction.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent],
   imports: [
     CommonModule,
     SharedModule,

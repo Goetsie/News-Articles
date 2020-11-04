@@ -31,7 +31,7 @@ export class ReactionService {
   }
 
   // PUT --> update a reaction of the user
-  updateMember(reactionID: number, reaction: Reaction) {
+  updateReaction(reactionID: number, reaction: Reaction) {
     return this._httpClient.put<Reaction>("https://localhost:44348/api/Reaction/" + reactionID, reaction);
   }
 
