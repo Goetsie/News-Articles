@@ -12,6 +12,7 @@ export class ReactionComponent implements OnInit {
 
   @Input() articleID: number; // Recieve from parent
   reactions: Reaction[];
+  userID = localStorage.getItem("userID");
 
 
   constructor(private _reactionService: ReactionService) { }
@@ -26,6 +27,26 @@ export class ReactionComponent implements OnInit {
       result => {
         this.reactions = result;
       });
+  }
+
+  editReaction(reaction){
+    console.log("User wants to edit his reaction with id:", reaction.reactionID);
+    // Extra check to see if the reaction is from the logged in user
+    if(this.userID == reaction.userID){
+      // this._reactionService.deleteReaction(reaction.reactionID).subscribe();
+    }else{
+      alert("Something went wrong! Cannot update this reaction.");
+    }
+  }
+
+  deleteReaction(reaction){
+    console.log("User wants to delete his reaction with id:", reaction.reactionID);
+    // Extra check to see if the reaction is from the logged in user
+    if(this.userID == reaction.userID){
+      this._reactionService.deleteReaction(reaction.reactionID).subscribe();
+    }else{
+      alert("Something went wrong! Cannot delete this reaction.");
+    }
   }
 
 }

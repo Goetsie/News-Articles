@@ -9,13 +9,24 @@
 <!-- </div> -->
 
 <div class="row reaction mb-1 mb-md-2" *ngFor="let reaction of reactions">
-  <div class="col-12 col-md-9 reaction-name mb-1 text-left">
+  <div class="col-12 col-md-8 reaction-name mb-1 text-left">
     {{reaction.user.firstName}} {{reaction.user.lastName}}
   </div>
-  <div class="col-12 col-md-3 text-muted">
+  <div class="col-12 col-md-4 text-right text-muted">
     <small>{{reaction.date | date:"dd/MM/yyyy - HH:mm"}}</small>
   </div>
-  <div class="col-12 reaction-content">
+  <div class="col-10 reaction-content">
     {{reaction.content}}
   </div>
+
+  <!-- Delete your own placed reactions -->
+  <div *ngIf="reaction.userID == userID" class="col-2 text-right">
+    <button mat-icon-button color="warn" (click)="editReaction(reaction)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="deleteReaction(reaction)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+
 </div>

@@ -30,4 +30,17 @@ export class ReactionService {
     return this._httpClient.post<Reaction>("https://localhost:44348/api/Reaction", reaction);
   }
 
+  // PUT --> update a reaction of the user
+  updateMember(reactionID: number, reaction: Reaction) {
+    return this._httpClient.put<Reaction>("https://localhost:44348/api/Reaction/" + reactionID, reaction);
+  }
+
+
+  // DELETE --> delete the reaction of a user
+  deleteReaction(reactionID: number) {
+    return this._httpClient.delete<Reaction>("https://localhost:44348/api/Reaction/" + reactionID.toString());
+  }
+
+
+
 }
