@@ -4,20 +4,32 @@
   </div>
 </div>
 
-<!-- <div class="row"> -->
-<app-add-reaction [articleID]="articleID"></app-add-reaction>
-<!-- </div> -->
+<!-- Add reaction -->
+<app-add-reaction *ngIf="!edit_reaction" [articleID]="articleID"></app-add-reaction>
 
+<!-- Update reaction -->
+<app-update-reaction *ngIf="edit_reaction" [reactionEdit]="reactionEdit" (reactionIsUpdated)="onReactionUpdated($event)"></app-update-reaction>
+
+<!-- Reactions -->
 <div class="row reaction mb-1 mb-md-2" *ngFor="let reaction of reactions">
+
   <div class="col-12 col-md-8 reaction-name mb-1 text-left">
     {{reaction.user.firstName}} {{reaction.user.lastName}}
   </div>
   <div class="col-12 col-md-4 text-right text-muted">
     <small>{{reaction.date | date:"dd/MM/yyyy - HH:mm"}}</small>
   </div>
-  <div class="col-10 reaction-content">
+
+  <div *ngIf="!reaction_edit" class="col-10 reaction-content">
     {{reaction.content}}
   </div>
+
+
+  <!-- <div class="col-10 reaction-content" *ngIf="edit_reaction && editReaction.reactionID == reaction.reactionID">
+  <div class="col-10 reaction-content" *ngIf="edit_reaction">
+    reaction needs to be edited
+  </div> -->
+
 
   <!-- Delete your own placed reactions -->
   <div *ngIf="reaction.userID == userID" class="col-2 text-right">

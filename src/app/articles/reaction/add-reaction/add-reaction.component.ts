@@ -27,7 +27,6 @@ export class AddReactionComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Add reaction articleID:", this.articleID);
-
     this.reaction = new Reaction(0, +localStorage.getItem("userID"), this.articleID, '', new Date());
   }
 

@@ -11,8 +11,12 @@ import { ReactionService } from '../services/reaction.service';
 export class ReactionComponent implements OnInit {
 
   @Input() articleID: number; // Recieve from parent
+  
   reactions: Reaction[];
   userID = localStorage.getItem("userID");
+
+  edit_reaction = false;
+  reactionEdit = Reaction;
 
 
   constructor(private _reactionService: ReactionService) { }
@@ -31,16 +35,27 @@ export class ReactionComponent implements OnInit {
 
   editReaction(reaction){
     console.log("User wants to edit his reaction with id:", reaction.reactionID);
+    
     // Extra check to see if the reaction is from the logged in user
     if(this.userID == reaction.userID){
-      // this._reactionService.deleteReaction(reaction.reactionID).subscribe();
+      this.reactionEdit = reaction;
     }else{
       alert("Something went wrong! Cannot update this reaction.");
     }
+
+    // Set the reaction to the edit state (show in the editform)
+    this.edit_reaction = true;
+
+  }
+
+  onReactionUpdated(updated: boolean){
+    console.log("Reaction is updated in DB");
+    this.edit_reaction = false;
   }
 
   deleteReaction(reaction){
     console.log("User wants to delete his reaction with id:", reaction.reactionID);
+
     // Extra check to see if the reaction is from the logged in user
     if(this.userID == reaction.userID){
       this._reactionService.deleteReaction(reaction.reactionID).subscribe();
