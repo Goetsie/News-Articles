@@ -19,6 +19,16 @@
   </div>
 </div>
 
+<hr>
+
+<app-reaction *ngIf="loggedIn" [articleID]="articleID"></app-reaction>
+
+<div *ngIf="!loggedIn" class="row">
+  <div class="col-12 text-center">
+    You need to login to see the reactions on this article or to place a reaction!
+  </div>
+</div>
+
 <div class="row">
   <div class="col-12">
     <p>TO DO</p>

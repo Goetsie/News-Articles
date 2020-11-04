@@ -17,13 +17,15 @@
 
         <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
 
-          <mat-form-field>
-            <mat-label>Search (title, short summary)</mat-label>
-            <input matInput ([ngModel])="stringFilter" formControlName="search">
-          </mat-form-field>
-
           <div class="row">
-            <div class="col-6">
+
+            <div class="col-12 col-md-8">
+              <mat-form-field>
+                <mat-label>Search (title, short summary)</mat-label>
+                <input matInput ([ngModel])="stringFilter" formControlName="search">
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-6">
               <mat-form-field appearance="fill">
                 <mat-label>Geen idee</mat-label>
                 <mat-select>
@@ -31,9 +33,9 @@
                   <mat-option value="option">Option</mat-option>
                 </mat-select>
               </mat-form-field>
-            </div>
+            </div> -->
 
-            <div class="col-6">
+            <div class="col-12 col-md-4">
               <mat-form-field appearance="fill">
                 <mat-label>Tag</mat-label>
                 <mat-select onchange="findArticles()" formControlName="tag">

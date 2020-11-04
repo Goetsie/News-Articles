@@ -9,24 +9,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ArticleService {
 
   private _article: string;
-  // public articleList: Array<Article> = [];
-  public articleList = new BehaviorSubject([]);
+  public articleList: Array<Article> = [];
 
   constructor(private http: HttpClient) { }
 
   // GET --> get all articles
   getArticles(tagID): Observable<Article[]> {
-    if (tagID != 0) {
-      console.log("Articles gezocht in service");
-      console.log(this.http.get<Article[]>("https://localhost:44348/api/Article?tagID=2"));
-      return this.http.get<Article[]>("https://localhost:44348/api/Article?tagID=2");
-      // return this.http.get<Article[]>("https://localhost:44348/api/Article?tagID=" + tagID + "\"");
-
-
-    } else {
-      // Return all articles
-      return this.http.get<Article[]>("https://localhost:44348/api/Article");
-    }
+    return this.http.get<Article[]>("https://localhost:44348/api/Article");
   }
 
   // GET --> get one article by the id

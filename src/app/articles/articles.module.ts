@@ -7,10 +7,13 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { FilterComponent } from './filter/filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from '../pipes/filter.pipe';
+import { ReactionComponent } from './reaction/reaction.component';
+import { AddReactionComponent } from './reaction/add-reaction/add-reaction.component';
+import { UpdateReactionComponent } from './reaction/update-reaction/update-reaction.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent],
   imports: [
     CommonModule,
     SharedModule,

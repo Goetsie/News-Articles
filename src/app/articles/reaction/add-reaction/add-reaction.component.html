@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit(addReactionForm)" #addReactionForm="ngForm" class="row">
+  
+  <!-- <div class="col-12">
+    <p>Reaction: {{reaction|json}}</p>
+  </div> -->
+
+  <div class="col-12 col-md-9">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Add a reaction" type="text" minlength="5" required [(ngModel)]="reaction.content"
+        name="reaction_content" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-12 col-md-3 m-auto text-center">
+    <button type="submit" [disabled]="!addReactionForm.form.valid" mat-raised-button color="accent">Add
+      reaction</button>
+  </div>
+
+</form>
