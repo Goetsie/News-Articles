@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { Article } from '../models/article.model';
 import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 
@@ -20,6 +22,10 @@ export class ArticlesComponent implements OnInit {
   public searchString = "";
   public tagFilter = "";
 
+  // @ViewChild(MatPaginator) paginator : MatPaginator;
+  // obs: Observable<Article[]>;
+  // dataSource: MatTableDataSource<Article>;
+
 
 
   constructor(private _articleService: ArticleService, private router: Router) { 
@@ -31,7 +37,6 @@ export class ArticlesComponent implements OnInit {
     result => {
       this.articles = result;
     });
-
 
   }
 
@@ -48,6 +53,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }

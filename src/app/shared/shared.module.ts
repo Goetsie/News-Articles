@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +39,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatMenuModule,
     MatSelectModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
   ], exports: [
     CommonModule,
     FormsModule,
@@ -55,7 +58,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatMenuModule,
     MatSelectModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'nl-BE'},
