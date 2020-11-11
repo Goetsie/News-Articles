@@ -46,6 +46,7 @@ export class SecurityComponent implements OnInit {
       this._authenticateService.isLoggedin.next(result.token ? true : false);
       localStorage.setItem("loggedUser", result.username);
       localStorage.setItem("userID", result.userID.toString());
+      localStorage.setItem("userRole", result.role.name);
       this.router.navigate(['']); // Redirect to home page after logging in
     });
 

@@ -13,8 +13,14 @@ export class NavbarComponent implements OnInit {
 
   username = null;
   loggedIn = this._authenticateService.isLoggedIn();
+  // userRole = localStorage.getItem("userRole");
+  userRole = this._authenticateService.ifUser();
 
   constructor(private _authenticateService: AuthenticateService, private router: Router) {
+
+    this.loggedIn = this._authenticateService.isLoggedIn();
+    this.username = localStorage.getItem('loggedUser');
+    // this.userRole = localStorage.getItem("userRole");
 
     this._authenticateService.isLoggedin.subscribe(e => {
       if (this._authenticateService.isLoggedIn()) {
@@ -23,7 +29,15 @@ export class NavbarComponent implements OnInit {
       } else {
         this.username = null;
         this.loggedIn = this._authenticateService.isLoggedIn();
-      }
+      };
+
+      this._authenticateService.user.subscribe(e => {
+        if (this._authenticateService.ifUser()) {
+          this.userRole = localStorage.getItem('userRole');
+        } else {
+          this.userRole = null;
+        }
+      })
     })
   }
 
@@ -31,12 +45,16 @@ export class NavbarComponent implements OnInit {
     console.log("User wants to logout");
     localStorage.removeItem("token");
     localStorage.removeItem("loggedUser");
+    localStorage.removeItem("userRole");
     this._authenticateService.isLoggedin.next(false);
     this.router.navigate(['']); // Redirect to home page after logout
   }
 
 
   ngOnInit(): void {
+    this.loggedIn = this._authenticateService.isLoggedIn();
+    this.username = localStorage.getItem('loggedUser');
+    // this.userRole = localStorage.getItem("userRole");
   }
 
   public onToggleSidenav = () => {

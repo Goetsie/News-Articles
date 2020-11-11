@@ -19,6 +19,16 @@ export class AuthenticateService {
     }
   }
 
+  user = new BehaviorSubject(String);
+
+  ifUser() {
+    if (localStorage.getItem("userRole")) {
+      return localStorage.getItem("userRole");
+    } else {
+      return false;
+    }
+  }
+
   constructor(private _httpClient: HttpClient) { }
 
   authenticate(userLogin: UserLogin): Observable<User> {
