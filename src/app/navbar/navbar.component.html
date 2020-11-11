@@ -37,9 +37,9 @@
         <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
         </li>
         <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
+        <!-- <li *ngIf="userRole != 'User' && userRole"><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New article</a></li> -->
         <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
-        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon
-              color="accent">account_circle</mat-icon></a></li>
+        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>account_circle</mat-icon></a></li>
         <!-- <li *ngIf="loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{username}} <mat-icon
                 color="accent">account_circle</mat-icon></a></li> -->
           
@@ -65,6 +65,16 @@
                       <mat-icon>comment</mat-icon>
                       <span>Reactions</span>
                     </a>
+                    <div *ngIf="userRole != 'User'">
+                      <hr>
+                      <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <mat-icon>comment</mat-icon>
+                        <span>Create article</span>
+                      </a>                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                        <mat-icon>comment</mat-icon>
+                        <span>Admin</span>
+                      </a>
+                    </div>
                     <hr>
                     <a class="profile-menu-item" mat-menu-item (click)="logout()">
                       <mat-icon color="warn">power_settings_new</mat-icon>
