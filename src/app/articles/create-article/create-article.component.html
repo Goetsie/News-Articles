@@ -1,5 +1,3 @@
-<p>create-article works!</p>
-
 <!-- Template driven form for new articles -->
 
 <form (ngSubmit)="onSubmit()" #addArticleForm="ngForm" class="row">
@@ -56,7 +54,7 @@
     <!-- <button type="submit" [disabled]="!addArticleForm.form.valid" mat-raised-button color="accent">Create
         article</button> -->
         <!-- Article to review -->
-    <button type="submit" [disabled]="!addArticleForm.form.valid" mat-raised-button color="accent">Create
+    <button type="submit" [disabled]="!addArticleForm.form.valid || submitted" mat-raised-button color="accent">Create
       article</button>
   </div>
 

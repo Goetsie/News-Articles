@@ -11,10 +11,11 @@ import { ReactionComponent } from './reaction/reaction.component';
 import { AddReactionComponent } from './reaction/add-reaction/add-reaction.component';
 import { UpdateReactionComponent } from './reaction/update-reaction/update-reaction.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
+import { MyArticlesComponent } from './my-articles/my-articles.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent],
   imports: [
     CommonModule,
     SharedModule,

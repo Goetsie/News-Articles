@@ -14,6 +14,7 @@ export class CreateArticleComponent implements OnInit {
 
   article: Article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
   tags: Tag[];
+  submitted = false;
   
   constructor(private _tagService: TagService, private _articleService: ArticleService) {
     this._tagService.getTags()
@@ -34,6 +35,7 @@ export class CreateArticleComponent implements OnInit {
 
 
   onSubmit(){
+    this.submitted = true;
     console.log("User wants to submit a new article", this.article);
     this._articleService.addArticle(this.article).subscribe();
   }
