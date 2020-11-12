@@ -27,7 +27,8 @@
       </button>
     </div>
     <div>
-      <a class="align-middle" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="align-middle" routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">Home</a>
 
     </div>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
@@ -38,52 +39,58 @@
         </li>
         <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
         <!-- <li *ngIf="userRole != 'User' && userRole"><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New article</a></li> -->
-        <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
-        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>account_circle</mat-icon></a></li>
+        <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
+        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>account_circle</mat-icon></a></li>
         <!-- <li *ngIf="loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{username}} <mat-icon
                 color="accent">account_circle</mat-icon></a></li> -->
-          
-                <!-- <li *ngIf="loggedIn"> 
+
+        <!-- <li *ngIf="loggedIn"> 
                   <a [matMenuTriggerFor]="menu" >
                     {{username}}<mat-icon>more_vert</mat-icon>
                   </a>
                 </li> -->
-                <li *ngIf="loggedIn"> 
-                  <a class="profile-menu" [matMenuTriggerFor]="menu" >
-                    {{username}}<mat-icon>more_vert</mat-icon>
-                  </a>
-                  <mat-menu #menu="matMenu">
-                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                      <mat-icon>account_circle</mat-icon>
-                      <span>Profile</span>
-                    </a>
-                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                      <mat-icon>thumb_up_alt</mat-icon>
-                      <span>Likes</span>
-                    </a>
-                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                      <mat-icon>comment</mat-icon>
-                      <span>Reactions</span>
-                    </a>
-                    <div *ngIf="userRole != 'User'">
-                      <hr>
-                      <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                        <mat-icon>comment</mat-icon>
-                        <span>Create article</span>
-                      </a>                    <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                        <mat-icon>comment</mat-icon>
-                        <span>Admin</span>
-                      </a>
-                    </div>
-                    <hr>
-                    <a class="profile-menu-item" mat-menu-item (click)="logout()">
-                      <mat-icon color="warn">power_settings_new</mat-icon>
-                      <span>Logout</span>
-                    </a>
-                  </mat-menu>
-                </li>
+        <li *ngIf="loggedIn">
+          <a class="profile-menu" [matMenuTriggerFor]="menu">
+            {{username}}<mat-icon>more_vert</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu">
+            <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+              <mat-icon>account_circle</mat-icon>
+              <span>Profile</span>
+            </a>
+            <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+              <mat-icon>thumb_up_alt</mat-icon>
+              <span>Likes</span>
+            </a>
+            <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+              <mat-icon>comment</mat-icon>
+              <span>Reactions</span>
+            </a>
+            <div *ngIf="userRole != 'User'">
+              <hr>
+              <a class="profile-menu-item" mat-menu-item routerLink="/new-article" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <mat-icon>create</mat-icon>
+                <span>New article</span>
+              </a> <a class="profile-menu-item" mat-menu-item routerLink="/my-articles" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <mat-icon>article</mat-icon>
+                <span>My articles</span>
+              </a>
+            </div>
+            <hr>
+            <a class="profile-menu-item" mat-menu-item (click)="logout()">
+              <mat-icon color="warn">power_settings_new</mat-icon>
+              <span>Logout</span>
+            </a>
+          </mat-menu>
+        </li>
       </ul>
     </div>
   </div>
 </mat-toolbar>
-

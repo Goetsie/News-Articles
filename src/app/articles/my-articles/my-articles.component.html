@@ -1,0 +1,77 @@
+<!-- <div *ngIf="articles==null" class="row m-auto no-articles ">
+  <div class="col-12 h-100">
+    There are no articles linked to your account!
+  </div>
+</div> -->
+
+
+<!-- <div *ngIf="articles!=null"> -->
+
+<div class="row">
+  <div class="col-12">
+    <mat-form-field class="w-100">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Title, Subtitle, Status" #input>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let article"> {{article.title}} </td>
+      </ng-container>
+
+      <!-- Subtitle Column -->
+      <ng-container matColumnDef="subTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtitle </th>
+        <td mat-cell *matCellDef="let article"> {{article.subTitle}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="articleStatusID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let article"> {{article.articleStatus.name}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
+        <td mat-cell *matCellDef="let article" class="text-center">
+          <span *ngIf="article.articleStatus.name=='To review'">
+            <mat-icon>access_time</mat-icon>
+          </span>
+          <span *ngIf="article.articleStatus.name=='Draft'"><button (click)="editArticle(article.articleID)"
+              mat-icon-button color="warn">
+              <mat-icon>edit</mat-icon>
+            </button></span>
+          <span *ngIf="article.articleStatus.name=='Published'">
+            <mat-icon color="primary">check</mat-icon>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+
+  </div>
+</div>
+
+<!-- </div> -->
+
+<div class="row">
+  <div class="col-12">
+    <!-- Show spinner when there are no articles -->
+    <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { Article } from '../models/article.model';
-import { map, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
@@ -31,7 +31,8 @@ export class ArticlesComponent implements OnInit {
   constructor(private _articleService: ArticleService, private router: Router) { 
     this._articleService.getArticles(0)
     .pipe(
-      tap(t => console.log("Get Articles:", t))
+      map(articles => articles.filter(article => article.articleStatusID === 1)), // Only get the aricles ready for publication
+      tap(t => console.log("Get Articles tap:", t))
     )
     .subscribe(
     result => {
