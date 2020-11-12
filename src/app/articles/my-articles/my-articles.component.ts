@@ -22,7 +22,7 @@ export class MyArticlesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['title', 'subTitle', 'articleStatusID'];
+  displayedColumns: string[] = ['title', 'subTitle', 'articleStatus.name'];
 
   constructor(private _articleService: ArticleService) { 
     this._articleService.getArticles(0)
@@ -37,9 +37,14 @@ export class MyArticlesComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
-
-
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log("Filter value:", filterValue);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngOnInit(): void {
   }
 
