@@ -37,8 +37,8 @@ export class CreateArticleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(DialogComponent);
+  openDialog(toReview) {
+    let dialogRef = this.dialog.open(DialogComponent, {data: {toReview: toReview}});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log("Dialog result:", result);
@@ -56,12 +56,28 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit() {
+    // Admin needs to review article before published
     this.submitted == true;
     console.log("User wants to submit a new article", this.article);
     this._articleService.addArticle(this.article).subscribe(result => {
       console.log("Add article result:", result);
     });
-    this.openDialog();
+    this.openDialog(true);
+  }
+
+  saveArticle(){
+    if(this.article.tagID == null){
+      this.article.tagID = 1;
+    }
+    this.article.articleStatusID = 3; // Set to draft
+    console.log("User wants to save his article", this.article);
+
+    this._articleService.addArticle(this.article).subscribe(result => {
+      console.log("Add article result:", result);
+      if(result){
+        this.openDialog(false);
+      }
+    });
   }
 
 }

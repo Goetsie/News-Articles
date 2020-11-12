@@ -1,7 +1,14 @@
-<h1 mat-dialog-title>Article is created</h1>
-<div mat-dialog-content>Thanks for creating another awesome article. Now the admin needs te review it. <br>
+<h1 mat-dialog-title *ngIf="data.toReview">Article created!</h1>
+<h1 mat-dialog-title *ngIf="!data.toReview">Article saved!</h1>
+
+<div mat-dialog-content *ngIf="data.toReview">Thanks for creating another awesome article. Now the admin needs te review it. <br>
   Please have patience!</div>
+
+<div mat-dialog-content *ngIf="!data.toReview">Thanks for starting to create another awesome article. <br>
+    Whenever you want, you can continue to work on your aticle.</div>
+
 <div mat-dialog-actions>
-    <button mat-button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="true">Create new article</button>
+  <button mat-button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="true">Create new
+    article</button>
   <button mat-button mat-dialog-close mat-dialog-close="false">Close</button>
 </div>
