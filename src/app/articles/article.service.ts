@@ -27,7 +27,12 @@ export class ArticleService {
     console.log("Filter");
     console.log(this.http.get<Article[]>("https://localhost:44348/api/Article/" + tagID));
     return this.http.get<Article[]>("https://localhost:44348/api/Article/" + tagID);
-
   }
+
+    // POST --> post a new reaction on an article
+    addArticle(article: Article) {
+      console.log("Add article:", article);
+      return this.http.post<Article>("https://localhost:44348/api/Article", article);
+    }
 
 }

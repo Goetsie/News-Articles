@@ -15,6 +15,8 @@ import { SignupComponent } from './security/signup/signup.component';
 
 import { AuthGuard } from './security/guards/auth.guard';
 
+import { CreateArticleComponent } from './articles/create-article/create-article.component';
+
 const routes: Routes = [
   { path: '', component: ArticlesComponent },
   // { path: 'contact', component: ContactComponent },
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: 'login', component: SecurityComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+  { path: 'new-article', component: CreateArticleComponent, canActivate: [AuthGuard] }, // Only for journalists and admins !!!
 
 ];
 
