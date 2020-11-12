@@ -13,10 +13,11 @@ import { UpdateReactionComponent } from './reaction/update-reaction/update-react
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { MyArticlesComponent } from './my-articles/my-articles.component';
 import { DialogComponent } from './create-article/dialog/dialog.component';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent, UpdateArticleComponent],
   imports: [
     CommonModule,
     SharedModule,

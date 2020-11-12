@@ -45,3 +45,18 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+
+  .no-articles{
+      text-align: center;
+      vertical-align: middle;
+      font-size: large;
+      margin: auto;
+  }
+
+  mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+  }

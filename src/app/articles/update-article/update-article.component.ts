@@ -6,18 +6,17 @@ import { ArticleService } from '../article.service';
 import { Article } from '../models/article.model';
 import { Tag } from '../models/tag.model';
 import { TagService } from '../services/tag.service';
-import { DialogComponent } from './dialog/dialog.component';
-
+import { DialogComponent } from '../create-article/dialog/dialog.component';
 @Component({
-  selector: 'app-create-article',
-  templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.scss']
+  selector: 'app-update-article',
+  templateUrl: './update-article.component.html',
+  styleUrls: ['./update-article.component.scss']
 })
-export class CreateArticleComponent implements OnInit {
+export class UpdateArticleComponent implements OnInit {
 
-  article: Article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
-  tags: Tag[];
+  article: Article;
   submitted = false;
+  tags: Tag[];
 
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this._tagService.getTags()
@@ -31,18 +30,16 @@ export class CreateArticleComponent implements OnInit {
         result => {
           this.tags = result;
         });
+
+    if (this.route.snapshot.paramMap.get('id')) {
+      const articleID = this.route.snapshot.paramMap.get('id');
+      this._articleService.getArticle(articleID).subscribe(
+        result => {
+          this.article = result;
+        });
+    }
   }
 
-  ngOnInit(): void {
-    // if(this.route.snapshot.paramMap.get('id')){
-    //   const articleID = this.route.snapshot.paramMap.get('id');
-    //   this._articleService.getArticle(articleID).subscribe(
-    //     result => {
-    //       this.article = result;
-    //     });
-    // }
-
-  }
 
   openDialog(toReview) {
     let dialogRef = this.dialog.open(DialogComponent, { data: { toReview: toReview } });
@@ -52,7 +49,8 @@ export class CreateArticleComponent implements OnInit {
       if (result) {
         // Create new article
         console.log("New article");
-        this.article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2);
+        // this.article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2);
+        this.router.navigate(['/new-article']);
         this.submitted == false;
       } else {
         console.log("Navigate");
@@ -63,27 +61,17 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit() {
+    // Update article
     // Admin needs to review article before published
     this.submitted == true;
-    console.log("User wants to submit a new article", this.article);
-    this._articleService.addArticle(this.article).subscribe(
-      result => {
-        // Handle result
-        console.log("Add article (to review) result:", result)
-      },
-      error => {
-        alert("There are some problems right now. Try again later.");
-        console.log("error");
-      },
-      () => {
-        console.log("Article add (to review) completed");
-        this.openDialog(true);
-      }
-    );
+    this.article.articleStatusID = 2; // Set to "to review"
+    console.log("User wants to update an article", this.article);
+    this._articleService.updateArticle(this.article.articleID, this.article).subscribe(result => {
+      console.log("Update article result:", result);
+    });
 
+    this.openDialog(true);
   }
-
-
 
   saveArticle() {
     if (this.article.tagID == null) {
@@ -92,22 +80,26 @@ export class CreateArticleComponent implements OnInit {
     this.article.articleStatusID = 3; // Set to draft
     console.log("User wants to save his article", this.article);
 
-    this._articleService.addArticle(this.article).subscribe(
-      result => {
-        // Handle result
-        console.log("Add article result:", result)
-      },
-      error => {
-        alert("There are some problems right now. Try again later.");
-        console.log("error");
-      },
-      () => {
-        console.log("Article add (draft) completed");
-        this.openDialog(false);
-      }
-    );
+    this._articleService.updateArticle(this.article.articleID, this.article)
+      .subscribe(
+        result => {
+          // Handle result
+          console.log("Update article result:", result)
+        },
+        error => {
+          alert(error);
+        },
+        () => {
+          console.log("Article update completed");
+          this.openDialog(false);
+        }
+      );
 
 
+
+  }
+
+  ngOnInit(): void {
   }
 
 }
