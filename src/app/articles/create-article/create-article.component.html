@@ -42,17 +42,13 @@
     <mat-form-field appearance="fill">
       <mat-label>Tag</mat-label>
       <mat-select name="tag" [(ngModel)]="article.tagID" required>
-        <mat-option *ngFor="let tag of tags" [value]="tag.tagID" >{{tag.name}}</mat-option>
+        <mat-option *ngFor="let tag of tags" [value]="tag.tagID">{{tag.name}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
   <!-- Submit button -->
   <div class="col-12 m-auto text-center">
-      <!-- Save article -->
-    <!-- <button type="submit" [disabled]="!addArticleForm.form.valid" mat-raised-button color="accent">Create
-        article</button> -->
-        <!-- Article to review -->
     <button type="submit" [disabled]="!addArticleForm.form.valid || submitted" mat-raised-button color="accent">Create
       article</button>
   </div>
@@ -60,9 +56,9 @@
 </form>
 
 <!-- Button for saving article -->
-<div class="row">
+<div class="row mt-2">
   <div class="col-12 m-auto text-center">
-    <button (click)="saveArticle()" [disabled]="submitted" mat-raised-button color="accent">Save
+    <button (click)="saveArticle()" [disabled]="submitted" mat-stroked-button color="accent">Save
       article</button>
   </div>
 </div>
