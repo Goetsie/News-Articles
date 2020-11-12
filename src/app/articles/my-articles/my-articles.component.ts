@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { tap } from 'rxjs/operators';
 import { ArticleService } from '../article.service';
@@ -19,6 +20,7 @@ export class MyArticlesComponent implements OnInit {
   // expandedElement: PeriodicElement | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['title', 'subTitle', 'articleStatusID'];
 
@@ -32,7 +34,10 @@ export class MyArticlesComponent implements OnInit {
       this.articles = result;
       this.dataSource = new MatTableDataSource(this.articles);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
+
+
 
   }
   ngOnInit(): void {
