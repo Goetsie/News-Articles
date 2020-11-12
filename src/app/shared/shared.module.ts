@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,6 +19,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -40,7 +43,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatExpansionModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatDialogModule
   ], exports: [
     CommonModule,
     FormsModule,
@@ -59,10 +65,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatExpansionModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'nl-BE'},
+    { provide: MAT_DATE_LOCALE, useValue: 'nl-BE' },
   ],
 })
 export class SharedModule { }

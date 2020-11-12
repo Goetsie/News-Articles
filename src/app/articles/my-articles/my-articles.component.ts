@@ -22,7 +22,7 @@ export class MyArticlesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['title', 'subTitle', 'articleStatus.name'];
+  displayedColumns: string[] = ['title', 'subTitle', 'articleStatusID'];
 
   constructor(private _articleService: ArticleService) { 
     this._articleService.getArticles(0)
@@ -53,3 +53,6 @@ export class MyArticlesComponent implements OnInit {
   // }
 
 }
+
+
+

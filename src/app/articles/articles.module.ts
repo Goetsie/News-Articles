@@ -12,10 +12,11 @@ import { AddReactionComponent } from './reaction/add-reaction/add-reaction.compo
 import { UpdateReactionComponent } from './reaction/update-reaction/update-reaction.component';
 import { CreateArticleComponent } from './create-article/create-article.component';
 import { MyArticlesComponent } from './my-articles/my-articles.component';
+import { DialogComponent } from './create-article/dialog/dialog.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -23,6 +24,9 @@ import { MyArticlesComponent } from './my-articles/my-articles.component';
   ],
   providers: [
     ArticleService
+  ],
+  entryComponents:[
+    DialogComponent
   ]
 })
 export class ArticlesModule { }
