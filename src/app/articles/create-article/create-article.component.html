@@ -23,19 +23,31 @@
 
   <!-- Short summary -->
   <div class="col-12">
-    <label for="shortSummary">Short summary:</label> <br>
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label for="shortSummary">Short summary:</mat-label> <br>
+      <textarea matInput id="shortSummary" name="shortSummary" rows="4" cols="50" required minlength="20"
+      [(ngModel)]="article.shortSummary"></textarea>
+    </mat-form-field>
+    <!-- <label for="shortSummary">Short summary:</label> <br>
     <textarea class="w-100" id="shortSummary" name="shortSummary" rows="4" cols="50" required minlength="20"
       [(ngModel)]="article.shortSummary">
-        </textarea>
+        </textarea> -->
   </div>
 
   <!-- Body -->
   <div class="col-12">
-    <label for="body">Content:</label> <br>
-    <textarea class="w-100" id="body" name="body" rows="10" cols="50" required minlength="100"
-      [(ngModel)]="article.body">
-        </textarea>
+    <mat-form-field class="w-100" appearance="fill">
+      <mat-label for="body">Content:</mat-label> <br>
+      <textarea matInput id="body" name="body" rows="10" cols="100" required minlength="100"
+      [(ngModel)]="article.body"></textarea>
+    </mat-form-field>
+  
+    <!-- <label for="body">Content:</label> <br> -->
+    <!-- <textarea class="w-100" id="body" name="body" rows="10" cols="50" required minlength="100"
+      [(ngModel)]="article.body"> 
+        </textarea> -->
   </div>
+
 
   <!-- Tag -->
   <div class="col-12 mt-2 text-center">

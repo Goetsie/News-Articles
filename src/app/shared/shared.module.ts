@@ -22,6 +22,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -46,7 +48,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    MatSnackBarModule
   ], exports: [
     CommonModule,
     FormsModule,
@@ -68,7 +72,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'nl-BE' },
