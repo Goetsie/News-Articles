@@ -64,6 +64,11 @@ export class JournalistOverviewComponent implements OnInit {
     // this._userService.deleteUser(userID).subscribe();
   }
 
+  editJournalist(journalistID: number){
+    console.log("Admin wants to edit the journlasti with id:", journalistID);
+    this.router.navigate(['/journalist-form', { id: journalistID }]);
+  }
+
   openDialog(journalist) {
     console.log("Open dialog", journalist);
     let dialogRef = this.dialog.open(ConfirmDialogComponent, { data: { journalist: journalist } });
@@ -77,7 +82,7 @@ export class JournalistOverviewComponent implements OnInit {
           result => {
             if (result) {
               console.log("Journalist is deleted");
-              
+
               let index = this.journalists.findIndex(
                 (item, index) => item.userID === journalist.userID);
               console.log("Index:", index);

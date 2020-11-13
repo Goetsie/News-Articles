@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/security/models/user.model';
 import { UserService } from 'src/app/security/services/user.service';
 
@@ -12,32 +13,61 @@ export class JournalistFormComponent implements OnInit {
 
 
   submitted = false;
+  update = false;
 
   journalist: User = new User(0, '', '', '', '', '', 2);
 
-  constructor(private _userService: UserService, private snackBar: MatSnackBar) { }
+  constructor(private _userService: UserService, private snackBar: MatSnackBar, private route: ActivatedRoute,) {
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.update = true;
+      const journalistID = this.route.snapshot.paramMap.get('id');
+      console.log("Parameter in link --> update journalist with id:", journalistID);
+      this._userService.getUser(journalistID).subscribe(
+        result => {
+          // this.journalist = new User(result.ID, '', '', '', '', '', 2);
+          console.log("Result:", result);
+          this.journalist = result;
+        }
+      );
+    }
+    // parseInt(this.route.snapshot.paramMap.get('id'));
+  }
 
   onSubmit() {
-    // Add new journalist
-    this.submitted = true;
-    console.log("The admin wants to add this journalist:", this.journalist);
+    if (!this.update) {
+      // Add new journalist
+      this.submitted = true;
+      console.log("The admin wants to add this journalist:", this.journalist);
 
-    this._userService.addUser(this.journalist).subscribe(
-      result => {
-        // Handle result
-        console.log("Add journalist result:", result);
-        if (result) {
-          this.journalist.userID = result.userID; // Save the real ID
-          console.log("Journamist is added");
-          this.openSnackBar(("Journalist '" + this.journalist.firstname + " " + this.journalist.lastname + "' is saved!"), "Undo")
+      this._userService.addUser(this.journalist).subscribe(
+        result => {
+          // Handle result
+          console.log("Add journalist result:", result);
+          if (result) {
+            this.journalist.userID = result.userID; // Save the real ID
+            console.log("Journamist is added");
+            this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "Undo")
+          }
+
         }
+      );
+    } else {
+      // Update journalist
+      this.submitted = true;
+      console.log("The admin wants to update this journalist:", this.journalist);
+      this._userService.updateUser(this.journalist.userID, this.journalist).subscribe(
+        result => {
+          // Handle result
+          console.log("Update journalist result:", result);
+          console.log("Journalist is updated");
+          this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "Undo")
+        },
+        error => {
+          console.log("Error:", error);
+        }
+      );
 
-      }
-      // () => {
-      //   console.log("Journamist is added");
-      //   this.openSnackBar(("Journalist '" + this.journalist.firstname + "' is saved!"), "Undo")
-      // }
-    );
+    }
   }
 
   // Snackbar
