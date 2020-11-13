@@ -21,6 +21,7 @@ import { UpdateArticleComponent } from './articles/update-article/update-article
 
 // Admin
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ToReviewComponent } from './admin/to-review/to-review.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
   { path: 'my-articles', component: MyArticlesComponent, canActivate: [AuthGuard] }, // Only for journalists and admins !!!
   { path: 'update-article', component: UpdateArticleComponent, canActivate: [AuthGuard] }, // Only for journalists and admins !!!
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Only for admins !!!
+  { path: 'to-review', component: ToReviewComponent, canActivate: [AuthGuard] }, // Only for admins !!!
+
 
 
 ];

@@ -31,3 +31,10 @@ mat-icon{
     font-size: 100px;
     width: 100px;
 }
+
+.row div{
+    &:hover{
+        cursor: pointer;
+        // Uitbreiden
+    }
+}
