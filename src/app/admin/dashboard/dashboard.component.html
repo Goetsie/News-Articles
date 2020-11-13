@@ -1,0 +1,25 @@
+<ul>
+    <li>Articles to review</li>
+    <li>Journalists</li>
+    <li>Tags</li>
+    <li></li>
+    <li></li>
+</ul>
+
+<div class="row">
+    <div id="toReview" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/to-review" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+        <span class="dashboard-title">To review</span><br>
+        <mat-icon>preview</mat-icon>
+    </div>
+    <div id="journalists" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/journalists" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }" >
+        <span class="dashboard-title">Journalists</span><br>
+        <mat-icon>preview</mat-icon>
+    </div>
+    <div id="tags" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/tags" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+        <span class="dashboard-title">Tags</span><br>
+        <mat-icon>preview</mat-icon>
+    </div>
+</div>

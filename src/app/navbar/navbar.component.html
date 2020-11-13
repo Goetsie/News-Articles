@@ -71,7 +71,7 @@
               <mat-icon>comment</mat-icon>
               <span>Reactions</span>
             </a>
-            <div *ngIf="userRole != 'User'">
+            <div *ngIf="userRole == 'Journalist'">
               <hr>
               <a class="profile-menu-item" mat-menu-item routerLink="/new-article" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">
@@ -81,6 +81,14 @@
                 [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon>article</mat-icon>
                 <span>My articles</span>
+              </a>
+            </div>
+            <div *ngIf="userRole == 'Admin'">
+              <hr>
+              <a class="profile-menu-item" mat-menu-item routerLink="/dashboard" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <mat-icon>dashboard</mat-icon>
+                <span>Dashboard</span>
               </a>
             </div>
             <hr>

@@ -25,6 +25,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SecurityModule } from './security/security.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from './security/security.interceptor';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ToReviewComponent } from './admin/to-review/to-review.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { SecurityInterceptor } from './security/security.interceptor';
     HelpComponent,
     NavbarComponent,
     SidenavComponent,
+    DashboardComponent,
+    ToReviewComponent,
   ],
   imports: [
     BrowserModule,

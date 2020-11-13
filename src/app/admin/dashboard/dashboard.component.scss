@@ -1,0 +1,40 @@
+#toReview {
+  border: 1px solid blue;
+  border-radius: 10px;
+  text-align: center;
+  color: blue;
+  background-color: lightblue;
+  padding: 20px;
+}
+
+#journalists {
+    border: 1px solid purple;
+    border-radius: 10px;
+    text-align: center;
+    color: purple;
+    background-color: plum;
+}
+
+#tags {
+    border: 1px solid blue;
+    border-radius: 10px;
+    text-align: center;
+    color: blue;
+    background-color: lightblue;
+}
+
+.dashboard-title {
+  font-size: large;
+}
+
+mat-icon{
+    font-size: 100px;
+    width: 100px;
+}
+
+.row div{
+    &:hover{
+        cursor: pointer;
+        // Uitbreiden
+    }
+}
