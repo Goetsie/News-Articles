@@ -27,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ToReviewComponent } from './admin/to-review/to-review.component';
+import { ShowArticleDialogComponent } from './admin/to-review/show-article-dialog/show-article-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ToReviewComponent } from './admin/to-review/to-review.component';
     SidenavComponent,
     DashboardComponent,
     ToReviewComponent,
+    ShowArticleDialogComponent,
   ],
   imports: [
     BrowserModule,
