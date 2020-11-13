@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12">
+        <h1>All journalists</h1>
+    </div>
+</div>
+
+<div class="row border">
+  <div class="col-12 text-center">
+    <p>User: {{journalist|json}}</p>
+  </div>
+</div>
+
+<form #journalistForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Firstname" type="text" required minlength="2" name="firstname"
+        [(ngModel)]="journalist.firstname" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Lastname" type="text" required minlength="2" name="lastname"
+        [(ngModel)]="journalist.lastname" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" required minlength="2" name="email"
+        [(ngModel)]="journalist.email" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Username" type="text" required minlength="2" name="username"
+        [(ngModel)]="journalist.username" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
+        [(ngModel)]="journalist.password" />
+    </mat-form-field>
+  </div>
+
+  <div class="col-10 offset-1">
+    Repeat password?
+    <!-- ?????????????????????????????????????? -->
+  </div>
+
+  <div class="col-10 offset-1">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!journalistForm.form.valid || submitted">Save
+      journalist</button>
+  </div>
+
+
+</form>

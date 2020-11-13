@@ -1,1 +1,90 @@
-<p>journalist-overview works!</p>
+<div class="row">
+  <div class="col-12">
+    <li *ngFor="let journalist of journalists">{{journalist.firstName}}</li>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-right">
+    <button mat-raised-button color="primary" (click)="newJournalist()">New journlist</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <mat-form-field class="w-100">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+      <!-- displayedColumns: string[] = ['lasName', 'firstName', 'username', 'email', 'actions']; -->
+
+
+      <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
+        <td mat-cell *matCellDef="let journalist">{{journalist.lastName}} </td>
+      </ng-container>
+
+      <!-- Subtitle Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First name </th>
+        <td mat-cell *matCellDef="let journalist">{{journalist.firstName}} </td>
+      </ng-container>
+
+      <!-- Creator column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+        <td mat-cell *matCellDef="let journalist">{{journalist.username}}</td>
+      </ng-container>
+
+      <!-- Tag column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let journalist">{{journalist.email}}</td>
+      </ng-container>
+
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Publish</th>
+        <td mat-cell *matCellDef="let journalist" class="text-center">
+          <!-- <button mat-fab color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-fab color="warn">
+              <mat-icon>delete</mat-icon>
+            </button> -->
+          <button mat-icon-button color="warn">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+
+  </div>
+</div>
+
+
+<!-- <div class="row">
+      <div class="col-12">
+          <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Dismiss')">Snackbar</button>
+          <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Undo')">Delete</button>
+  
+      </div>
+  </div> -->

@@ -16,6 +16,16 @@ export class UserService {
       return this.http.post<User>("https://localhost:44348/api/User", user);
   }
 
+    // GET --> get all users
+    getUsers(): Observable<User[]> {
+      return this.http.get<User[]>("https://localhost:44348/api/User");
+    }
+
+    // POST --> add a new user
+    deleteUser(userID: number){
+      return this.http.delete<User>("https://localhost:44348/api/User/" + userID.toString());
+  }
+
   //   // Get --> role by id
   //   getRoleByID(id){
   //     return this.http.get<Role>("https://localhost:44348/api/Role/", id);
