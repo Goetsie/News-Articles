@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Delete '{{data.journalist.firstName}} {{data.journalist.lastName}}'</h1>
+<div mat-dialog-content>
+  <p>Are you shure you want to delete '{{data.journalist.firstName}} {{data.journalist.lastName}}'? <br>
+    You <span class="font-weight-bold">can't</span> undo this action!</p>
+  <ul>
+    <li>Name: {{data.journalist.firstName}} {{data.journalist.lastName}} </li>
+    <li>Username: {{data.journalist.username}}</li>
+    <li>Email: {{data.journalist.email}}</li>
+  </ul>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>No</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Yes</button>
+</div>
