@@ -1,8 +1,10 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-12">
-    <li *ngFor="let journalist of journalists">{{journalist.firstName}}</li>
+    <ol>
+      <li *ngFor="let journalist of journalists; trackBy: trackByFn;">{{journalist.firstName}}</li>
+    </ol>
   </div>
-</div>
+</div> -->
 
 <div class="row">
   <div class="col-12 text-right">
@@ -21,7 +23,7 @@
 
 <div class="row">
   <div class="col-12">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" [trackBy]="trackByFn" matSort class="mat-elevation-z8">
 
 
       <!-- displayedColumns: string[] = ['lasName', 'firstName', 'username', 'email', 'actions']; -->
@@ -57,7 +59,7 @@
 
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef class="text-center">Publish</th>
+        <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let journalist" class="text-center">
           <!-- <button mat-fab color="warn">
               <mat-icon>delete</mat-icon>
@@ -65,8 +67,8 @@
             <button mat-fab color="warn">
               <mat-icon>delete</mat-icon>
             </button> -->
-          <button mat-icon-button color="warn">
-            <mat-icon>remove_red_eye</mat-icon>
+          <button mat-icon-button color="warn" (click)="deleteJournalist(journalist)">
+            <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>

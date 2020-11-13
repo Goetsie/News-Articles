@@ -30,6 +30,7 @@ import { ToReviewComponent } from './admin/to-review/to-review.component';
 import { ShowArticleDialogComponent } from './admin/to-review/show-article-dialog/show-article-dialog.component';
 import { JournalistOverviewComponent } from './admin/journalists/journalist-overview/journalist-overview.component';
 import { JournalistFormComponent } from './admin/journalists/journalist-form/journalist-form.component';
+import { ConfirmDialogComponent } from './admin/journalists/journalist-overview/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { JournalistFormComponent } from './admin/journalists/journalist-form/jou
     ShowArticleDialogComponent,
     JournalistOverviewComponent,
     JournalistFormComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
