@@ -1,1 +1,64 @@
-<p>to-review works!</p>
+<div class="row">
+  <div class="col-12">
+    <h1>All articles to review</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <mat-form-field class="w-100">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Title, Subtitle, Status" #input>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let article"> {{article.title}} </td>
+      </ng-container>
+
+      <!-- Subtitle Column -->
+      <ng-container matColumnDef="subTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtitle </th>
+        <td mat-cell *matCellDef="let article"> {{article.subTitle}} </td>
+      </ng-container>
+
+      <!-- Creator column -->
+      <ng-container matColumnDef="user.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+        <td mat-cell *matCellDef="let article"> {{article.user.firstName}} {{article.user.lastName}}</td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <!-- <ng-container matColumnDef="articleStatusID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let article"> {{article.articleStatus.name}} </td>
+      </ng-container> -->
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Publish</th>
+        <td mat-cell *matCellDef="let article" class="text-center">
+          <span>
+            <mat-icon>access_time</mat-icon>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+
+  </div>
+</div>
