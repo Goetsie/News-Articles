@@ -16,6 +16,7 @@ import { SignupComponent } from './security/signup/signup.component';
 // Guards
 import { AuthGuard } from './security/guards/auth.guard';
 import { JournalistGuard } from './security/guards/journalist.guard';
+import { AdminGuard } from './security/guards/admin.guard';
 
 import { CreateArticleComponent } from './articles/create-article/create-article.component';
 import { MyArticlesComponent } from './articles/my-articles/my-articles.component';
@@ -41,10 +42,10 @@ const routes: Routes = [
   { path: 'new-article', component: CreateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'my-articles', component: MyArticlesComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'update-article', component: UpdateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Only for admins !!!
-  { path: 'to-review', component: ToReviewComponent, canActivate: [AuthGuard] }, // Only for admins !!!
-  { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AuthGuard] }, // Only for admins !!!
-  { path: 'journalist-form', component: JournalistFormComponent, canActivate: [AuthGuard] }, // Only for admins !!!
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] }, // Only for admins !!!
+  { path: 'to-review', component: ToReviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
+  { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
+  { path: 'journalist-form', component: JournalistFormComponent, canActivate: [AdminGuard] }, // Only for admins !!!
 
 
 
