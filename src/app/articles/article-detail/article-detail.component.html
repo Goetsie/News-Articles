@@ -1,26 +1,68 @@
+<!-- Image -->
+<div class="row text-center" *ngIf="article.imgPath !== null">
+  <div class="col-12 mb-1 mb-lg-3">
+    <img *ngIf="article.imgPath !== null" mat-card-image [src]="article.imgPath" class="img-fluid"
+      alt="{{article.title}} - image">
+  </div>
+</div>
+
+<!-- Title & subtitle -->
 <div class="row text-center">
   <div class="col col-12 text-center">
-    <h1 class="bold text-center">{{article.title}}</h1>
+    <h1 class="font-weight-bolder text-center m-0">{{article.title}}</h1>
+    <p class="text-muted">
+      {{article.subTitle}}
+    </p>
   </div>
 </div>
 
+<!-- Short summary -->
 <div class="row">
-  <div class="col-6">
-    {{article.title}}
-  </div>
-  <div class="col-6 text-center">
-    {{article.title}}
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <p>{{article.body}}</p>
+  <div class="col-12 text-justify font-weight-bold">
+    {{article.shortSummary}}
   </div>
 </div>
 
 <hr>
 
+<!-- Detail block -->
+<div class="row ml-2 mr-2 text-muted">
+  <div class="col-12 col-lg-4">
+    {{article.user.lastName}} {{article.user.firstName}}
+  </div>
+  <div class="col-12 col-lg-4 text-left text-lg-center">
+    {{article.user.email}}
+  </div>
+  <div class="col12 col-lg-4 text-left text-lg-right">
+    {{article.tag.name}}
+  </div>
+</div>
+
+<hr>
+
+<!-- Body (content) -->
+<div class="row">
+  <div class="col-12 text-justify">
+    <p *ngFor="let alinea of alineas">{{alinea}}</p>
+  </div>
+</div>
+
+<!-- Like -->
+<div class="row text-center">
+  <div  class="col-12">
+    <div id="like" (click)="like(article.articleID)">
+    <div class="noselect">
+      <h3>I like this article!</h3>
+      <!-- IF article is liked, show full and do nothing on hover !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+      <mat-icon class="outline">favorite_outline</mat-icon>
+      <mat-icon class="full">favorite</mat-icon>
+    </div>
+  </div>
+  </div>
+</div>
+<hr>
+
+<!-- Reactions -->
 <app-reaction *ngIf="loggedIn" [articleID]="articleID"></app-reaction>
 
 <div *ngIf="!loggedIn" class="row">
@@ -29,7 +71,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row text-warning">
   <div class="col-12">
     <p>TO DO</p>
     <ul>
