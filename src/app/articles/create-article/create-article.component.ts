@@ -15,9 +15,12 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 export class CreateArticleComponent implements OnInit {
 
-  article: Article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
+  article: Article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
   tags: Tag[];
   submitted = false;
+
+  public response: {dbPath: ''};
+  imgPath = null;
 
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this._tagService.getTags()
@@ -52,7 +55,7 @@ export class CreateArticleComponent implements OnInit {
       if (result) {
         // Create new article
         console.log("New article");
-        this.article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2);
+        this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
         this.submitted == false;
       } else {
         console.log("Navigate");
@@ -63,8 +66,14 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit() {
-    // Admin needs to review article before published
+    // Admin needs to review article before published, so first set to review
     this.submitted == true;
+
+    if(this.imgPath){
+      console.log("There is an image uploaded");
+      this.article.imgPath = this.createImgPath(this.imgPath);
+    } 
+
     console.log("User wants to submit a new article", this.article);
     this._articleService.addArticle(this.article).subscribe(
       result => {
@@ -73,7 +82,7 @@ export class CreateArticleComponent implements OnInit {
       },
       error => {
         alert("There are some problems right now. Try again later.");
-        console.log("error");
+        console.log("error:", error);
       },
       () => {
         console.log("Article add (to review) completed");
@@ -82,8 +91,6 @@ export class CreateArticleComponent implements OnInit {
     );
 
   }
-
-
 
   saveArticle() {
     if (this.article.tagID == null) {
@@ -108,6 +115,16 @@ export class CreateArticleComponent implements OnInit {
     );
 
 
+  }
+
+  public uploadFinished = (event) => {
+    this.response = event;
+    console.log("Response:", this.response.dbPath); // needs to be added to articles creating
+    this.imgPath = this.response.dbPath;
+  }
+
+  public createImgPath = (serverPath: String) => {
+    return `https://localhost:44348/${serverPath}`;
   }
 
 }
