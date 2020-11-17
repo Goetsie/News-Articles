@@ -48,6 +48,7 @@
           <span *ngIf="article.articleStatus.name=='To review'">
             <mat-icon>access_time</mat-icon>
           </span>
+          <!-- An article can only be edited as it is saved as draft -->
           <span *ngIf="article.articleStatus.name=='Draft'"><button (click)="editArticle(article.articleID)"
               mat-icon-button color="warn">
               <mat-icon>edit</mat-icon>
@@ -63,6 +64,9 @@
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+    <div class="col-12 text-muted">
+      <small>*Articles can only be edited if they are in the 'draft' state.</small>
+    </div>
 
   </div>
 </div>
