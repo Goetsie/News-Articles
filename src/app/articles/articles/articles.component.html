@@ -14,12 +14,12 @@
         <mat-card-title>{{a.title}}</mat-card-title>
         <!-- <mat-card-subtitle *ngIf="a.subTitle">{{a.subTitle}}</mat-card-subtitle> -->
         <mat-card-subtitle>{{a.subTitle}} </mat-card-subtitle>
-
       </mat-card-header>
-      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+
+      <img *ngIf="a.imgPath !== null" mat-card-image [src]="a.imgPath" class="img-fluid m-auto" alt="a.title img">
+
       <mat-card-content>
-        <div class="text-truncate">{{a.shortSummary}} Short summary i love you to the moon and back en veeeeeeeeel
-          verder</div>
+        <div class="text-truncate">{{a.shortSummary}}</div>
         <div class="text-right p-1"><span class="tag"
             (click)="showTags(a.tagID);$event.stopPropagation()">{{a.tag.name}}</span></div>
       </mat-card-content>

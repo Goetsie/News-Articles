@@ -14,10 +14,11 @@ import { CreateArticleComponent } from './create-article/create-article.componen
 import { MyArticlesComponent } from './my-articles/my-articles.component';
 import { DialogComponent } from './create-article/dialog/dialog.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 
 @NgModule({
-  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent, UpdateArticleComponent],
+  declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent, UpdateArticleComponent, UploadFileComponent],
   imports: [
     CommonModule,
     SharedModule,

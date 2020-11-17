@@ -38,6 +38,12 @@ mat-card {
 
 }
 
+img{
+  max-height: 10vh;
+  width: auto;
+margin: auto;
+}
+
 mat-spinner {
   position: absolute;
   left: 50%;
