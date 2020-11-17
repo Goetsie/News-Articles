@@ -44,6 +44,7 @@ export class ArticlesComponent implements OnInit {
   // Show the full news article
   showArticle(a: Article){
     console.log("Show article with ID:", a.articleID);
+    console.log("Article:", a);
     this.router.navigate(['/articles', a.articleID]);
   }
 

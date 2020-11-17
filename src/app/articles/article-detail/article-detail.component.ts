@@ -14,8 +14,10 @@ import { AuthenticateService } from 'src/app/security/services/authenticate.serv
 })
 export class ArticleDetailComponent implements OnInit {
 
-  articleID: number = null;  // Send to child
+  articleID: number = null; 
   public article: Article;
+
+  alineas: String[];
 
   loggedIn = this._authenticateService.isLoggedIn();
 
@@ -35,6 +37,8 @@ export class ArticleDetailComponent implements OnInit {
       .subscribe(
         result => {
           this.article = result;
+          // Article body needs to we splitted by the new line characters, otherwise one (long) text.
+          this.alineas = this.article.body.split(/\r?\n/);
         });
   }
 
