@@ -32,6 +32,7 @@ import { JournalistOverviewComponent } from './admin/journalists/journalist-over
 import { JournalistFormComponent } from './admin/journalists/journalist-form/journalist-form.component';
 import { ConfirmDialogComponent } from './admin/journalists/journalist-overview/confirm-dialog/confirm-dialog.component';
 import { MyLikesComponent } from './user/my-likes/my-likes.component';
+import { MyReactionsComponent } from './user/my-reactions/my-reactions.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MyLikesComponent } from './user/my-likes/my-likes.component';
     JournalistFormComponent,
     ConfirmDialogComponent,
     MyLikesComponent,
+    MyReactionsComponent,
   ],
   imports: [
     BrowserModule,

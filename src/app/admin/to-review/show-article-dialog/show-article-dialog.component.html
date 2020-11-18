@@ -1,34 +1,47 @@
-<div class="row">
-  <div class="col-12">
-    <h1 mat-dialog-title>{{article.title}}</h1>
-  </div>
-</div>
+<div mat-dialog-content>
 
-<div class="row">
-  <div class="col-12">
-    <h3 mat-dialog-title class="text-muted">{{article.subTitle}}</h3>
+  <div class="row">
+    <div class="col-12">
+      <h1 mat-dialog-title>{{article.title}}</h1>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-12">
-    <div mat-dialog-content class="font-weight-bold text-justify">{{article.shortSummary}}</div>
+  <div class="row">
+    <div class="col-12">
+      <h3 mat-dialog-title class="text-muted">{{article.subTitle}}</h3>
+    </div>
   </div>
-</div>
 
-<div class="row mt-2">
-  <div class="col-12">
-    <div mat-dialog-content class="text-justify">{{article.body}}</div>
+  <!-- Image -->
+  <div *ngIf="article.imgPath != null" class="row">
+    <div class="col-12">
+      <img mat-card-image [src]="article.imgPath" class="img-fluid" alt="{{article.title}} - image">
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div id="actions" class="col-12">
-    <mat-dialog-actions align="center">
-      <button mat-button mat-raised-button color="warn" mat-dialog-close mat-dialog-close="discard">Discard</button>
-      <button mat-button mat-raised-button color="primary" mat-dialog-close mat-dialog-close="publish">Publish</button>
-      <button mat-button mat-dialog-close>Close</button>
-    </mat-dialog-actions>
-
+  <div class="row">
+    <div mat-dialog-content class="col-12">
+      <p *ngFor="let alinea of alineas_shortSummary" class="font-weight-bold text-justify">{{alinea}}
+      </p>
+    </div>
   </div>
+
+  <div class="row mt-2">
+    <div mat-dialog-content class="col-12">
+      <p *ngFor="let alinea of alineas_body" class="text-justify">{{alinea}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="actions" class="col-12">
+      <mat-dialog-actions align="center">
+        <button mat-button mat-raised-button color="warn" mat-dialog-close mat-dialog-close="discard">Discard</button>
+        <button mat-button mat-raised-button color="primary" mat-dialog-close
+          mat-dialog-close="publish">Publish</button>
+        <button mat-button mat-dialog-close>Close</button>
+      </mat-dialog-actions>
+
+    </div>
+  </div>
+
 </div>
