@@ -83,6 +83,9 @@ export class MyLikesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // home(){
+  //   this.router.navigate(['/']);
+  // }
 
   showArticle(id: number) {
     console.log("Show article:", id);

@@ -15,11 +15,18 @@ export class ReactionService {
 
 
   // GET --> get all reactions
-  getReactions(articleID): Observable<Reaction[]> {
+  // getReactions(articleID): Observable<Reaction[]> {
+  //   // Get reactions per article
+  //   if (articleID) {
+  //     return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=" + articleID.toString());
+  //   }
+  //   // return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=4"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // }
+
+  // Get all reaction (filter later)
+  getReactions(): Observable<Reaction[]> {
     // Get reactions per article
-    if (articleID) {
-      return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=" + articleID.toString());
-    }
+    return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction");
     // return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=4"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 

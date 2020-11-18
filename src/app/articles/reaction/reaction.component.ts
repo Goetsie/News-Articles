@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { tap } from 'rxjs/internal/operators/tap';
+import { map } from 'rxjs/operators';
 import { Reaction } from '../models/reaction.model';
 import { ReactionService } from '../services/reaction.service';
 
@@ -23,8 +24,9 @@ export class ReactionComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("ArticleID in reaction nogOnInit", this.articleID);
-    this._reactionService.getReactions(this.articleID)
+    this._reactionService.getReactions()
     .pipe(
+      map(reactions => reactions.filter(reaction => reaction.articleID == this.articleID)), // Get all the reactions of this article
       tap(t => console.log("Reactions on this article:", t))
     )
     .subscribe(

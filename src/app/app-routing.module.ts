@@ -13,6 +13,8 @@ import { SecurityComponent } from './security/security/security.component';
 
 import { SignupComponent } from './security/signup/signup.component';
 import { MyLikesComponent } from './user/my-likes/my-likes.component';
+import { MyReactionsComponent } from './user/my-reactions/my-reactions.component';
+
 
 // Guards
 import { AuthGuard } from './security/guards/auth.guard';
@@ -41,6 +43,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'my-likes', component: MyLikesComponent, canActivate: [AuthGuard] },
+  { path: 'my-reactions', component: MyReactionsComponent, canActivate: [AuthGuard] },
 
   { path: 'new-article', component: CreateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'my-articles', component: MyArticlesComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!

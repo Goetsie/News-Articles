@@ -9,10 +9,17 @@ import { Article } from 'src/app/articles/models/article.model';
 })
 export class ShowArticleDialogComponent implements OnInit {
 
-article: Article;
+  article: Article;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
+  alineas_shortSummary: String[];
+  alineas_body: String[];
+  
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.article = this.data.article;
+    // Article body and the short summary needs to be splitted by the new line characters, otherwise one (long) text.
+    this.alineas_shortSummary = this.article.shortSummary.split(/\r?\n/);
+    this.alineas_body = this.article.body.split(/\r?\n/);
   }
 
   ngOnInit(): void {
