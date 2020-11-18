@@ -12,6 +12,7 @@ import { ArticleDetailComponent } from './articles/article-detail/article-detail
 import { SecurityComponent } from './security/security/security.component';
 
 import { SignupComponent } from './security/signup/signup.component';
+import { MyLikesComponent } from './user/my-likes/my-likes.component';
 
 // Guards
 import { AuthGuard } from './security/guards/auth.guard';
@@ -39,9 +40,12 @@ const routes: Routes = [
   { path: 'login', component: SecurityComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+  { path: 'my-likes', component: MyLikesComponent, canActivate: [AuthGuard] },
+
   { path: 'new-article', component: CreateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'my-articles', component: MyArticlesComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'update-article', component: UpdateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'to-review', component: ToReviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
