@@ -1,8 +1,7 @@
 <!-- Image -->
-<div class="row text-center" *ngIf="article.imgPath !== null">
+<div class="row text-center" *ngIf="ifImage">
   <div class="col-12 mb-1 mb-lg-3">
-    <img *ngIf="article.imgPath !== null" mat-card-image [src]="article.imgPath" class="img-fluid"
-      alt="{{article.title}} - image">
+    <img mat-card-image [src]="article.imgPath" class="img-fluid" alt="{{article.title}} - image">
   </div>
 </div>
 
@@ -27,13 +26,19 @@
 
 <!-- Detail block -->
 <div class="row ml-2 mr-2 text-muted">
-  <div class="col-12 col-lg-4">
+  <div class="col-12 col-lg-3">
     {{article.user.lastName}} {{article.user.firstName}}
   </div>
-  <div class="col-12 col-lg-4 text-left text-lg-center">
+  <div class="col-12 col-lg-3 text-left text-lg-center">
     {{article.user.email}}
   </div>
-  <div class="col12 col-lg-4 text-left text-lg-right">
+  <div *ngIf="likes" class="col12 col-lg-3 text-left text-lg-center">
+    Total likes: {{likes.length}}
+  </div>
+  <div *ngIf="!likes" class="col12 col-lg-3 text-left text-lg-center">
+    Total likes: 0
+  </div>
+  <div class="col12 col-lg-3 text-left text-lg-right">
     {{article.tag.name}}
   </div>
 </div>
@@ -48,17 +53,18 @@
 </div>
 
 <!-- Like -->
-<div class="row text-center">
-  <div  class="col-12">
+<div *ngIf="likedThisArticle==false" class="row text-center">
+  <div class="col-12">
     <div id="like" (click)="like(article.articleID)">
-    <div class="noselect">
-      <h3>I like this article!</h3>
-      <!-- IF article is liked, show full and do nothing on hover !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-      <mat-icon class="outline">favorite_outline</mat-icon>
-      <mat-icon class="full">favorite</mat-icon>
+      <div class="noselect">
+        <h3>I like this article!</h3>
+        <!-- IF article is liked, show full and do nothing on hover !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <mat-icon class="outline">favorite_outline</mat-icon>
+        <mat-icon class="full">favorite</mat-icon>
+      </div>
     </div>
   </div>
-  </div>
+  <!-- <div *ngIf="userID in likes['userID']"></div> -->
 </div>
 <hr>
 
