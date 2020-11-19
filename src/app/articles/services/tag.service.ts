@@ -12,17 +12,26 @@ export class TagService {
 
   constructor(private _httpClient: HttpClient) { }
 
-    // GET -- All tags
-  //   getTags(){
-  //     return this.http.get<User>("https://localhost:44348/api/Tag");
-  // }
+  // GET --> get all tags
+  getTags(): Observable<Tag[]> {
+    return this._httpClient.get<Tag[]>("https://localhost:44348/api/Tag");
+  }
 
-      // GET --> get all members
-      getTags(): Observable<Tag[]> {
-        // return this.http.get<Member[]>("https://localhost:44373/api/members", {
-        //     headers: new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"))
-        // });
-        return this._httpClient.get<Tag[]>("https://localhost:44348/api/Tag");
-    }
+  // POST --> post a new tag
+  addTag(tag: Tag) {
+    console.log("Tag to POST:", tag);
+    return this._httpClient.post<Tag>("https://localhost:44348/api/Tag", tag);
+  }
+
+  // PUT --> update a tag
+  updateTag(tagID: number, tag: Tag) {
+    return this._httpClient.put<Tag>("https://localhost:44348/api/Tag/" + tagID, tag);
+  }
+
+  // DELETE --> delete a tag
+  deleteTag(tagID: number) {
+    return this._httpClient.delete<Tag>("https://localhost:44348/api/Tag/" + tagID.toString());
+  }
+
 
 }

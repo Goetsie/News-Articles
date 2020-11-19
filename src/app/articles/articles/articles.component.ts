@@ -29,7 +29,7 @@ export class ArticlesComponent implements OnInit {
 
 
   constructor(private _articleService: ArticleService, private router: Router) { 
-    this._articleService.getArticles(0)
+    this._articleService.getArticles()
     .pipe(
       map(articles => articles.filter(article => article.articleStatusID === 1)), // Only get the aricles ready for publication
       tap(t => console.log("Get Articles tap:", t))

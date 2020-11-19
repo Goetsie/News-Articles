@@ -29,7 +29,8 @@ import { UpdateArticleComponent } from './articles/update-article/update-article
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ToReviewComponent } from './admin/to-review/to-review.component';
 import { JournalistOverviewComponent } from './admin/journalists/journalist-overview/journalist-overview.component';
-import { JournalistFormComponent } from './admin/journalists/journalist-form/journalist-form.component'
+import { JournalistFormComponent } from './admin/journalists/journalist-form/journalist-form.component';
+import { TagsComponent } from './admin/tags/tags.component';
 
 
 
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'to-review', component: ToReviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'journalist-form', component: JournalistFormComponent, canActivate: [AdminGuard] }, // Only for admins !!!
+  { path: 'tags', component: TagsComponent, canActivate: [AdminGuard] }, // Only for admins !!!
 
 
 
