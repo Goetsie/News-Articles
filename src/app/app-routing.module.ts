@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { from } from 'rxjs';
 
-import {ArticlesComponent } from './articles/articles/articles.component';
+import { ArticlesComponent } from './articles/articles/articles.component';
 
 // Dummy component
 import { ContactComponent } from './contact/contact.component';
-import { HelpComponent} from './help/help.component';
+import { HelpComponent } from './help/help.component';
 
 import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
 import { SecurityComponent } from './security/security/security.component';
@@ -14,6 +14,7 @@ import { SecurityComponent } from './security/security/security.component';
 import { SignupComponent } from './security/signup/signup.component';
 import { MyLikesComponent } from './user/my-likes/my-likes.component';
 import { MyReactionsComponent } from './user/my-reactions/my-reactions.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 
 // Guards
@@ -39,10 +40,10 @@ import { WildcardRouteComponent } from './wildcard-route/wildcard-route.componen
 const routes: Routes = [
 
   // Guest access
-  { path: '', redirectTo: '/articles', pathMatch: 'full'},
+  { path: '', redirectTo: '/articles', pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },
   { path: 'articles', component: ArticlesComponent },
-  { path: 'articles/:id', component: ArticleDetailComponent},
+  { path: 'articles/:id', component: ArticleDetailComponent },
   { path: 'help', component: HelpComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'signup', component: SignupComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
   // User access
   { path: 'my-likes', component: MyLikesComponent, canActivate: [AuthGuard] },
   { path: 'my-reactions', component: MyReactionsComponent, canActivate: [AuthGuard] },
-  // Profile niet vergeten
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
   // Journalist access
   { path: 'new-article', component: CreateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
@@ -64,7 +65,7 @@ const routes: Routes = [
   { path: 'journalist-form', component: JournalistFormComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'tags', component: TagsComponent, canActivate: [AdminGuard] }, // Only for admins !!!
 
-  { path: '**', component: WildcardRouteComponent}, // Wildcard route --> page not found
+  { path: '**', component: WildcardRouteComponent }, // Wildcard route --> page not found
 
 
 

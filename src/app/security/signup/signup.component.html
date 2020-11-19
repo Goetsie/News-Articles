@@ -37,10 +37,6 @@
   </div>
 
   <div class="col-10 offset-1">
-    Username unique?
-  </div>
-
-  <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
         [(ngModel)]="newUser.password" />
@@ -48,14 +44,9 @@
   </div>
 
   <div class="col-10 offset-1">
-    Repeat password?
-  </div>
-
-  <div class="col-10 offset-1">
     <button mat-raised-button color="primary" type="submit"
       [disabled]="!signupForm.form.valid || submitted">Signup</button>
       <div class="text-muted mt-2">Already an account <a [routerLink]="['/login']">Login</a> immediatly! </div>
   </div>
-
 
 </form>

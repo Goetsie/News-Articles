@@ -5,6 +5,7 @@ import { AuthenticateService } from '../services/authenticate.service';
 import { UserService } from '../services/user.service';
 import { Role } from '../models/role.model';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit {
   newUser: User = new User(0, '', '', '', '', '', 1);
 
 
-  constructor(private _userService: UserService, private _authenticateService: AuthenticateService, private router: Router) { }
+  constructor(private _userService: UserService, private _authenticateService: AuthenticateService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -44,15 +45,23 @@ export class SignupComponent implements OnInit {
     // Automaticallly log the new user in
     this._authenticateService.authenticate(userLogin).subscribe(
       result => {
+
         localStorage.setItem("token", result.token);
         console.log("Token is:", result.token);
-        this.router.navigate(['/']); // Redirect the user to the home page
+
+        this._authenticateService.isLoggedin.next(result.token ? true : false);
+        localStorage.setItem("loggedUser", result.username);
+        localStorage.setItem("userID", result.userID.toString());
+        localStorage.setItem("userRole", result.role.name);
+        this.router.navigate(['']); // Redirect to home page after signup
+        this.snackBar.open("Welcome " + result.username + "!", "", { duration: 5000 });
+
       });
 
     // If the user is logged in --> logged in true
-    this._authenticateService.authenticate(userLogin).subscribe(result => {
-      this._authenticateService.isLoggedin.next(result.token ? true : false);
-    });
+    // this._authenticateService.authenticate(userLogin).subscribe(result => {
+    //   this._authenticateService.isLoggedin.next(result.token ? true : false);
+    // });
   }
 
 }

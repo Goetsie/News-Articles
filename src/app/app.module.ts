@@ -36,6 +36,7 @@ import { MyReactionsComponent } from './user/my-reactions/my-reactions.component
 import { TagsComponent } from './admin/tags/tags.component';
 import { TagFormComponent } from './admin/tags/tag-form/tag-form.component';
 import { WildcardRouteComponent } from './wildcard-route/wildcard-route.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { WildcardRouteComponent } from './wildcard-route/wildcard-route.componen
     TagsComponent,
     TagFormComponent,
     WildcardRouteComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
