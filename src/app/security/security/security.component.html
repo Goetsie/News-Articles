@@ -32,6 +32,7 @@
         <button mat-raised-button color="primary" type="submit"
           [disabled]="!loginForm.form.valid || submitted">Login</button>
         <p>{{loginStatus}}</p>
+        <div class="text-muted mt-2">Don't have an account? <a [routerLink]="['/signup']">Signup</a> for free now! </div>
       </div>
 
 

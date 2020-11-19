@@ -54,6 +54,7 @@
   <div class="col-10 offset-1">
     <button mat-raised-button color="primary" type="submit"
       [disabled]="!signupForm.form.valid || submitted">Signup</button>
+      <div class="text-muted mt-2">Already an account <a [routerLink]="['/login']">Login</a> immediatly! </div>
   </div>
 
 

@@ -17,12 +17,13 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
 import { UploadFileComponent } from './upload-file/upload-file.component';
 
 
+
 @NgModule({
   declarations: [ArticlesComponent, ArticleDetailComponent, FilterComponent, FilterPipe, ReactionComponent, AddReactionComponent, UpdateReactionComponent, CreateArticleComponent, MyArticlesComponent, DialogComponent, UpdateArticleComponent, UploadFileComponent],
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ArticleService

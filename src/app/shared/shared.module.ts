@@ -25,7 +25,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -53,7 +56,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDialogModule,
     MatRadioModule,
     MatSnackBarModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule,
+    RouterModule
   ], exports: [
     CommonModule,
     FormsModule,
@@ -78,7 +83,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatDialogModule,
     MatRadioModule,
     MatSnackBarModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule,
+    RouterModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'nl-BE' },

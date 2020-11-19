@@ -53,7 +53,7 @@
 </div>
 
 <!-- Like -->
-<div *ngIf="likedThisArticle==false" class="row text-center">
+<div *ngIf="likedThisArticle==false && userID!=null" class="row text-center">
   <div class="col-12">
     <div id="like" (click)="like(article.articleID)">
       <div class="noselect">
@@ -77,12 +77,9 @@
   </div>
 </div>
 
-<div class="row text-warning">
+
+<div class="row text-center">
   <div class="col-12">
-    <p>TO DO</p>
-    <ul>
-      <li>Reactions</li>
-      <li>Likes</li>
-    </ul>
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
   </div>
 </div>

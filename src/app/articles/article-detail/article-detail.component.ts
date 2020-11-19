@@ -6,7 +6,6 @@ import { LikeService } from '../services/like.service';
 import { map, tap } from 'rxjs/operators';
 import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 import { Like } from '../models/like.model';
-import { LayoutGapDirective } from '@angular/flex-layout';
 
 
 
@@ -20,7 +19,10 @@ export class ArticleDetailComponent implements OnInit {
   articleID: number = null;
   public article: Article;
 
-  userID = parseInt(localStorage.getItem("userID"));
+
+  // userID = parseInt(localStorage.getItem("userID"));
+  userID = null;
+
 
   ifImage = false;
   likedThisArticle: boolean = false;
@@ -38,6 +40,12 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // See if ther is a logged in user
+    if (parseInt(localStorage.getItem("userID"))) {
+      this.userID = parseInt(localStorage.getItem("userID"));
+    }
+
     // this.articleID = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log("ArticleID in detail:", this.articleID);
 
@@ -67,14 +75,18 @@ export class ArticleDetailComponent implements OnInit {
             this.likes = null;
           } else {
             this.likes = result;
-            for (let like of this.likes) {
-              if(like.userID == this.userID){
-                this.likedThisArticle = true;
-                console.log("You liked this article");
+            // Only if the user is logged in
+            if (this.userID) {
+              for (let like of this.likes) {
+                if (like.userID == this.userID) {
+                  this.likedThisArticle = true;
+                  console.log("You liked this article");
+                }
               }
             }
           }
         });
+
 
   }
 

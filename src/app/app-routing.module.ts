@@ -37,21 +37,27 @@ import { WildcardRouteComponent } from './wildcard-route/wildcard-route.componen
 
 
 const routes: Routes = [
+
+  // Guest access
   { path: '', redirectTo: '/articles', pathMatch: 'full'},
-  // { path: 'contact', component: ContactComponent },
+  { path: 'contact', component: ContactComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'articles/:id', component: ArticleDetailComponent},
   { path: 'help', component: HelpComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+
+  // User access
   { path: 'my-likes', component: MyLikesComponent, canActivate: [AuthGuard] },
   { path: 'my-reactions', component: MyReactionsComponent, canActivate: [AuthGuard] },
+  // Profile niet vergeten
 
+  // Journalist access
   { path: 'new-article', component: CreateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'my-articles', component: MyArticlesComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
   { path: 'update-article', component: UpdateArticleComponent, canActivate: [JournalistGuard] }, // Only for journalists and admins !!!
 
+  // Admin access
   { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'to-review', component: ToReviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
