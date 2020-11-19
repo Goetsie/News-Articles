@@ -40,5 +40,5 @@ export class ArticleService {
     console.log("Add article:", article);
     return this.http.post<Article>("https://localhost:44348/api/Article", article);
   }
-
+  
 }

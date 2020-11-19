@@ -29,6 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterModule } from '@angular/router';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -58,7 +59,8 @@ import { RouterModule } from '@angular/router';
     MatSnackBarModule,
     DragDropModule,
     MatTooltipModule,
-    RouterModule
+    RouterModule,
+    MatBadgeModule
   ], exports: [
     CommonModule,
     FormsModule,
@@ -85,7 +87,8 @@ import { RouterModule } from '@angular/router';
     MatSnackBarModule,
     DragDropModule,
     MatTooltipModule,
-    RouterModule
+    RouterModule,
+    MatBadgeModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'nl-BE' },
