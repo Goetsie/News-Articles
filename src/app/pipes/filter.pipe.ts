@@ -12,6 +12,7 @@ export class FilterPipe implements PipeTransform {
     console.log("tagID:", tagID);
     if (value) {
 
+      sName = sName.toLowerCase();
       console.log("value:", value);
 
       // No filter applied
@@ -23,7 +24,7 @@ export class FilterPipe implements PipeTransform {
       var articleArray = [];
       for (let i = 0; i < value.length; i++) {
         // Where to search in
-        let searchIn: string = value[i].title + " " + value[i].body;
+        let searchIn: string = value[i].title.toLowerCase() + " " + value[i].shortSummary.toLowerCase();
 
         // Zoeken op tagID en string
         if(sName !== "" && tagID != 0 ){

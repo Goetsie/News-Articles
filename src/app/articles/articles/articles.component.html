@@ -12,7 +12,6 @@
     <mat-card (click)="showArticle(a)" class="rounded">
       <mat-card-header>
         <mat-card-title>{{a.title}}</mat-card-title>
-        <!-- <mat-card-subtitle *ngIf="a.subTitle">{{a.subTitle}}</mat-card-subtitle> -->
         <mat-card-subtitle>{{a.subTitle}} </mat-card-subtitle>
       </mat-card-header>
 
@@ -23,10 +22,10 @@
         <div class="text-right p-1"><span class="tag"
             (click)="showTags(a.tagID);$event.stopPropagation()">{{a.tag.name}}</span></div>
       </mat-card-content>
-      <!-- <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions> -->
+
     </mat-card>
+
+
   </div>
+
 </div>
