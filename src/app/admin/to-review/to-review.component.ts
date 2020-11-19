@@ -28,7 +28,7 @@ export class ToReviewComponent implements OnInit {
   displayedColumns: string[] = ['title', 'subTitle', 'user.name', 'tagID', 'actions'];
 
   constructor(private _articleService: ArticleService, public dialog: MatDialog, private snackBar: MatSnackBar) {
-    this._articleService.getArticles(0)
+    this._articleService.getArticles()
       .pipe(
         map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
         tap(t => console.log("My articles:", t))

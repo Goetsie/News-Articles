@@ -33,6 +33,8 @@ import { JournalistFormComponent } from './admin/journalists/journalist-form/jou
 import { ConfirmDialogComponent } from './admin/journalists/journalist-overview/confirm-dialog/confirm-dialog.component';
 import { MyLikesComponent } from './user/my-likes/my-likes.component';
 import { MyReactionsComponent } from './user/my-reactions/my-reactions.component';
+import { TagsComponent } from './admin/tags/tags.component';
+import { TagFormComponent } from './admin/tags/tag-form/tag-form.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { MyReactionsComponent } from './user/my-reactions/my-reactions.component
     ConfirmDialogComponent,
     MyLikesComponent,
     MyReactionsComponent,
+    TagsComponent,
+    TagFormComponent,
   ],
   imports: [
     BrowserModule,

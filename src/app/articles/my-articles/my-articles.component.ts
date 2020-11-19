@@ -26,7 +26,7 @@ export class MyArticlesComponent implements OnInit {
   displayedColumns: string[] = ['title', 'subTitle', 'articleStatusID', 'actions'];
 
   constructor(private _articleService: ArticleService, private router: Router) { 
-    this._articleService.getArticles(0)
+    this._articleService.getArticles()
     .pipe(
       map(articles => articles.filter(article => article.userID == parseInt(localStorage.getItem("userID")))), // Only get the of the user that is logged in
       tap(t => console.log("My articles:", t))

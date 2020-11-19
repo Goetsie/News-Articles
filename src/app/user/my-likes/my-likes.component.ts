@@ -47,7 +47,7 @@ export class MyLikesComponent implements OnInit {
           }
         });
 
-    this._articleService.getArticles(0)
+    this._articleService.getArticles()
       .pipe(
         map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
         tap(t => console.log("My articles:", t))
