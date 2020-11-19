@@ -32,10 +32,12 @@ import { JournalistOverviewComponent } from './admin/journalists/journalist-over
 import { JournalistFormComponent } from './admin/journalists/journalist-form/journalist-form.component';
 import { TagsComponent } from './admin/tags/tags.component';
 
+import { WildcardRouteComponent } from './wildcard-route/wildcard-route.component';
+
 
 
 const routes: Routes = [
-  { path: '', component: ArticlesComponent },
+  { path: '', redirectTo: '/articles', pathMatch: 'full'},
   // { path: 'contact', component: ContactComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'articles/:id', component: ArticleDetailComponent},
@@ -55,6 +57,8 @@ const routes: Routes = [
   { path: 'journalists', component: JournalistOverviewComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'journalist-form', component: JournalistFormComponent, canActivate: [AdminGuard] }, // Only for admins !!!
   { path: 'tags', component: TagsComponent, canActivate: [AdminGuard] }, // Only for admins !!!
+
+  { path: '**', component: WildcardRouteComponent}, // Wildcard route --> page not found
 
 
 
