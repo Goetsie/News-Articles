@@ -1,12 +1,12 @@
-<div class="row">
+<div *ngIf="reactions!=undefined" class="row">
   <div class="col-12">
     <h1>These are all the reactions you've placed on articles:</h1>
   </div>
 </div>
 
-<div id="nothingFound" *ngIf="reactions==undefined" class="row text-center m-5">
+<div id="nothingFound" *ngIf="reactions==undefined" class="row text-center m-2 mt-5 mb-5">
   <div class="col-12">
-    You haven't reacted on any articles yet. <br>
+    You haven't responded to any articles yet. <br>
     Go to the home and read some awesome articles, <br>
     and share your thoughts.
   </div>
@@ -30,8 +30,7 @@
   </div>
 </div>
 
-<!-- The paginator doesn't work when usinf conditional rendering ! -->
-<!-- <div *ngIf="reactions!=undefined" class="row"> -->
+<!-- The paginator doesn't work when using conditional rendering ! -->
 <div class="row">
 
   <div class="col-12">

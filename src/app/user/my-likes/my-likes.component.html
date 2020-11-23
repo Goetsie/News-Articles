@@ -1,4 +1,4 @@
-<div class="row">
+<div *ngIf="articles!=undefined" class="row">
   <div class="col-12">
     <h1>These are all the articles you've liked:</h1>
   </div>
@@ -15,7 +15,7 @@
 
 <!-- <div *ngIf="articles!=null"> -->
 
-<div id="nothingFound" *ngIf="articles==undefined" class="row text-center">
+<div id="nothingFound" *ngIf="articles==undefined" class="row text-center m-2 mt-5 mb-5">
   <div class="col-12">
     You haven't liked any articles yet. <br>
     Go to the home and read some awesome articles, <br>
@@ -25,7 +25,9 @@
     <!-- <button mat-fab color="accent" aria-label="Go to home page" (click)="home()">
       <mat-icon>home</mat-icon>
     </button> -->
-    <a mat-fab color="accent" routerLink="/"><mat-icon>home</mat-icon></a>
+    <a mat-fab color="accent" routerLink="/">
+      <mat-icon>home</mat-icon>
+    </a>
   </div>
 </div>
 
@@ -39,7 +41,7 @@
   </div>
 </div>
 
-<div *ngIf="articles!=undefined" class="row">
+<div class="row">
   <div class="col-12">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -68,14 +70,14 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let article" class="text-center">
-            <!-- Read the article -->
-            <button mat-icon-button color="accent" (click)="showArticle(article.articleID)">
-                <mat-icon>remove_red_eye</mat-icon>
-              </button>
-              <!-- Dislike the article -->
-              <button mat-icon-button color="warn" (click)="dislikeArticle(article.articleID)">
-                <mat-icon>thumb_down</mat-icon>
-              </button>
+          <!-- Read the article -->
+          <button mat-icon-button color="accent" (click)="showArticle(article.articleID)">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+          <!-- Dislike the article -->
+          <button mat-icon-button color="warn" (click)="dislikeArticle(article.articleID)">
+            <mat-icon>thumb_down</mat-icon>
+          </button>
         </td>
       </ng-container>
 
@@ -83,7 +85,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    
+
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 
   </div>

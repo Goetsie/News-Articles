@@ -1,4 +1,4 @@
-a {
+a, button {
   text-decoration: none;
   color: white;
   background-color: inherit;
@@ -8,11 +8,24 @@ a {
     color: pink;
   }
 
-  mat-icon {
-    display: inline-flex;
-    vertical-align: middle;
-  }
+  // mat-icon {
+  //   border: 1px solid red;
+  //   display: inline-flex;
+  //   vertical-align: middle;
+  // }
 
+}
+
+.aligned-with-icon{
+  position: absolute;
+  margin-top: 3px;
+  // margin-left: 5px; /* optional */
+}
+
+mat-icon {
+  // border: 1px solid red;
+  // display: inline-flex;
+  vertical-align: middle;
 }
 
 button {
@@ -46,8 +59,7 @@ mat-toolbar {
       font-weight: bold;
     }
   }
-
-  color: gray;
+  color: black;
   background-color: inherit;
 }
 

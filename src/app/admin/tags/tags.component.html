@@ -4,36 +4,42 @@
   </div>
 </div>
 
-<!-- <div id="nothingFound" *ngIf="reactions==undefined" class="row text-center m-5">
+<!-- NO tags -->
+<div *ngIf="tags==undefined" class="row mt-5 text-center" id="nothingFound">
   <div class="col-12">
-    You haven't reacted on any articles yet. <br>
-    Go to the home and read some awesome articles, <br>
-    and share your thoughts.
+    There are no more tags! <br>
+    Create one now:
   </div>
-  <div class="col-12 mt-3">
-    <button mat-fab color="accent" aria-label="Go to home page" (click)="home()">
-      <mat-icon>home</mat-icon>
-    </button>
-    <a mat-fab color="accent" routerLink="/">
-      <mat-icon>home</mat-icon>
+  <div class="col-12 mt-2 mt-md-4">
+    <button mat-raised-button color="primary" (click)="newTag()">New tag</button>
+  </div>
+  <div class="col-12  mt-5">
+    Or create one later and go back to your dashboard:
+  </div>
+  <div class="col-12 mt-2 mt-md-3 mb-5">
+    <a mat-fab color="accent" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
     </a>
   </div>
-</div> -->
+</div>
 
-<app-tag-form *ngIf="showForm" [update]="update" [tagEdit]="tagEdit" (tagFormCompleted)="onTagFormCompleted($event)"></app-tag-form>
+
+<app-tag-form *ngIf="showForm" [update]="update" [tagEdit]="tagEdit" (tagFormCompleted)="onTagFormCompleted($event)">
+</app-tag-form>
 
 <!-- Update reaction -->
 <!-- <app-update-reaction *ngIf="edit_reaction" [reactionEdit]="reactionEdit"
   (reactionIsUpdated)="onReactionUpdated($event)"></app-update-reaction> -->
 
-<div class="row">
+<!-- New tag button -->
+<div *ngIf="tags!=undefined" class="row">
   <div class="col-12">
     <button mat-raised-button color="primary" (click)="newTag()">New tag</button>
   </div>
 </div>
 
-
-<div class="row">
+<!-- Filter -->
+<div *ngIf="tags!=undefined" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
       <mat-label>Filter</mat-label>
@@ -42,10 +48,8 @@
   </div>
 </div>
 
-<!-- The paginator doesn't work when usinf conditional rendering ! -->
-<!-- <div *ngIf="reactions!=undefined" class="row"> -->
+<!-- Table -->
 <div class="row">
-
   <div class="col-12">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -71,21 +75,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 
-  </div>
-  <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator> -->
-</div>
-
-
-<!-- </div> -->
-
-<div class="row">
-  <div class="col-12">
-    <!-- Show spinner when there are no articles -->
-    <!-- <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner> -->
   </div>
 </div>

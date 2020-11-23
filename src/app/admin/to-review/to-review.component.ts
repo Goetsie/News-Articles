@@ -51,9 +51,7 @@ export class ToReviewComponent implements OnInit {
               || data.user.lastName.toLowerCase().includes(filter);
           }
         });
-
-
-
+        
     console.log("My articles:", this.articles);
 
   }

@@ -10,13 +10,34 @@ import { AuthenticateService } from '../security/services/authenticate.service';
 })
 export class SidenavComponent implements OnInit {
 
-@Output() sidenavClose = new EventEmitter();
+  @Output() sidenavClose = new EventEmitter();
 
-username = null;
-loggedIn = false;
-userRole = this._authenticateService.ifUser();
+  username = null;
+  loggedIn = false;
+  userRole = this._authenticateService.ifUser();
 
-  constructor(private _authenticateService: AuthenticateService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private _authenticateService: AuthenticateService, private router: Router, private snackBar: MatSnackBar) {
+    this.loggedIn = this._authenticateService.isLoggedIn();
+    this.username = localStorage.getItem('loggedUser');
+
+    this._authenticateService.isLoggedin.subscribe(e => {
+      if (this._authenticateService.isLoggedIn()) {
+        this.username = localStorage.getItem('loggedUser');
+        this.loggedIn = this._authenticateService.isLoggedIn();
+      } else {
+        this.username = null;
+        this.loggedIn = this._authenticateService.isLoggedIn();
+      };
+
+      this._authenticateService.user.subscribe(e => {
+        if (this._authenticateService.ifUser()) {
+          this.userRole = localStorage.getItem('userRole');
+        } else {
+          this.userRole = null;
+        }
+      })
+    })
+  }
 
   ngOnInit(): void {
     this.loggedIn = this._authenticateService.isLoggedIn();
@@ -28,7 +49,7 @@ userRole = this._authenticateService.ifUser();
     this.sidenavClose.emit();
   }
 
-  logout(){
+  logout() {
     console.log("User wants to logout");
     localStorage.clear();
     this.snackBar.open("See you later " + this.username + "!", "", { duration: 5000 });
