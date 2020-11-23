@@ -12,7 +12,9 @@ export class NavbarComponent implements OnInit {
   @Output() public sidenavToggle = new EventEmitter();
 
   username = null;
-  loggedIn = this._authenticateService.isLoggedIn();
+  // loggedIn = this._authenticateService.isLoggedIn();
+  loggedIn = false;
+
   // userRole = localStorage.getItem("userRole");
   userRole = this._authenticateService.ifUser();
 
@@ -26,6 +28,7 @@ export class NavbarComponent implements OnInit {
       if (this._authenticateService.isLoggedIn()) {
         this.username = localStorage.getItem('loggedUser');
         this.loggedIn = this._authenticateService.isLoggedIn();
+        console.log("CHANGEDDDDDD", localStorage.getItem('loggedUser'));
       } else {
         this.username = null;
         this.loggedIn = this._authenticateService.isLoggedIn();
@@ -43,9 +46,11 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     console.log("User wants to logout");
-    localStorage.removeItem("token");
-    localStorage.removeItem("loggedUser");
-    localStorage.removeItem("userRole");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("loggedUser");
+    // localStorage.removeItem("userRole");
+    localStorage.clear();
+    console.log("User logged out");
     this._authenticateService.isLoggedin.next(false);
     this.router.navigate(['']); // Redirect to home page after logout
   }

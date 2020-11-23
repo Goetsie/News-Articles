@@ -35,6 +35,7 @@ export class SecurityComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Login
   onSubmit() {
     this.submitted = true;
     console.log("user tries to login!!", this.userLogin);
@@ -44,17 +45,24 @@ export class SecurityComponent implements OnInit {
       result => {
         console.log("Token is:", result.token);
 
-        localStorage.setItem("token", result.token);
+        if (result.token) {
+          // Save in localStorage before setting the user as logged in!
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("loggedUser", result.username);
+          localStorage.setItem("userID", result.userID.toString());
+          localStorage.setItem("userRole", result.role.name);
 
+        }
+
+        // If there is a token, the user is logged in
         this._authenticateService.isLoggedin.next(result.token ? true : false);
-        localStorage.setItem("loggedUser", result.username);
-        localStorage.setItem("userID", result.userID.toString());
-        localStorage.setItem("userRole", result.role.name);
+
         this.router.navigate(['']); // Redirect to home page after logging in
         this.snackBar.open("Welcome " + this.userLogin.username + "!", "", { duration: 5000 });
+
       },
       error => {
-        console.log("OOOOOOPs", error);
+        console.log("OOOOOOPS:", error);
         this.snackBar.open("Check your username and password!", "", { duration: 7000 });
         this.submitted = false;
         this.userLogin = new UserLogin('', '');
