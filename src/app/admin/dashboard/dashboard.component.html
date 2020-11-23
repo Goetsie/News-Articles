@@ -4,7 +4,8 @@
     <!-- To Review -->
   <div id="toReview" class="col-12 col-md-6 col-xl-3 p-1 p-lg-3 " routerLink="/to-review" routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }">
-    <span matBadge="{{numberArticlesToReview}}" matBadgeOverlap="false" matBadgeColor="warn" class="dashboard-title">To review</span><br>
+    <span class="dashboard-title ">To review</span>
+    <span *ngIf="numberArticlesToReview!=0" matBadge="{{numberArticlesToReview}}" matBadgeOverlap="false" matBadgeColor="warn"></span><br>
     <mat-icon>preview</mat-icon>
   </div>
   <!-- Journalists -->

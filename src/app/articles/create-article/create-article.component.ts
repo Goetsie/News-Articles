@@ -18,6 +18,7 @@ export class CreateArticleComponent implements OnInit {
   article: Article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
   tags: Tag[];
   submitted = false;
+  uploadIsFinished = false;
 
   public response: {dbPath: ''};
   imgPath = null;
@@ -57,6 +58,7 @@ export class CreateArticleComponent implements OnInit {
         console.log("New article");
         this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
         this.submitted == false;
+        this.uploadIsFinished = false;
       } else {
         console.log("Navigate");
         // Navigate my-articles
@@ -121,6 +123,7 @@ export class CreateArticleComponent implements OnInit {
     this.response = event;
     console.log("Response:", this.response.dbPath); // needs to be added to articles creating
     this.imgPath = this.response.dbPath;
+    this.uploadIsFinished = true;
   }
 
   public createImgPath = (serverPath: String) => {

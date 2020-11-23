@@ -53,7 +53,7 @@
 </div>
 
 <!-- Like -->
-<div *ngIf="likedThisArticle==false && userID!=null" class="row text-center">
+<div *ngIf="likedThisArticle==false && loggedIn" class="row text-center">
   <div class="col-12">
     <div id="like" (click)="like(article.articleID)">
       <div class="noselect">

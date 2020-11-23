@@ -9,6 +9,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class UploadFileComponent implements OnInit {
   public message: String;
   public progress: number;
+  uploadFinished = false;
   @Output() public onUploadFinished = new EventEmitter();
 
 
@@ -39,7 +40,8 @@ export class UploadFileComponent implements OnInit {
           } else if (event.type === HttpEventType.Response) {
             console.log("Upload completed!");
             this.message = 'Upload completed!';
-            this.onUploadFinished.emit(event.body); // event body = database path
+            this.onUploadFinished.emit(event.body); 
+            this.uploadFinished = true;
           }
         },
         error => console.log('oops', error)
