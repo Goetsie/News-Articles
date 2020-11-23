@@ -8,7 +8,7 @@ a {
     color: pink;
   }
 
-  mat-icon{
+  mat-icon {
     display: inline-flex;
     vertical-align: middle;
   }
@@ -39,13 +39,18 @@ mat-toolbar {
 .profile-menu-item {
   &:hover {
     color: black;
-    // background-color: inherit;
+    font-weight: 500;
+    #likes,
+    #logout {
+      color: red;
+      font-weight: bold;
+    }
   }
 
   color: gray;
   background-color: inherit;
 }
 
-.profile-menu:hover{
-    cursor: pointer;
+.profile-menu:hover {
+  cursor: pointer;
 }

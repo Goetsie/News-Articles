@@ -67,11 +67,7 @@ export class SecurityComponent implements OnInit {
         this.submitted = false;
         this.userLogin = new UserLogin('', '');
       }
-      // () => {
-      //   console.log("Login completed");
-      //   this.router.navigate(['']); // Redirect to home page after logging in
-      //   this.snackBar.open("Welcome " + this.userLogin.username + "!", "", { duration: 5000 });
-      // }
+
 
     );
 
