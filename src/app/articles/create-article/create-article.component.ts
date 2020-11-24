@@ -99,6 +99,12 @@ export class CreateArticleComponent implements OnInit {
       this.article.tagID = 1;
     }
     this.article.articleStatusID = 3; // Set to draft
+
+    if(this.imgPath){
+      console.log("There is an image uploaded");
+      this.article.imgPath = this.createImgPath(this.imgPath);
+    } 
+
     console.log("User wants to save his article", this.article);
 
     this._articleService.addArticle(this.article).subscribe(
