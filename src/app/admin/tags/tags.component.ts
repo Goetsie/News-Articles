@@ -28,7 +28,7 @@ export class TagsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['name', 'actions'];
+  displayedColumns: string[] = ['name', 'color', 'actions'];
 
   constructor(private _tagService: TagService, private _articleService: ArticleService) {
     this._tagService.getTags()

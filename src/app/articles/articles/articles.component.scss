@@ -38,10 +38,10 @@ mat-card {
 
 }
 
-img{
+img {
   max-height: 10vh;
   width: auto;
-margin: auto;
+  margin: auto;
 }
 
 mat-spinner {
@@ -59,15 +59,16 @@ mat-spinner {
 }
 
 .tag {
-   
-    text-decoration: none;
-    color: gray;
-    background-color: inherit;
-    &:hover{
-      text-decoration: underline;
-    }
-  
-    z-index: 100;
+
+  text-decoration: none;
+  color: gray;
+  background-color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  z-index: 100;
 
   padding: 2px;
   border-top: 1px solid green;

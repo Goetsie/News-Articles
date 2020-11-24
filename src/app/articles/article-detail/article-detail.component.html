@@ -73,7 +73,7 @@
 
 <div *ngIf="!loggedIn" class="row">
   <div class="col-12 text-center">
-    You need to login to see the reactions on this article or to place a reaction!
+    You need to <a [routerLink]="['/login']">login</a> to see the reactions on this article or to place a reaction!
   </div>
 </div>
 

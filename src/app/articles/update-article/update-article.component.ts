@@ -54,12 +54,11 @@ export class UpdateArticleComponent implements OnInit {
       if (result) {
         // Create new article
         console.log("New article");
-        // this.article = new Article(0, '', '', '', '', null, parseInt(localStorage.getItem("userID")), 2);
         this.router.navigate(['/new-article']);
         this.submitted == false;
       } else {
-        console.log("Navigate");
-        // Navigate my-articles
+        console.log("Close & navigate");
+        // Navigate my-argticles
         this.router.navigate(['/my-articles']);
       }
     });

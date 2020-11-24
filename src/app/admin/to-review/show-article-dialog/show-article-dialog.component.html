@@ -14,20 +14,20 @@
 
   <!-- Image -->
   <div *ngIf="article.imgPath != null" class="row">
-    <div class="col-12">
+    <div class="col-12 text-center">
       <img mat-card-image [src]="article.imgPath" class="img-fluid" alt="{{article.title}} - image">
     </div>
   </div>
 
   <div class="row">
-    <div mat-dialog-content class="col-12">
+    <div mat-dialog-content class="col-12 content">
       <p *ngFor="let alinea of alineas_shortSummary" class="font-weight-bold text-justify">{{alinea}}
       </p>
     </div>
   </div>
 
   <div class="row mt-2">
-    <div mat-dialog-content class="col-12">
+    <div mat-dialog-content class="col-12 content">
       <p *ngFor="let alinea of alineas_body" class="text-justify">{{alinea}}</p>
     </div>
   </div>

@@ -14,13 +14,14 @@
         <mat-card-title>{{a.title}}</mat-card-title>
         <mat-card-subtitle>{{a.subTitle}} </mat-card-subtitle>
       </mat-card-header>
-
-      <img *ngIf="a.imgPath !== null" mat-card-image [src]="a.imgPath" class="img-fluid m-auto" alt="a.title img">
-
+      <div *ngIf="a.imgPath !== null" class="text-center">
+        <img mat-card-image [src]="a.imgPath"
+          class="img-fluid m-auto" [alt]="a.title">
+      </div>
       <mat-card-content>
         <div class="text-truncate">{{a.shortSummary}}</div>
         <div class="text-right p-1"><span class="tag"
-            (click)="showTags(a.tagID);$event.stopPropagation()">{{a.tag.name}}</span></div>
+            (click)="showTags(a.tagID);$event.stopPropagation()" [style.color]="a.tag.color">{{a.tag.name}}</span></div>
       </mat-card-content>
 
     </mat-card>

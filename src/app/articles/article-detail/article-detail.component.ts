@@ -6,6 +6,7 @@ import { LikeService } from '../services/like.service';
 import { map, tap } from 'rxjs/operators';
 import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 import { Like } from '../models/like.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -33,7 +34,7 @@ export class ArticleDetailComponent implements OnInit {
 
   loggedIn = this._authenticateService.isLoggedIn();
 
-  constructor(private _articleService: ArticleService, private route: ActivatedRoute, private _authenticateService: AuthenticateService, private _likeService: LikeService) {
+  constructor(private _articleService: ArticleService, private route: ActivatedRoute, private _authenticateService: AuthenticateService, private _likeService: LikeService, private snackBar: MatSnackBar) {
     this.articleID = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log("ArticleID in detail constructor:", this.articleID);
 
@@ -86,14 +87,15 @@ export class ArticleDetailComponent implements OnInit {
             }
           }
         });
-
-
   }
 
   like(articleID: number) {
     console.log("User likes this article");
+    this.snackBar.open("Thanks for liking this article!", "", { duration: 7000 });
+    this.likedThisArticle = true;
     let like = new Like(0, parseInt(localStorage.getItem('userID')), articleID);
     console.log("Like:", like);
+
     this._likeService.addLike(like).subscribe(
       result => {
         // Handle result

@@ -46,15 +46,23 @@ export class SignupComponent implements OnInit {
     this._authenticateService.authenticate(userLogin).subscribe(
       result => {
 
-        localStorage.setItem("token", result.token);
         console.log("Token is:", result.token);
-
-        this._authenticateService.isLoggedin.next(result.token ? true : false);
-        localStorage.setItem("loggedUser", result.username);
-        localStorage.setItem("userID", result.userID.toString());
-        localStorage.setItem("userRole", result.role.name);
-        this.router.navigate(['']); // Redirect to home page after signup
+        
+        if (result.token) {
+          // Save in localStorage before setting the user as logged in!
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("loggedUser", result.username);
+          localStorage.setItem("userID", result.userID.toString());
+          localStorage.setItem("userRole", result.role.name);
+          this._authenticateService.isLoggedin.next(result.token ? true : false);
+          this.router.navigate(['']); // Redirect to home page after signup
         this.snackBar.open("Welcome " + result.username + "!", "", { duration: 5000 });
+        }else{
+          this.snackBar.open("Something went wrong, please try again!", "", { duration: 7000 });
+        }
+        
+
+        
 
       });
 

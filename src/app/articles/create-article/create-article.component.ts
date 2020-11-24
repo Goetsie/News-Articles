@@ -20,7 +20,7 @@ export class CreateArticleComponent implements OnInit {
   submitted = false;
   uploadIsFinished = false;
 
-  public response: {dbPath: ''};
+  public response: { dbPath: '' };
   imgPath = null;
 
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
@@ -60,8 +60,8 @@ export class CreateArticleComponent implements OnInit {
         this.submitted == false;
         this.uploadIsFinished = false;
       } else {
-        console.log("Navigate");
         // Navigate my-articles
+        console.log("Close & navigate");
         this.router.navigate(['/my-articles']);
       }
     });
@@ -71,10 +71,10 @@ export class CreateArticleComponent implements OnInit {
     // Admin needs to review article before published, so first set to review
     this.submitted == true;
 
-    if(this.imgPath){
+    if (this.imgPath) {
       console.log("There is an image uploaded");
       this.article.imgPath = this.createImgPath(this.imgPath);
-    } 
+    }
 
     console.log("User wants to submit a new article", this.article);
     this._articleService.addArticle(this.article).subscribe(
@@ -100,10 +100,10 @@ export class CreateArticleComponent implements OnInit {
     }
     this.article.articleStatusID = 3; // Set to draft
 
-    if(this.imgPath){
+    if (this.imgPath) {
       console.log("There is an image uploaded");
       this.article.imgPath = this.createImgPath(this.imgPath);
-    } 
+    }
 
     console.log("User wants to save his article", this.article);
 

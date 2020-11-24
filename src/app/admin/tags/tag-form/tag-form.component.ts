@@ -10,7 +10,7 @@ import { TagService } from 'src/app/articles/services/tag.service';
 })
 export class TagFormComponent implements OnInit {
 
-  tag: Tag = new Tag(0, '');
+  tag: Tag = new Tag(0, '', '');
   @Input() tagEdit: Tag; // Recieve from parent (tags component)
   @Input() update: boolean;
   @Output() tagFormCompleted = new EventEmitter<boolean>(); // Send to parent (tag component)
@@ -47,7 +47,7 @@ export class TagFormComponent implements OnInit {
         },
         () => {
           console.log("Update tag completed");
-          this.tag = new Tag(0, '');
+          this.tag = new Tag(0, '', '');
           this.tagFormCompleted.emit(true);
         }
       );
@@ -63,7 +63,7 @@ export class TagFormComponent implements OnInit {
         },
         () => {
           console.log("Add tag completed");
-          this.tag = new Tag(0, '');
+          this.tag = new Tag(0, '', '');
           this.tagFormCompleted.emit(true);
         }
       );
