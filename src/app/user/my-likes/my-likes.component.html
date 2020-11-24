@@ -71,11 +71,11 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let article" class="text-center">
           <!-- Read the article -->
-          <button mat-icon-button color="accent" (click)="showArticle(article.articleID)">
+          <button mat-icon-button color="accent" (click)="showArticle(article.articleID)" matTooltip="Go to '{{article.title}}'" matTooltipPosition="left">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
           <!-- Dislike the article -->
-          <button mat-icon-button color="warn" (click)="dislikeArticle(article.articleID)">
+          <button mat-icon-button color="warn" (click)="dislikeArticle(article.articleID)" matTooltip="Dislike '{{article.title}}'" matTooltipPosition="right">
             <mat-icon>thumb_down</mat-icon>
           </button>
         </td>
@@ -93,9 +93,8 @@
 
 <!-- </div> -->
 
-<div class="row">
+<div class="row text-center">
   <div class="col-12">
-    <!-- Show spinner when there are no articles -->
-    <!-- <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner> -->
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
   </div>
 </div>

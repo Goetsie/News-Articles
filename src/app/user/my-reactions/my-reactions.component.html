@@ -51,7 +51,7 @@
       <!-- Date Column -->
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let reaction"> {{reaction.date}} </td>
+        <td mat-cell *matCellDef="let reaction"> {{reaction.date | date:"dd/MM/yyyy - HH:mm"}} </td>
       </ng-container>
 
 
@@ -60,7 +60,7 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let reaction" class="text-center">
           <!-- Go to the detail page of the article-->
-          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)">
+          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)" matTooltip="Go to '{{reaction.article.title}}'" matTooltipPosition="right">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
         </td>
@@ -81,9 +81,8 @@
 
 <!-- </div> -->
 
-<div class="row">
-  <div class="col-12">
-    <!-- Show spinner when there are no articles -->
-    <!-- <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner> -->
+<div class="row text-center">
+    <div class="col-12">
+      <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
+    </div>
   </div>
-</div>

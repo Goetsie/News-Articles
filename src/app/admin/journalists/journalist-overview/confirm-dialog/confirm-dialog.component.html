@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Delete '{{data.journalist.firstName}} {{data.journalist.lastName}}'</h1>
 <div mat-dialog-content>
   <p>Are you shure you want to delete '{{data.journalist.firstName}} {{data.journalist.lastName}}'? <br>
+    <span class="font-weight-bold mt-1 mb-1">All the articles that belong to this journalist will also be deleted!</span> <br>
     You <span class="font-weight-bold">can't</span> undo this action!</p>
   <ul>
     <li>Name: {{data.journalist.firstName}} {{data.journalist.lastName}} </li>

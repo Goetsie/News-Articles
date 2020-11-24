@@ -37,6 +37,7 @@ import { TagsComponent } from './admin/tags/tags.component';
 import { TagFormComponent } from './admin/tags/tag-form/tag-form.component';
 import { WildcardRouteComponent } from './wildcard-route/wildcard-route.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { ConfirmDialogTagComponent } from './admin/tags/confirm-dialog-tag/confirm-dialog-tag.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ProfileComponent } from './user/profile/profile.component';
     TagFormComponent,
     WildcardRouteComponent,
     ProfileComponent,
+    ConfirmDialogTagComponent,
   ],
   imports: [
     BrowserModule,

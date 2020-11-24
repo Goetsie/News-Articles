@@ -51,7 +51,7 @@ export class ToReviewComponent implements OnInit {
               || data.user.lastName.toLowerCase().includes(filter);
           }
         });
-        
+
     console.log("My articles:", this.articles);
 
   }
@@ -72,10 +72,9 @@ export class ToReviewComponent implements OnInit {
 
       // Discard the article
       if (result == "discard") {
-        // Maybe set the article back to an draft?
+        // Article back to draft so journalist can change the article
         article.articleStatusID = 3;
         delete (article.articleStatus);
-        // article.articleStatus = null;
         console.log("Admin wants to discard article with id:", article.articleID);
         console.log("Admin wants to discard article:", article);
         this._articleService.updateArticle(article.articleID, article).subscribe(
@@ -94,11 +93,13 @@ export class ToReviewComponent implements OnInit {
         this._articleService.updateArticle(article.articleID, article).subscribe(
           () => {
             console.log("Article is published");
+            this.dataSource = this.articles.filter(item => item.articleID !== article.articleID); // Remove the published article from the table
             this.openSnackBar("Article is published", "Undo", article);
           }
         );
       } else {
         // Closing the dialog means do nothing
+        this.snackBar.open("Status of article isn't changed!", "", { duration: 5000 });
       }
     });
 
@@ -120,12 +121,23 @@ export class ToReviewComponent implements OnInit {
 
         // Undo the action
         article.articleStatusID = 2; // Set back to 'to review'
-
         this._articleService.updateArticle(article.articleID, article).subscribe(
           () => {
             this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
           }
         );
+
+        // Re-make the list
+        this._articleService.getArticles()
+          .pipe(
+            map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
+          )
+          .subscribe(
+            result => {
+              if (result.length != 0) {
+                this.dataSource = result;
+              }
+            });
       }
     });
 

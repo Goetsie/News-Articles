@@ -41,7 +41,7 @@
       <!-- Title Column -->
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
-        <td mat-cell *matCellDef="let article"> {{article.title}} </td>
+        <td mat-cell *matCellDef="let article" > {{article.title}} </td>
       </ng-container>
 
       <!-- Subtitle Column -->
@@ -62,12 +62,6 @@
         <td mat-cell *matCellDef="let article"> {{article.tag.name}}</td>
       </ng-container>
 
-      <!-- Status Column -->
-      <!-- <ng-container matColumnDef="articleStatusID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let article"> {{article.articleStatus.name}} </td>
-      </ng-container> -->
-
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="text-center">Publish</th>
@@ -78,7 +72,7 @@
           <button mat-fab color="warn">
             <mat-icon>delete</mat-icon>
           </button> -->
-          <button mat-icon-button color="warn" (click)="showArticle(article)">
+          <button mat-icon-button color="warn" (click)="showArticle(article)" matTooltip="Review '{{article.title}}'" matTooltipPosition="right"> 
             <mat-icon>remove_red_eye</mat-icon>
           </button>
         </td>
@@ -87,17 +81,17 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator class="text-right" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 
-    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+  </div>
 
+  
+
+</div>
+
+<div class="row text-center">
+  <div class="col-12">
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/dashboard']">Back to dashboard</a></div>
   </div>
 </div>
 
-
-<!-- <div class="row">
-    <div class="col-12">
-        <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Dismiss')">Snackbar</button>
-        <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Undo')">Delete</button>
-
-    </div>
-</div> -->

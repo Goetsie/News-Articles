@@ -15,10 +15,9 @@ import { Article } from '../models/article.model';
 export class MyArticlesComponent implements OnInit {
 
   articles: Article[];
+  userRole = null;
 
   dataSource;
-  // columnsToDisplay = ['Title', 'Subtitle', 'Status'];
-  // expandedElement: PeriodicElement | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -60,6 +59,7 @@ export class MyArticlesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userRole = localStorage.getItem('userRole');
   }
 
   // ngAfterViewInit() {

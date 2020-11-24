@@ -1,5 +1,7 @@
 mat-card {
   transition: all 0.3s ease-in-out;
+  height: 100%;
+
   // transition: border-color 0.9s ease;
 
   &:hover {
@@ -39,9 +41,10 @@ mat-card {
 }
 
 img {
-  max-height: 10vh;
+  //max-height: 10vh;
+  max-height: auto;
   width: auto;
-  margin: auto;
+  margin: auto;  
 }
 
 mat-spinner {
@@ -60,9 +63,9 @@ mat-spinner {
 
 .tag {
 
+  position: relative;
+  bottom: auto;
   text-decoration: none;
-  color: gray;
-  background-color: inherit;
 
   &:hover {
     text-decoration: underline;

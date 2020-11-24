@@ -88,3 +88,10 @@
   </div>
 
 </div>
+
+<div class="row text-center">
+  <div class="col-12">
+    <div *ngIf="userRole == 'Admin'" class=" mt-2 mt-lg-5"><a [routerLink]="['/dashboard']">Back to dashboard</a></div>
+    <div *ngIf="userRole == 'Journalist'" class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
+  </div>
+</div>

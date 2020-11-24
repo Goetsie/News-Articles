@@ -5,7 +5,7 @@
 </div>
 
 <!-- Add reaction -->
-<app-add-reaction *ngIf="!edit_reaction" [articleID]="articleID"></app-add-reaction>
+<app-add-reaction *ngIf="!edit_reaction" [articleID]="articleID" (reactionIsAdded)="onReactionAdded($event)"></app-add-reaction>
 
 <!-- Update reaction -->
 <app-update-reaction *ngIf="edit_reaction" [reactionEdit]="reactionEdit"

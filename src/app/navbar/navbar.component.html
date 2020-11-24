@@ -7,29 +7,33 @@
     </div>
 
     <div>
-        <span fxHide.gt-xs class="aligned-with-icon"><a class="align-middle" routerLink="/" routerLinkActive="active"
+      <span fxHide.gt-xs class="aligned-with-icon"><a class="align-middle" routerLink="/" routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">Home</a></span>
 
-          <a fxHide.xs class="align-middle" routerLink="/" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a fxHide.xs class="align-middle" routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">Home</a>
     </div>
 
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-        <!-- <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a></li> -->
-        <!-- <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a></li> -->
-        <!-- <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li> -->
-        <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active"
+
+        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/signup" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
-        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>account_circle</mat-icon></a></li>
+            <!-- <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/signup" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Signup <mat-icon>person_add_alt_1</mat-icon></a></li> -->
+        <!-- <li> | </li> -->
+        <li *ngIf="!loggedIn" class="ml-2"><a class="align-middle" routerLink="/login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+            <!-- <li *ngIf="!loggedIn" class="ml-2"><a class="align-middle" routerLink="/login" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>login</mat-icon></a></li> -->
+
 
         <!-- Logged in -->
         <li *ngIf="loggedIn">
           <a class="profile-menu" [matMenuTriggerFor]="menu">
             {{username}}<mat-icon>more_vert</mat-icon>
           </a>
-          
+
           <mat-menu #menu="matMenu">
             <a class="profile-menu-item" mat-menu-item routerLink="/profile" routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }">

@@ -107,7 +107,9 @@ export class MyLikesComponent implements OnInit {
 
     this._likeService.deleteLike(like.likeID).subscribe(
       result => {
-        console.log(result);
+        console.log("Like deleted:", result);
+        // Remove disliked article from html table datasource
+        this.dataSource = this.articles.filter(item => item.articleID !== like.articleID);
         this.openSnackBar("The article is disliked", "Undo", like);
       }
     );
@@ -119,12 +121,14 @@ export class MyLikesComponent implements OnInit {
     console.log("Like in snack", like);
     let snackBarRef = this.snackBar.open(message, action, { duration: 5000 });
 
+    // Dismissed
     snackBarRef.afterDismissed().subscribe(() => {
       console.log("The snackbar was dimissed");
     });
 
+    // Action
     snackBarRef.onAction().subscribe(() => {
-
+      console.log("The snackbar action was triggerd");
       if (action != "Dismiss") {
 
         console.log("The snackbar action was triggerd");
@@ -132,9 +136,26 @@ export class MyLikesComponent implements OnInit {
         this._likeService.addLike(new Like(0, like.userID, like.articleID)).subscribe(
           () => {
             this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
+            // Re-like the article & Re-make the list
+            this._likeService.addLike(like)
+              .subscribe(
+                () => {
+                  this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
+                });
+                this._articleService.getArticles()
+                .pipe(
+                  map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
+                )
+                .subscribe(
+                  result => {
+                    if (result.length != 0) {
+                      this.dataSource = result;
+                      this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
+                    }
+                  });
           }
-        );
 
+        );
       }
     });
 
