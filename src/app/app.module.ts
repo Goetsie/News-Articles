@@ -12,7 +12,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ArticlesModule } from './articles/articles.module';
 import { ArticleService } from './articles/article.service';
-import { HelpComponent } from './help/help.component';
 
 // HTTP
 import { HttpClientModule } from '@angular/common/http';
@@ -42,7 +41,6 @@ import { ConfirmDialogTagComponent } from './admin/tags/confirm-dialog-tag/confi
 @NgModule({
   declarations: [
     AppComponent,
-    HelpComponent,
     NavbarComponent,
     SidenavComponent,
     DashboardComponent,

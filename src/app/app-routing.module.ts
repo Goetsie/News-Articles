@@ -4,10 +4,6 @@ import { from } from 'rxjs';
 
 import { ArticlesComponent } from './articles/articles/articles.component';
 
-// Dummy component
-import { ContactComponent } from './contact/contact.component';
-import { HelpComponent } from './help/help.component';
-
 import { ArticleDetailComponent } from './articles/article-detail/article-detail.component';
 import { SecurityComponent } from './security/security/security.component';
 
@@ -41,10 +37,8 @@ const routes: Routes = [
 
   // Guest access
   { path: '', redirectTo: '/articles', pathMatch: 'full' },
-  { path: 'contact', component: ContactComponent },
   { path: 'articles', component: ArticlesComponent },
   { path: 'articles/:id', component: ArticleDetailComponent },
-  { path: 'help', component: HelpComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'signup', component: SignupComponent },
 
