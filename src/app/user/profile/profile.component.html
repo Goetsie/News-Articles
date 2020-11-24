@@ -1,13 +1,12 @@
 
-<div class="row border">
+<div class="row">
     <div class="col-12 text-center">
       <h1>Hi, {{user.firstName}} {{user.lastName}}!</h1>
-      <p>User: {{user|json}}</p>
-  
+      <!-- <p>User: {{user|json}}</p> -->
     </div>
   </div>
   
-  <form #profileForm="ngForm" (ngSubmit)="onSubmit()" class="row mt-2 mt-lg-5 border text-center">
+  <form #profileForm="ngForm" (ngSubmit)="onSubmit()" class="row mt-2 mt-lg-5 text-center">
   
     <div class="col-10 offset-1">
       <mat-form-field>
@@ -46,7 +45,7 @@
   
     <div class="col-10 offset-1">
       <button mat-raised-button color="primary" type="submit"
-        [disabled]="!profileForm.form.valid || submitted">Save changes</button>
+        [disabled]="!profileForm.form.valid || submitted">Save</button>
     </div>
   
   </form>

@@ -1,15 +1,18 @@
+<!-- Form -->
 <form (ngSubmit)="updateReaction()" #updateReactionForm="ngForm" class="row">
 
     <!-- <div class="col-12">
       <p>Reaction update: {{reactionEdit|json}}</p>
     </div> -->
   
+    <!-- Content -->
     <div class="col-12 col-md-9">
       <mat-form-field class="w-100">
         <input matInput placeholder="Change reaction" type="text" minlength="5" required [(ngModel)]="reactionEdit.content" name="reaction_update_content" />
       </mat-form-field>
     </div>
   
+    <!-- Submit button -->
     <div class="col-12 col-md-3 m-auto text-center">
       <button type="submit" [disabled]="!updateReactionForm.form.valid" mat-raised-button color="accent">Update</button>
     </div>

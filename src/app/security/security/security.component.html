@@ -1,57 +1,50 @@
-<div class="container">
+<section *ngIf="!loggedIn">
 
-  <section *ngIf="!loggedIn">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Log In</h1>
+      <!-- <p>User: {{userLogin|json}}</p> -->
+    </div>
+  </div>
 
-    <div class="row border">
-      <div class="col-12 text-center">
-        <h1>Login</h1>
-        <p>User: {{userLogin|json}}</p>
-        <!-- <div class="col-10 offset-1">
-        <button class="m-2" mat-raised-button color="warn" (click)="clearLocalStorage()">Logout</button>
-      </div> -->
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center mt-3 mt-md-5">
+
+    <div class="col-10 offset-1">
+      <mat-form-field>
+        <input matInput placeholder="Username" type="text" required minlength="2" [(ngModel)]="userLogin.username"
+          name="username" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-10 offset-1">
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" required name="password" [(ngModel)]="userLogin.password"
+          #passwordcontrol />
+      </mat-form-field>
+    </div>
+
+    <div class="col-10 offset-1">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!loginForm.form.valid || submitted">Log In</button>
+      <p>{{loginStatus}}</p>
+      <div class="text-muted mt-2">Don't have an account? <a [routerLink]="['/signup']">Sign Up</a> for free now!
       </div>
     </div>
 
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
-
-      <div class="col-10 offset-1">
-        <mat-form-field>
-          <input matInput placeholder="Username" type="text" required minlength="2" [(ngModel)]="userLogin.username"
-            name="username" />
-        </mat-form-field>
-      </div>
-
-      <div class="col-10 offset-1">
-        <mat-form-field>
-          <input matInput placeholder="Password" type="password" required name="password"
-            [(ngModel)]="userLogin.password" #passwordcontrol />
-        </mat-form-field>
-      </div>
-
-      <div class="col-10 offset-1">
-        <button mat-raised-button color="primary" type="submit"
-          [disabled]="!loginForm.form.valid || submitted">Login</button>
-        <p>{{loginStatus}}</p>
-        <div class="text-muted mt-2">Don't have an account? <a [routerLink]="['/signup']">Signup</a> for free now! </div>
-      </div>
 
 
 
+  </form>
 
-    </form>
+</section>
 
-  </section>
-
-  <section *ngIf="loggedIn">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1>You are logged in, {{username}}!</h1>
-      </div>
-      <div class="col-10 offset-1 text-center">
-        <button class="m-2" mat-raised-button color="warn" (click)="clearLocalStorage()">Logout</button>
-      </div>
+<section *ngIf="loggedIn">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>You are logged in, {{username}}!</h1>
     </div>
-  </section>
-
-</div>
-
+    <div class="col-10 offset-1 text-center">
+      <button class="m-2" mat-raised-button color="warn" (click)="clearLocalStorage()">Logout</button>
+    </div>
+  </div>
+</section>

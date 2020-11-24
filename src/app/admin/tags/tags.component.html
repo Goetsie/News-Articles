@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <h1>Tags:</h1>
+    <h1>Tags</h1>
   </div>
 </div>
 
@@ -23,13 +23,9 @@
   </div>
 </div>
 
-
+<!-- Tag Form -->
 <app-tag-form *ngIf="showForm" [update]="update" [tagEdit]="tagEdit" (tagFormCompleted)="onTagFormCompleted($event)">
 </app-tag-form>
-
-<!-- Update reaction -->
-<!-- <app-update-reaction *ngIf="edit_reaction" [reactionEdit]="reactionEdit"
-  (reactionIsUpdated)="onReactionUpdated($event)"></app-update-reaction> -->
 
 <!-- New tag button -->
 <div *ngIf="tags!=undefined" class="row text-right">
@@ -62,7 +58,9 @@
       <!-- Color Column -->
       <ng-container matColumnDef="color">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
-        <td mat-cell *matCellDef="let tag" [style.color]="tag.color"><mat-icon [style.color]="tag.color" [matTooltip]="tag.color" matTooltipPosition="right">color_lens</mat-icon></td>
+        <td mat-cell *matCellDef="let tag" [style.color]="tag.color">
+          <mat-icon [style.color]="tag.color" [matTooltip]="tag.color" matTooltipPosition="right">color_lens</mat-icon>
+        </td>
       </ng-container>
 
       <!-- Actions Column -->
@@ -89,8 +87,7 @@
 </div>
 
 <div class="row text-center">
-    <div class="col-12">
-      <div class=" mt-2 mt-lg-5"><a [routerLink]="['/dashboard']">Back to dashboard</a></div>
-    </div>
+  <div class="col-12">
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/dashboard']">Back to dashboard</a></div>
   </div>
-  
+</div>

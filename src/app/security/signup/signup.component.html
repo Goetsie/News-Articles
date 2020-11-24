@@ -1,12 +1,11 @@
-<div class="row border">
+<div class="row">
   <div class="col-12 text-center">
-    <h1>Signup</h1>
-    <p>User: {{newUser|json}}</p>
-
+    <h1>Sign Up</h1>
+    <!-- <p>User: {{newUser|json}}</p> -->
   </div>
 </div>
 
-<form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
+<form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center">
 
   <div class="col-10 offset-1">
     <mat-form-field>
@@ -45,8 +44,8 @@
 
   <div class="col-10 offset-1">
     <button mat-raised-button color="primary" type="submit"
-      [disabled]="!signupForm.form.valid || submitted">Signup</button>
-      <div class="text-muted mt-2">Already an account <a [routerLink]="['/login']">Login</a> immediatly! </div>
+      [disabled]="!signupForm.form.valid || submitted">Sign Up</button>
+      <div class="text-muted mt-2">Already an account? <a [routerLink]="['/login']">Log In</a> immediatly! </div>
   </div>
 
 </form>

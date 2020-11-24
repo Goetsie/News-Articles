@@ -1,16 +1,12 @@
 <div class="row">
     <div class="col-12">
-        <h1>All journalists</h1>
+        <h1 *ngIf="!update">New journalist</h1>
+        <h1 *ngIf="update">Update {{journalist.firstName}} {{journalist.lastName}}</h1>
+        <!-- <p>User: {{journalist|json}}</p> -->
     </div>
 </div>
 
-<div class="row border">
-  <div class="col-12 text-center">
-    <p>User: {{journalist|json}}</p>
-  </div>
-</div>
-
-<form #journalistForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
+<form #journalistForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center">
 
   <div class="col-10 offset-1">
     <mat-form-field>
@@ -48,9 +44,14 @@
   </div>
 
   <div class="col-10 offset-1">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!journalistForm.form.valid || submitted">Save
-      journalist</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!journalistForm.form.valid || submitted">Save</button>
   </div>
 
-
 </form>
+
+<div class="row text-center">
+  <div class="col-12">
+    <div class="mt-2 mt-lg-5"><a [routerLink]="['/journalists']">Back to journalists</a></div>
+  </div>
+</div>
+
