@@ -19,15 +19,12 @@ export class UpdateArticleComponent implements OnInit {
   tags: Tag[];
 
   uploadIsFinished = false;
-  public response: {dbPath: ''};
+  public response: { dbPath: '' };
   imgPath = null;
 
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this._tagService.getTags()
       .pipe(
-        // map(res => {
-        //   return res.slice(0,2); // Only show the first two members
-        // }),
         tap(t => console.log(t))
       )
       .subscribe(
@@ -44,7 +41,6 @@ export class UpdateArticleComponent implements OnInit {
         });
     }
   }
-
 
   openDialog(toReview) {
     let dialogRef = this.dialog.open(DialogComponent, { data: { toReview: toReview } });
@@ -70,10 +66,10 @@ export class UpdateArticleComponent implements OnInit {
     this.submitted == true;
     this.article.articleStatusID = 2; // Set to "to review"
 
-    if(this.imgPath){
+    if (this.imgPath) {
       console.log("There is an image uploaded");
       this.article.imgPath = this.createImgPath(this.imgPath);
-    } 
+    }
 
     console.log("User wants to update an article", this.article);
     this._articleService.updateArticle(this.article.articleID, this.article).subscribe(result => {
@@ -89,10 +85,10 @@ export class UpdateArticleComponent implements OnInit {
     }
     this.article.articleStatusID = 3; // Set to draft
 
-    if(this.imgPath){
+    if (this.imgPath) {
       console.log("There is an image uploaded");
       this.article.imgPath = this.createImgPath(this.imgPath);
-    } 
+    }
 
     console.log("User wants to save his article", this.article);
 
@@ -117,7 +113,7 @@ export class UpdateArticleComponent implements OnInit {
 
   public uploadFinished = (event) => {
     this.response = event;
-    console.log("Response:", this.response.dbPath); // needs to be added to articles creating
+    console.log("Response:", this.response.dbPath); // Needs to be added to articles creating
     this.imgPath = this.response.dbPath;
     this.uploadIsFinished = true;
   }

@@ -29,7 +29,7 @@ export class MyReactionsComponent implements OnInit {
     this._reactionService.getReactions()
       .pipe(
         map(reactions => reactions.filter(reaction => reaction.userID == parseInt(localStorage.getItem("userID")))), // Get all the reactions of the user that is logged in
-        
+
         tap(t => console.log("All my reactions:", t))
       )
       .subscribe(
@@ -44,7 +44,7 @@ export class MyReactionsComponent implements OnInit {
           this.dataSource.sort = this.sort;
           // Change the colums where the filter must filter
           this.dataSource.filterPredicate = function (data, filter: string): boolean {
-            return  data.article.title.toLowerCase().includes(filter) || data.content.toLowerCase().includes(filter) || data.date.toLowerCase().includes(filter) ;
+            return data.article.title.toLowerCase().includes(filter) || data.content.toLowerCase().includes(filter) || data.date.toLowerCase().includes(filter);
           }
           console.log("Datasource", this.dataSource);
         });
@@ -63,12 +63,6 @@ export class MyReactionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.dataSource.filterPredicate = function (data, filter: string): boolean {
-    //   return data.content.toLowerCase().includes(filter);
-    //   // return data.content.toLowerCase().includes(filter) || data.symbol.toLowerCase().includes(filter) || data.position.toString().includes(filter);
-
-    // };
   }
-
 
 }

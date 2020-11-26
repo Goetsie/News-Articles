@@ -55,17 +55,15 @@ export class JournalistOverviewComponent implements OnInit {
   newJournalist() {
     console.log("The admin wants to create a new journalist");
     this.router.navigate(['/journalist-form']);
-    // Navigate to journalist form
   }
 
   deleteJournalist(journalist: User) {
     console.log("The admin wants to delete the journalist with ID:", journalist.userID);
     this.openDialog(journalist);
-    // this._userService.deleteUser(userID).subscribe();
   }
 
-  editJournalist(journalistID: number){
-    console.log("Admin wants to edit the journlasti with id:", journalistID);
+  editJournalist(journalistID: number) {
+    console.log("Admin wants to edit the journalist with id:", journalistID);
     this.router.navigate(['/journalist-form', { id: journalistID }]);
   }
 
@@ -77,7 +75,7 @@ export class JournalistOverviewComponent implements OnInit {
       console.log("Dialog result:", result);
       if (result) {
         // Delete journalist
-        console.log("Admin want to delete the journalist");
+        console.log("Admin wants to delete the journalist");
         this._userService.deleteUser(journalist.userID).subscribe(
           result => {
             if (result) {
@@ -109,8 +107,6 @@ export class JournalistOverviewComponent implements OnInit {
     snackBarRef.afterDismissed().subscribe(() => {
       console.log("The snackbar was dimissed");
       if (journalist) {
-        // this.journalists = this.journalists.filter(item => item.userID !== journalist.userID); // Remove the journalist from html table
-        
         console.log("New journalists list:", this.journalists);
       }
     });

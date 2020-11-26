@@ -9,6 +9,7 @@
 
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center mt-3 mt-md-5">
 
+    <!-- Username -->
     <div class="col-10 offset-1">
       <mat-form-field>
         <input matInput placeholder="Username" type="text" required minlength="2" [(ngModel)]="userLogin.username"
@@ -16,6 +17,7 @@
       </mat-form-field>
     </div>
 
+    <!-- Password -->
     <div class="col-10 offset-1">
       <mat-form-field>
         <input matInput placeholder="Password" type="password" required name="password" [(ngModel)]="userLogin.password"
@@ -23,21 +25,20 @@
       </mat-form-field>
     </div>
 
+    <!-- Submit -->
     <div class="col-10 offset-1">
-      <button mat-raised-button color="primary" type="submit"
-        [disabled]="!loginForm.form.valid || submitted">Log In</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.form.valid || submitted">Log
+        In</button>
       <p>{{loginStatus}}</p>
       <div class="text-muted mt-2">Don't have an account? <a [routerLink]="['/signup']">Sign Up</a> for free now!
       </div>
     </div>
 
-
-
-
   </form>
 
 </section>
 
+<!-- Logged in -->
 <section *ngIf="loggedIn">
   <div class="row">
     <div class="col-12 text-center">

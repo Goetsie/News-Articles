@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-12">
-      <h1>Journalists</h1>
+    <h1>Journalists</h1>
   </div>
 </div>
 
-
+<!-- No journalists -->
 <div *ngIf="journalists==undefined" class="row mt-5 text-center no-journalists">
   <div class="col-12">
     You haven't created any journalists yet. <br>
@@ -23,12 +23,14 @@
   </div>
 </div>
 
+<!-- New journalist -->
 <div *ngIf="journalists!=undefined" class="row">
   <div class="col-12 text-right">
     <button mat-raised-button color="primary" (click)="newJournalist()">New journalist</button>
   </div>
 </div>
 
+<!-- Filter -->
 <div *ngIf="journalists!=undefined" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
@@ -38,16 +40,10 @@
   </div>
 </div>
 
+<!-- Table -->
 <div class="row">
   <div class="col-12">
     <table mat-table [dataSource]="dataSource" [trackBy]="trackByFn" matSort class="mat-elevation-z8">
-
-
-      <!-- displayedColumns: string[] = ['lasName', 'firstName', 'username', 'email', 'actions']; -->
-
-
-      <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Title Column -->
       <ng-container matColumnDef="lastName" class="ml-5">
@@ -73,20 +69,15 @@
         <td mat-cell *matCellDef="let journalist" data-label="">{{journalist.email}}</td>
       </ng-container>
 
-
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let journalist" class="text-center">
-          <!-- <button mat-fab color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-fab color="warn">
-              <mat-icon>delete</mat-icon>
-            </button> -->
-            <button mat-icon-button color="warn" (click)="editJournalist(journalist.userID)">
-                <mat-icon>edit</mat-icon>
-              </button>
+          <!-- Edit -->
+          <button mat-icon-button color="warn" (click)="editJournalist(journalist.userID)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- Delete -->
           <button mat-icon-button color="warn" (click)="deleteJournalist(journalist)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -95,7 +86,6 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
 
     </table>
 
@@ -103,7 +93,6 @@
 
   </div>
 </div>
-
 
 <div class="row text-center">
   <div class="col-12">

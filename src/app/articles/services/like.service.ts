@@ -12,7 +12,6 @@ export class LikeService {
 
   constructor(private _httpClient: HttpClient) { }
 
-
   // GET --> get all likes
   getLikes(): Observable<Like[]> {
     return this._httpClient.get<Like[]>("https://localhost:44348/api/Like");

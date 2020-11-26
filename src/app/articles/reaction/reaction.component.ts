@@ -20,7 +20,6 @@ export class ReactionComponent implements OnInit {
   edit_reaction = false;
   reactionEdit = Reaction;
 
-
   constructor(private _reactionService: ReactionService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -74,7 +73,6 @@ export class ReactionComponent implements OnInit {
     }
 
   }
-
 
   deleteReaction(reaction) {
     console.log("User wants to delete his reaction with id:", reaction.reactionID);

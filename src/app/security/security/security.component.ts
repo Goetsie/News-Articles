@@ -16,14 +16,10 @@ export class SecurityComponent implements OnInit {
   userLogin: UserLogin = new UserLogin('', '');
   username = "test";
 
-  // loggedIn = false;
-
   loggedIn = this._authenticateService.isLoggedIn();
 
   constructor(private _authenticateService: AuthenticateService, private router: Router, private snackBar: MatSnackBar) {
     this._authenticateService.isLoggedin.subscribe(e => {
-      //Do something with the value of this BehaviorSubject
-      //Every time the value changes this code will be triggered
       console.log("Changed isLoggedIn", this._authenticateService.isLoggedIn());
       if (this._authenticateService.isLoggedIn()) {
         this.loggedIn = this._authenticateService.isLoggedIn();
@@ -68,9 +64,7 @@ export class SecurityComponent implements OnInit {
         this.userLogin = new UserLogin('', '');
       }
 
-
     );
-
 
   }
 
@@ -80,6 +74,7 @@ export class SecurityComponent implements OnInit {
     localStorage.removeItem("token");
     localStorage.removeItem("loggedUser");
     localStorage.removeItem("userID");
+    localStorage.clear();
     this._authenticateService.isLoggedin.next(false);
     this.router.navigate(['']); // Redirect to home page after logout
   }

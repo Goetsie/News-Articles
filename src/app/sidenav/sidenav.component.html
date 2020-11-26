@@ -4,12 +4,15 @@
     <mat-icon>home</mat-icon><span class="nav-caption">Home</span>
   </a>
   <hr>
+
   <!-- Logged Out -->
   <div *ngIf="!loggedIn">
+    <!-- Sign Up -->
     <a mat-list-item routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose()">
       <mat-icon>person_add_alt_1</mat-icon><span class="nav-caption">Sign Up</span>
     </a>
+    <!-- Log In -->
     <a mat-list-item routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose()">
       <mat-icon>login</mat-icon><span class="nav-caption">Log In</span>
@@ -18,14 +21,17 @@
 
   <!-- Logged in -->
   <div *ngIf="loggedIn">
+    <!-- Profile -->
     <a mat-list-item routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose()">
       <mat-icon>account_circle</mat-icon><span class="nav-caption">Profile</span>
     </a>
+    <!-- Likes -->
     <a mat-list-item routerLink="/my-likes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose()">
       <mat-icon id="likes">favorite</mat-icon><span class="nav-caption">Likes</span>
     </a>
+    <!-- Reactions -->
     <a mat-list-item routerLink="/my-reactions" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose()">
       <mat-icon>comment</mat-icon><span class="nav-caption">Reactions</span>
@@ -33,10 +39,12 @@
     <!-- Logged in Journalist -->
     <div *ngIf="userRole == 'Journalist'">
       <hr>
+      <!-- New article -->
       <a mat-list-item routerLink="/new-article" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         (click)="onSidenavClose()">
         <mat-icon>create</mat-icon><span class="nav-caption">New-article</span>
       </a>
+      <!-- My articles -->
       <a mat-list-item routerLink="/my-articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         (click)="onSidenavClose()">
         <mat-icon>article</mat-icon><span class="nav-caption">My-articles</span>
@@ -45,6 +53,7 @@
     <!-- Logged in Admin -->
     <div *ngIf="userRole == 'Admin'">
       <hr>
+      <!-- Dashboard -->
       <a mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         (click)="onSidenavClose()">
         <mat-icon>dashboard</mat-icon><span class="nav-caption">Dashboard</span>
@@ -52,6 +61,8 @@
     </div>
 
     <hr>
+    
+    <!-- Logout -->
     <a mat-list-item routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       (click)="onSidenavClose(); logout()">
       <mat-icon id="logout" color="warn">power_settings_new</mat-icon><span class="nav-caption">Logout</span>

@@ -28,7 +28,7 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
   providers: [
     ArticleService
   ],
-  entryComponents:[
+  entryComponents: [
     DialogComponent
   ]
 })

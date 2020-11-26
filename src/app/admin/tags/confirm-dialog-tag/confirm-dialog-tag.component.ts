@@ -10,8 +10,7 @@ export class ConfirmDialogTagComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     console.log("Data:", data.tag)
-    // this.journalist = data.journalist;
-   }
+  }
 
   ngOnInit(): void {
   }

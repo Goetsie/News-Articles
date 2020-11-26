@@ -50,7 +50,7 @@ export class MyLikesComponent implements OnInit {
     this._articleService.getArticles()
       .pipe(
         map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
-        tap(t => console.log("My articles:", t))
+        tap(t => console.log("Articles I like:", t))
       )
       .subscribe(
         result => {
@@ -64,8 +64,6 @@ export class MyLikesComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         });
-
-    console.log("Articles I like:", this.articles);
 
   }
 
@@ -82,10 +80,6 @@ export class MyLikesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  // home(){
-  //   this.router.navigate(['/']);
-  // }
 
   showArticle(id: number) {
     console.log("Show article:", id);
@@ -142,17 +136,17 @@ export class MyLikesComponent implements OnInit {
                 () => {
                   this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
                 });
-                this._articleService.getArticles()
-                .pipe(
-                  map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
-                )
-                .subscribe(
-                  result => {
-                    if (result.length != 0) {
-                      this.dataSource = result;
-                      this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
-                    }
-                  });
+            this._articleService.getArticles()
+              .pipe(
+                map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
+              )
+              .subscribe(
+                result => {
+                  if (result.length != 0) {
+                    this.dataSource = result;
+                    this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
+                  }
+                });
           }
 
         );

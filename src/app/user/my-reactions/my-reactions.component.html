@@ -4,6 +4,7 @@
   </div>
 </div>
 
+<!-- No reactions/articles -->
 <div id="nothingFound" *ngIf="reactions==undefined" class="row text-center m-2 mt-5 mb-5">
   <div class="col-12">
     You haven't responded to any articles yet. <br>
@@ -11,16 +12,13 @@
     and share your thoughts.
   </div>
   <div class="col-12 mt-3">
-    <!-- <button mat-fab color="accent" aria-label="Go to home page" (click)="home()">
-        <mat-icon>home</mat-icon>
-      </button> -->
     <a mat-fab color="accent" routerLink="/">
       <mat-icon>home</mat-icon>
     </a>
   </div>
 </div>
 
-
+<!-- Filter -->
 <div *ngIf="reactions!=undefined" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
@@ -60,7 +58,8 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let reaction" class="text-center">
           <!-- Go to the detail page of the article-->
-          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)" matTooltip="Go to '{{reaction.article.title}}'" matTooltipPosition="right">
+          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)"
+            matTooltip="Go to '{{reaction.article.title}}'" matTooltipPosition="right">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
         </td>
@@ -68,21 +67,17 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
 
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 
   </div>
-  <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator> -->
+
 </div>
 
-
-<!-- </div> -->
-
 <div class="row text-center">
-    <div class="col-12">
-      <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
-    </div>
+  <div class="col-12">
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
   </div>
+</div>

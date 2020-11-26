@@ -17,7 +17,7 @@ export class UpdateReactionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateReaction(){
+  updateReaction() {
     console.log("Update the reaction:", this.reactionEdit);
     this._reactionService.updateReaction(this.reactionEdit.reactionID, this.reactionEdit).subscribe();
     this.reactionIsUpdated.emit(true);

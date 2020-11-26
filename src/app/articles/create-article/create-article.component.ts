@@ -26,9 +26,6 @@ export class CreateArticleComponent implements OnInit {
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this._tagService.getTags()
       .pipe(
-        // map(res => {
-        //   return res.slice(0,2); // Only show the first two members
-        // }),
         tap(t => console.log(t))
       )
       .subscribe(
@@ -38,14 +35,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if(this.route.snapshot.paramMap.get('id')){
-    //   const articleID = this.route.snapshot.paramMap.get('id');
-    //   this._articleService.getArticle(articleID).subscribe(
-    //     result => {
-    //       this.article = result;
-    //     });
-    // }
-
   }
 
   openDialog(toReview) {
@@ -109,7 +98,6 @@ export class CreateArticleComponent implements OnInit {
 
     this._articleService.addArticle(this.article).subscribe(
       result => {
-        // Handle result
         console.log("Add article result:", result)
       },
       error => {
@@ -122,12 +110,11 @@ export class CreateArticleComponent implements OnInit {
       }
     );
 
-
   }
 
   public uploadFinished = (event) => {
     this.response = event;
-    console.log("Response:", this.response.dbPath); // needs to be added to articles creating
+    console.log("Response:", this.response.dbPath); // Needs to be added to articles creating
     this.imgPath = this.response.dbPath;
     this.uploadIsFinished = true;
   }

@@ -22,7 +22,7 @@ export class AddReactionComponent implements OnInit {
     console.log("Add reaction:", this.reaction);
     this._reactionService.addReaction(this.reaction).subscribe(
       result => {
-        if(result!=null){
+        if (result != null) {
           console.log("Reaction is added");
           this.reactionIsAdded.emit(true);
         }
@@ -34,7 +34,7 @@ export class AddReactionComponent implements OnInit {
   ngOnInit(): void {
     console.log("Add reaction articleID:", this.articleID);
     this.reaction = new Reaction(0, +localStorage.getItem("userID"), this.articleID, '', new Date());
-    
+
   }
 
 }

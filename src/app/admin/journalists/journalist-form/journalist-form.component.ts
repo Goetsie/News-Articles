@@ -11,7 +11,6 @@ import { UserService } from 'src/app/security/services/user.service';
 })
 export class JournalistFormComponent implements OnInit {
 
-
   submitted = false;
   update = false;
 
@@ -24,13 +23,11 @@ export class JournalistFormComponent implements OnInit {
       console.log("Parameter in link --> update journalist with id:", journalistID);
       this._userService.getUser(journalistID).subscribe(
         result => {
-          // this.journalist = new User(result.ID, '', '', '', '', '', 2);
           console.log("Result:", result);
           this.journalist = result;
         }
       );
     }
-    // parseInt(this.route.snapshot.paramMap.get('id'));
   }
 
   onSubmit() {
@@ -41,7 +38,6 @@ export class JournalistFormComponent implements OnInit {
 
       this._userService.addUser(this.journalist).subscribe(
         result => {
-          // Handle result
           console.log("Add journalist result:", result);
           if (result) {
             this.journalist.userID = result.userID; // Save the real ID
@@ -58,7 +54,6 @@ export class JournalistFormComponent implements OnInit {
       console.log("The admin wants to update this journalist:", this.journalist);
       this._userService.updateUser(this.journalist.userID, this.journalist).subscribe(
         result => {
-          // Handle result
           console.log("Update journalist result:", result);
           console.log("Journalist is updated");
           this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "")
@@ -68,7 +63,6 @@ export class JournalistFormComponent implements OnInit {
           console.log("Error:", error);
         }
       );
-
     }
   }
 
@@ -96,7 +90,6 @@ export class JournalistFormComponent implements OnInit {
 
       }
     });
-
   }
 
   ngOnInit(): void {

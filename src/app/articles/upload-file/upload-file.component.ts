@@ -12,7 +12,6 @@ export class UploadFileComponent implements OnInit {
   uploadFinished = false;
   @Output() public onUploadFinished = new EventEmitter();
 
-
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -40,11 +39,11 @@ export class UploadFileComponent implements OnInit {
           } else if (event.type === HttpEventType.Response) {
             console.log("Upload completed!");
             this.message = 'Upload completed!';
-            this.onUploadFinished.emit(event.body); 
+            this.onUploadFinished.emit(event.body);
             this.uploadFinished = true;
           }
         },
-        error => console.log('oops', error)
+          error => console.log('oops', error)
         )
     }
 

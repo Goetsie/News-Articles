@@ -16,21 +16,19 @@ export class DashboardComponent implements OnInit {
 
   constructor(private _articleService: ArticleService) { }
 
-
   ngOnInit(): void {
     this._articleService.getArticles()
-    .pipe(
-      map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
-      tap(t => console.log("Articles to review:", t))
-    )
-    .subscribe(
-      result => {
-        if (result.length == 0) {
-          this.numberArticlesToReview = 0;
-        } else {
-          this.numberArticlesToReview = result.length;
-        }
-      });
+      .pipe(
+        map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
+        tap(t => console.log("Articles to review:", t))
+      )
+      .subscribe(
+        result => {
+          if (result.length == 0) {
+            this.numberArticlesToReview = 0;
+          } else {
+            this.numberArticlesToReview = result.length;
+          }
+        });
   }
-
 }

@@ -8,8 +8,6 @@ import { AuthenticateService } from 'src/app/security/services/authenticate.serv
 import { Like } from '../models/like.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
-
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
@@ -20,10 +18,7 @@ export class ArticleDetailComponent implements OnInit {
   articleID: number = null;
   public article: Article;
 
-
-  // userID = parseInt(localStorage.getItem("userID"));
   userID = null;
-
 
   ifImage = false;
   likedThisArticle: boolean = false;
@@ -41,14 +36,12 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("ArticleID in detail:", this.articleID);
 
-    // See if ther is a logged in user
+    // See if there is a logged in user
     if (parseInt(localStorage.getItem("userID"))) {
       this.userID = parseInt(localStorage.getItem("userID"));
     }
-
-    // this.articleID = parseInt(this.route.snapshot.paramMap.get('id'));
-    console.log("ArticleID in detail:", this.articleID);
 
     this._articleService.getArticle(this.articleID)
       .pipe(
@@ -60,7 +53,6 @@ export class ArticleDetailComponent implements OnInit {
           if (result.imgPath != null) {
             this.ifImage = true;
           }
-
           // Article body needs to we splitted by the new line characters, otherwise one (long) text.
           this.alineas = this.article.body.split(/\r?\n/);
         });
@@ -98,7 +90,6 @@ export class ArticleDetailComponent implements OnInit {
 
     this._likeService.addLike(like).subscribe(
       result => {
-        // Handle result
         console.log("Add like:", result)
         this.likedThisArticle = true;
       }

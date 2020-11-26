@@ -13,21 +13,9 @@ export class ReactionService {
 
   constructor(private _httpClient: HttpClient) { }
 
-
-  // GET --> get all reactions
-  // getReactions(articleID): Observable<Reaction[]> {
-  //   // Get reactions per article
-  //   if (articleID) {
-  //     return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=" + articleID.toString());
-  //   }
-  //   // return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=4"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // }
-
-  // Get all reaction (filter later)
+  // GET --> all reaction (filter later)
   getReactions(): Observable<Reaction[]> {
-    // Get reactions per article
     return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction");
-    // return this._httpClient.get<Reaction[]>("https://localhost:44348/api/Reaction?articleID=4"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 
   // POST --> post a new reaction on an article
@@ -42,12 +30,9 @@ export class ReactionService {
     return this._httpClient.put<Reaction>("https://localhost:44348/api/Reaction/" + reactionID, reaction);
   }
 
-
   // DELETE --> delete the reaction of a user
   deleteReaction(reactionID: number) {
     return this._httpClient.delete<Reaction>("https://localhost:44348/api/Reaction/" + reactionID.toString());
   }
-
-
 
 }

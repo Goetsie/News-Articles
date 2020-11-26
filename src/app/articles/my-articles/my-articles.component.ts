@@ -24,26 +24,24 @@ export class MyArticlesComponent implements OnInit {
 
   displayedColumns: string[] = ['title', 'subTitle', 'articleStatusID', 'actions'];
 
-  constructor(private _articleService: ArticleService, private router: Router) { 
+  constructor(private _articleService: ArticleService, private router: Router) {
     this._articleService.getArticles()
-    .pipe(
-      map(articles => articles.filter(article => article.userID == parseInt(localStorage.getItem("userID")))), // Only get the of the user that is logged in
-      tap(t => console.log("My articles:", t))
-    )
-    .subscribe(
-    result => {
-      if (result.length == 0){
-        this.articles = null;
-      }else{
-        this.articles = result;
-      }
-      
-      this.dataSource = new MatTableDataSource(this.articles);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+      .pipe(
+        map(articles => articles.filter(article => article.userID == parseInt(localStorage.getItem("userID")))), // Only get the of the user that is logged in
+        tap(t => console.log("My articles:", t))
+      )
+      .subscribe(
+        result => {
+          if (result.length == 0) {
+            this.articles = null;
+          } else {
+            this.articles = result;
+          }
 
-    console.log("My articles:", this.articles);
+          this.dataSource = new MatTableDataSource(this.articles);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
 
   }
 
@@ -53,7 +51,7 @@ export class MyArticlesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  editArticle(articleID){
+  editArticle(articleID) {
     console.log("User want to edit article with id:", articleID);
     this.router.navigate(['/update-article', { id: articleID }]);
   }
@@ -61,10 +59,6 @@ export class MyArticlesComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = localStorage.getItem('userRole');
   }
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
 
 }
 

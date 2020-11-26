@@ -4,7 +4,7 @@ import { Tag } from './tag.model';
 export class Article {
     constructor(public articleID: number,
         public title: string,
-        public subTitle: string, // Maybe make this optional
+        public subTitle: string,
         public shortSummary: string,
         public body: string,
         public imgPath: string,

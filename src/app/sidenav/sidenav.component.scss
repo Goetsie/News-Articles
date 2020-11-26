@@ -4,10 +4,10 @@ a {
 
   &:hover,
   &:active {
-font-weight: bold;
-    // color: pink;
-    // background-color: inherit;
-    #likes, #logout {
+    font-weight: bold;
+
+    #likes,
+    #logout {
       color: red;
       font-weight: bold;
     }

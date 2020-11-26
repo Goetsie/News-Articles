@@ -1,14 +1,16 @@
-<!-- <div class="row"> -->
-    <!-- <div class="col-12 w-100 text-center border border-danger"> -->
-        <input type="file" #file placeholder="Choose image" (change)="uploadFile(file.files)" style="display: none;">
-        <button type="button" mat-raised-button [disabled]="uploadFinished" class="text-center" color="primary" (click)="file.click()">Upload Image</button>
-    <!-- </div> -->
-    <div class="col-12">
-        <span class="upload" *ngIf="progress > 0">
-            {{progress}}%
-        </span>
-        <span class="upload" *ngIf="message">
-            {{message}}
-        </span>
-    </div>
-<!-- </div> -->
+<!-- Input -->
+<input type="file" #file placeholder="Choose image" (change)="uploadFile(file.files)" style="display: none;">
+
+<!-- Button -->
+<button type="button" mat-raised-button [disabled]="uploadFinished" class="text-center" color="primary"
+  (click)="file.click()">Upload Image</button>
+
+<!-- Progress -->
+<div class="col-12">
+  <span class="upload" *ngIf="progress > 0">
+    {{progress}}%
+  </span>
+  <span class="upload" *ngIf="message">
+    {{message}}
+  </span>
+</div>

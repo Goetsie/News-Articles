@@ -1,26 +1,31 @@
 <!-- Show spinner when there are no articles -->
 <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner>
 
+<!-- Filter -->
 <div class="row">
   <div class="col-12">
     <app-filter (tagFilter)="tagFilter=$event" (stringFilterOut)="searchString=$event"></app-filter>
   </div>
 </div>
 
+<!-- Card -->
 <div class="row equal-height-cards">
   <div *ngFor="let a of articles |filter:searchString:tagFilter"
     class="col-sm-12 col-md-6 col-xl-3 mb-1 mb-md-3">
     <mat-card (click)="showArticle(a)" class="rounded">
 
+      <!-- Header -->
       <mat-card-header>
         <mat-card-title>{{a.title}}</mat-card-title>
         <mat-card-subtitle>{{a.subTitle}} </mat-card-subtitle>
       </mat-card-header>
 
+      <!-- Image -->
       <div *ngIf="a.imgPath !== null" class="text-center">
         <img mat-card-image [src]="a.imgPath" class="img-fluid m-auto" [alt]="a.title">
       </div>
 
+      <!-- Content -->
       <mat-card-content>
         <div class="text-truncate">{{a.shortSummary}}</div>
         <div class="text-right p-1"><span class="tag" (click)="showTags(a.tagID);$event.stopPropagation()"
@@ -30,5 +35,4 @@
     </mat-card>
 
   </div>
-
 </div>

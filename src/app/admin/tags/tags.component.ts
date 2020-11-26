@@ -19,7 +19,6 @@ import { ConfirmDialogTagComponent } from './confirm-dialog-tag/confirm-dialog-t
 })
 export class TagsComponent implements OnInit {
 
-
   tags: Tag[];
   tagEdit = Tag;
   showForm = false;
@@ -92,7 +91,7 @@ export class TagsComponent implements OnInit {
       console.log("Dialog result:", result);
       if (result) {
         // Delete tag
-        console.log("Admin want to delete the tag");
+        console.log("Admin wants to delete the tag");
         this._tagService.deleteTag(tag.tagID).subscribe(
           result => {
             if (result != null) {

@@ -27,23 +27,20 @@ export class FilterPipe implements PipeTransform {
         let searchIn: string = value[i].title.toLowerCase() + " " + value[i].shortSummary.toLowerCase();
 
         // Zoeken op tagID en string
-        if(sName !== "" && tagID != 0 ){
-          // console.log("Search string and tag");
+        if (sName !== "" && tagID != 0) {
           if (searchIn.includes(sName) && value[i].tagID == tagID) {
             articleArray.push(value[i]);
           }
         }
         // Enkel zoeken op een string
         else if (sName != "") {
-          // console.log("Search string");
           if (searchIn.includes(sName)) {
             articleArray.push(value[i]);
           }
-          
+
         }
         // Enkel zoeken op tagID 
         else if (tagID !== 0) {
-          // console.log("Search tag");
           if (value[i].tagID == tagID) {
             articleArray.push(value[i]);
           }

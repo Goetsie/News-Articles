@@ -10,21 +10,21 @@ import { UserService } from 'src/app/security/services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
-user: User;
-submitted = false;
+  user: User;
+  submitted = false;
 
   constructor(private _userService: UserService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this._userService.getUser(parseInt(localStorage.getItem('userID'))).subscribe(
-      result =>{
+      result => {
         console.log("Result:", result)
         this.user = result;
       }
     )
   }
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
     console.log("User wants to change his profile");
 

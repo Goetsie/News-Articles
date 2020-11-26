@@ -13,11 +13,11 @@ export class ShowArticleDialogComponent implements OnInit {
 
   alineas_shortSummary: String[];
   alineas_body: String[];
-  
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.article = this.data.article;
-    // Article body and the short summary needs to be splitted by the new line characters, otherwise one (long) text.
+    // Article body and the short summary needs to be splitted by the new line characters, otherwise one (long) text with no alinea's.
     this.alineas_shortSummary = this.article.shortSummary.split(/\r?\n/);
     this.alineas_body = this.article.body.split(/\r?\n/);
   }

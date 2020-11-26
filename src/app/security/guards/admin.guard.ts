@@ -17,5 +17,5 @@ export class AdminGuard implements CanActivate {
       this.router.navigate(['/login']); // Redirect user to home page if he is not authenticated
     }
   }
-  
+
 }

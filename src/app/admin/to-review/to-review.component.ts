@@ -44,6 +44,7 @@ export class ToReviewComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.articles);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+
           // Change the colums where the filter must filter
           this.dataSource.filterPredicate = function (data, filter: string): boolean {
             return data.title.toLowerCase().includes(filter) || data.subTitle.toLowerCase().includes(filter)
@@ -51,8 +52,6 @@ export class ToReviewComponent implements OnInit {
               || data.user.lastName.toLowerCase().includes(filter);
           }
         });
-
-    console.log("My articles:", this.articles);
 
   }
 
@@ -84,6 +83,7 @@ export class ToReviewComponent implements OnInit {
           }
         );
       }
+
       // Publish the article
       else if (result == "publish") {
         // Publisch the article
@@ -143,9 +143,7 @@ export class ToReviewComponent implements OnInit {
 
   }
 
-
   ngOnInit(): void {
-    // this.dataSource.sort = this.sort;
   }
 
 }

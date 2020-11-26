@@ -1,3 +1,5 @@
+
+<!-- No articles -->
 <div *ngIf="articles==undefined" class="row mt-5 text-center no-articles">
   <div class="col-12">
     You haven't created any articles yet. <br>
@@ -36,9 +38,6 @@
 <div class="row">
   <div class="col-12">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-      <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Title Column -->
       <ng-container matColumnDef="title">
@@ -81,6 +80,7 @@
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
+    
     <div *ngIf="articles!=undefined" class="col-12 text-muted">
       <small>*Articles can only be edited if they are in the 'draft' state.</small>
     </div>

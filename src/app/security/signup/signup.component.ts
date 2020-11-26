@@ -17,9 +17,7 @@ export class SignupComponent implements OnInit {
 
   submitted = false;
 
-  // newUser: User = new User('', '');
   newUser: User = new User(0, '', '', '', '', '', 1);
-
 
   constructor(private _userService: UserService, private _authenticateService: AuthenticateService, private router: Router, private snackBar: MatSnackBar) { }
 
@@ -47,7 +45,7 @@ export class SignupComponent implements OnInit {
       result => {
 
         console.log("Token is:", result.token);
-        
+
         if (result.token) {
           // Save in localStorage before setting the user as logged in!
           localStorage.setItem("token", result.token);
@@ -56,20 +54,13 @@ export class SignupComponent implements OnInit {
           localStorage.setItem("userRole", result.role.name);
           this._authenticateService.isLoggedin.next(result.token ? true : false);
           this.router.navigate(['']); // Redirect to home page after signup
-        this.snackBar.open("Welcome " + result.username + "!", "", { duration: 5000 });
-        }else{
+          this.snackBar.open("Welcome " + result.username + "!", "", { duration: 5000 });
+        } else {
           this.snackBar.open("Something went wrong, please try again!", "", { duration: 7000 });
         }
-        
-
-        
 
       });
 
-    // If the user is logged in --> logged in true
-    // this._authenticateService.authenticate(userLogin).subscribe(result => {
-    //   this._authenticateService.isLoggedin.next(result.token ? true : false);
-    // });
   }
 
 }
