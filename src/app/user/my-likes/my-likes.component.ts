@@ -33,24 +33,25 @@ export class MyLikesComponent implements OnInit {
     this._likeService.getLikes()
       .pipe(
         map(likes => likes.filter(like => like.userID == parseInt(localStorage.getItem("userID")))), // Get all the likes of the logged in user
-        tap(t => console.log("My articles:", t))
+        tap(t => console.log("Likes of the articles that the user likes:", t))
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
+          if (result == null) {
             this.likedArticles = null;
           } else {
             this.likedArticles = result;
             for (let o of this.likedArticles) {
               this.likedArticleIDs.push(o.articleID);
             }
+            console.log("Liked Article ID's (array):", this.likedArticleIDs);
           }
         });
 
     this._articleService.getArticles()
       .pipe(
-        map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
-        tap(t => console.log("Articles I like:", t))
+        map(articles => articles.filter(article => this.likedArticleIDs.includes(article.articleID) ? true : false)), // Only get the articles that the user has liked
+        tap(t => console.log("Articles I like out of likedArticleID's:", t))
       )
       .subscribe(
         result => {

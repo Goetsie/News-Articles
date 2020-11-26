@@ -82,16 +82,19 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   like(articleID: number) {
-    console.log("User likes this article");
-    this.snackBar.open("Thanks for liking this article!", "", { duration: 7000 });
+    console.log("User likes this article with id:", articleID);
+    // this.snackBar.open("Thanks for liking this article!", "", { duration: 7000 });
     this.likedThisArticle = true;
-    let like = new Like(0, parseInt(localStorage.getItem('userID')), articleID);
+    let like = new Like(0, this.userID, articleID);
     console.log("Like:", like);
 
     this._likeService.addLike(like).subscribe(
       result => {
-        console.log("Add like:", result)
+        // Result should return the like
+        console.log("Like is added HALLO:", result)
         this.likedThisArticle = true;
+        this.snackBar.open("Thanks for liking this article!", "", { duration: 7000 });
+        // SNACKBAR MOET HIER KOMEN
       }
     );
   }
