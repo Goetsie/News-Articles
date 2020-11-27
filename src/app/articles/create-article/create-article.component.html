@@ -53,7 +53,7 @@
 
   <!-- Image -->
   <div class="col-12 mt-2 text-center">
-    <app-upload-file (onUploadFinished)="uploadFinished($event)"></app-upload-file>
+    <app-upload-file [reset]="reset" (onUploadFinished)="uploadFinished($event)"></app-upload-file>
   </div>
   <div class="col-12 text-center mb-2">
     <img [src]="createImgPath(imgPath)" class="img-fluid w-25 text-center" alt="">
@@ -61,7 +61,7 @@
 
   <!-- Submit button -->
   <div class="col-12 m-auto text-center mt-2">
-    <button type="submit" [disabled]="!addArticleForm.form.valid || submitted" mat-raised-button color="accent">Create
+    <button type="submit" [disabled]="!addArticleForm.form.valid || !uploadIsFinished || submitted" mat-raised-button color="accent">Create
       article</button>
   </div>
 

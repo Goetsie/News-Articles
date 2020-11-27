@@ -41,4 +41,9 @@ export class ArticleService {
     return this.http.post<Article>("https://localhost:44348/api/Article", article);
   }
 
+    // DELETE --> delete an article
+    deleteArticle(articleID: number) {
+      return this.http.delete<Article>("https://localhost:44348/api/Article/" + articleID.toString());
+    }
+
 }

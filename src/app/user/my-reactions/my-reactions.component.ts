@@ -34,11 +34,7 @@ export class MyReactionsComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.reactions = null;
-          } else {
-            this.reactions = result;
-          }
+          this.reactions = result;
           this.dataSource = new MatTableDataSource(this.reactions);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

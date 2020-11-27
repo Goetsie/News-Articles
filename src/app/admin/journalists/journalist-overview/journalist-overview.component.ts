@@ -34,11 +34,7 @@ export class JournalistOverviewComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.journalists = null;
-          } else {
-            this.journalists = result;
-          }
+          this.journalists = result;
 
           this.dataSource = new MatTableDataSource(this.journalists);
           this.dataSource.paginator = this.paginator;

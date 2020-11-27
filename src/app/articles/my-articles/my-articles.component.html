@@ -1,6 +1,5 @@
-
 <!-- No articles -->
-<div *ngIf="articles==undefined" class="row mt-5 text-center no-articles">
+<div *ngIf="!articles[0]" class="row mt-5 text-center no-articles">
   <div class="col-12">
     You haven't created any articles yet. <br>
     No worries, create one now:
@@ -19,7 +18,7 @@
 </div>
 
 <!-- New article button -->
-<div *ngIf="articles!=undefined" class="row text-right mt-2">
+<div *ngIf="articles[0]" class="row text-right mt-2">
   <div class="col-12">
     <button mat-raised-button color="primary" [routerLink]="['/new-article']">New article</button>
   </div>
@@ -65,10 +64,14 @@
             <mat-icon>access_time</mat-icon>
           </span>
           <!-- An article can only be edited as it is saved as draft -->
-          <span *ngIf="article.articleStatus.name=='Draft'"><button (click)="editArticle(article.articleID)"
-              mat-icon-button color="warn">
+          <span *ngIf="article.articleStatus.name=='Draft'">
+            <button (click)="editArticle(article.articleID)" mat-icon-button color="warn">
               <mat-icon>edit</mat-icon>
-            </button></span>
+            </button>
+            <button (click)="removeArticle(article.articleID)" mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
           <span *ngIf="article.articleStatus.name=='Published'">
             <mat-icon color="primary">check</mat-icon>
           </span>
@@ -80,9 +83,9 @@
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
-    
-    <div *ngIf="articles!=undefined" class="col-12 text-muted">
-      <small>*Articles can only be edited if they are in the 'draft' state.</small>
+
+    <div *ngIf="articles[0]" class="col-12 text-muted">
+      <small>*Articles can only be edited and deleted if they are in the 'draft' state.</small>
     </div>
 
   </div>

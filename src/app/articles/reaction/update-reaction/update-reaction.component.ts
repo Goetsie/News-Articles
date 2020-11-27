@@ -19,7 +19,12 @@ export class UpdateReactionComponent implements OnInit {
 
   updateReaction() {
     console.log("Update the reaction:", this.reactionEdit);
-    this._reactionService.updateReaction(this.reactionEdit.reactionID, this.reactionEdit).subscribe();
+    this.reactionEdit.date = new Date();
+    this._reactionService.updateReaction(this.reactionEdit.reactionID, this.reactionEdit).subscribe(
+      reslut =>{
+        console.log("Reaction update:", reslut);
+      }
+    );
     this.reactionIsUpdated.emit(true);
   }
 

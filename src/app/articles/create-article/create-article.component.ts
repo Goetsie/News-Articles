@@ -19,6 +19,7 @@ export class CreateArticleComponent implements OnInit {
   tags: Tag[];
   submitted = false;
   uploadIsFinished = false;
+  reset = false;
 
   public response: { dbPath: '' };
   imgPath = null;
@@ -45,9 +46,16 @@ export class CreateArticleComponent implements OnInit {
       if (result) {
         // Create new article
         console.log("New article");
-        this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
-        this.submitted == false;
-        this.uploadIsFinished = false;
+        if (this.uploadIsFinished) {
+          window.location.reload();
+
+        } else {
+          this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
+          this.submitted == false;
+          this.imgPath = null;
+          this.uploadIsFinished = false;
+          this.reset = true;
+        }
       } else {
         // Navigate my-articles
         console.log("Close & navigate");

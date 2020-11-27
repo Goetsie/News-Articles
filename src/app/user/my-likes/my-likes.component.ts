@@ -55,11 +55,7 @@ export class MyLikesComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.articles = null;
-          } else {
-            this.articles = result;
-          }
+          this.articles = result;
 
           this.dataSource = new MatTableDataSource(this.articles);
           this.dataSource.paginator = this.paginator;
@@ -88,15 +84,14 @@ export class MyLikesComponent implements OnInit {
   }
 
   dislikeArticle(id: number) {
-    console.log("Dislike article", id);
+    console.log("Dislike article with ID:", id);
     let like: Like;
 
-    for (let o of this.likedArticles) {
-      if (o.articleID = id) {
-        if (o.userID.toString() == localStorage.getItem("userID")) {
-          like = o;
-          console.log("LikeID:", like.likeID);
-        }
+    for (let likedArticle of this.likedArticles) {
+      if (likedArticle.articleID == id) {
+        console.log("Liked article == article id:", likedArticle.articleID, " ", id);
+        like = likedArticle;
+        console.log("The like that is disliked:", like);
       }
     }
 
@@ -105,6 +100,10 @@ export class MyLikesComponent implements OnInit {
         console.log("Like deleted:", result);
         // Remove disliked article from html table datasource
         this.dataSource = this.articles.filter(item => item.articleID !== like.articleID);
+        // Remove the like from the likeArticlesID
+        console.log("LikesArticlesIDs before delete:", this.likedArticleIDs, like.articleID);
+        this.likedArticleIDs.splice(this.likedArticleIDs.indexOf(like.articleID), 1);
+        console.log("LikesArticlesIDs deleted:", this.likedArticleIDs);
         this.openSnackBar("The article is disliked", "Undo", like);
       }
     );
@@ -126,27 +125,24 @@ export class MyLikesComponent implements OnInit {
       console.log("The snackbar action was triggerd");
       if (action != "Dismiss") {
 
-        console.log("The snackbar action was triggerd");
+        console.log("The snackbar action was triggerd and is no 'Dismiss'");
 
+        // Re-like the article after a dislike is undone
         this._likeService.addLike(new Like(0, like.userID, like.articleID)).subscribe(
-          () => {
-            this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
-            // Re-like the article & Re-make the list
-            this._likeService.addLike(like)
-              .subscribe(
-                () => {
-                  this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
-                });
+          result => {
+            console.log("Like is re-added:", result);
+            // Add the deleted like article id back to the array
+            this.likedArticleIDs.push(result.articleID);
+            console.log("LikesArticlesIDs re-added:", this.likedArticleIDs);
+            // Re-make the list (get all articles back)
             this._articleService.getArticles()
               .pipe(
-                map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
+                map(articles => articles.filter(article => this.likedArticleIDs.includes(article.articleID) ? true : false)), // Only get the articles that the user has liked
               )
               .subscribe(
                 result => {
-                  if (result.length != 0) {
-                    this.dataSource = result;
-                    this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
-                  }
+                  this.dataSource = result;
+                  this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
                 });
           }
 

@@ -1,5 +1,6 @@
 import { User } from 'src/app/security/models/user.model';
 import { Tag } from './tag.model';
+import { ArticleStatus } from './article-status.model';
 
 export class Article {
     constructor(public articleID: number,
@@ -12,7 +13,8 @@ export class Article {
         public userID: number,
         public articleStatusID: number,
         public user?: User,
-        public tag?: Tag
+        public tag?: Tag,
+        public articleStatus?: ArticleStatus
     ) { }
 
 }

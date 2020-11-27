@@ -64,17 +64,13 @@ export class ArticleDetailComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.likes = null;
-          } else {
-            this.likes = result;
-            // Only if the user is logged in
-            if (this.userID) {
-              for (let like of this.likes) {
-                if (like.userID == this.userID) {
-                  this.likedThisArticle = true;
-                  console.log("You liked this article");
-                }
+          this.likes = result;
+          // Only if the user is logged in
+          if (this.userID) {
+            for (let like of this.likes) {
+              if (like.userID == this.userID) {
+                this.likedThisArticle = true;
+                console.log("You liked this article");
               }
             }
           }

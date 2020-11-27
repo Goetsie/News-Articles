@@ -24,11 +24,7 @@ export class DashboardComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.numberArticlesToReview = 0;
-          } else {
-            this.numberArticlesToReview = result.length;
-          }
+          this.numberArticlesToReview = result.length;
         });
   }
 }

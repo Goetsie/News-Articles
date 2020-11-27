@@ -35,11 +35,7 @@ export class ToReviewComponent implements OnInit {
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.articles = null;
-          } else {
-            this.articles = result;
-          }
+          this.articles = result;
 
           this.dataSource = new MatTableDataSource(this.articles);
           this.dataSource.paginator = this.paginator;
@@ -79,6 +75,7 @@ export class ToReviewComponent implements OnInit {
         this._articleService.updateArticle(article.articleID, article).subscribe(
           () => {
             console.log("Article is discarded (back to draft)");
+            this.dataSource = this.articles.filter(item => item.articleID !== article.articleID); // Remove the published article from the table
             this.openSnackBar("Article is discarded", "Undo", article);
           }
         );
@@ -122,22 +119,22 @@ export class ToReviewComponent implements OnInit {
         // Undo the action
         article.articleStatusID = 2; // Set back to 'to review'
         this._articleService.updateArticle(article.articleID, article).subscribe(
-          () => {
-            this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
+          result => {
+            console.log("Article i re-added (updated)");
+            // Re-make the list
+            this._articleService.getArticles()
+              .pipe(
+                map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
+              )
+              .subscribe(
+                result => {
+                  console.log("Remake list");
+                  this.dataSource = result;
+                  this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
+                });
           }
         );
 
-        // Re-make the list
-        this._articleService.getArticles()
-          .pipe(
-            map(articles => articles.filter(article => article.articleStatusID == 2)), // Only get the article who needs a review
-          )
-          .subscribe(
-            result => {
-              if (result.length != 0) {
-                this.dataSource = result;
-              }
-            });
       }
     });
 
