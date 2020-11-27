@@ -18,16 +18,15 @@ export class CreateArticleComponent implements OnInit {
   article: Article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // 2--> to review 1-->safe
   tags: Tag[];
   submitted = false;
+  uploadIsFinished = false;
+  reset = false;
 
-  public response: {dbPath: ''};
+  public response: { dbPath: '' };
   imgPath = null;
 
   constructor(private _tagService: TagService, private _articleService: ArticleService, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     this._tagService.getTags()
       .pipe(
-        // map(res => {
-        //   return res.slice(0,2); // Only show the first two members
-        // }),
         tap(t => console.log(t))
       )
       .subscribe(
@@ -37,14 +36,6 @@ export class CreateArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if(this.route.snapshot.paramMap.get('id')){
-    //   const articleID = this.route.snapshot.paramMap.get('id');
-    //   this._articleService.getArticle(articleID).subscribe(
-    //     result => {
-    //       this.article = result;
-    //     });
-    // }
-
   }
 
   openDialog(toReview) {
@@ -55,11 +46,19 @@ export class CreateArticleComponent implements OnInit {
       if (result) {
         // Create new article
         console.log("New article");
-        this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
-        this.submitted == false;
+        if (this.uploadIsFinished) {
+          window.location.reload();
+
+        } else {
+          this.article = new Article(0, '', '', '', '', null, null, parseInt(localStorage.getItem("userID")), 2); // create new article with the article model 
+          this.submitted == false;
+          this.imgPath = null;
+          this.uploadIsFinished = false;
+          this.reset = true;
+        }
       } else {
-        console.log("Navigate");
         // Navigate my-articles
+        console.log("Close & navigate");
         this.router.navigate(['/my-articles']);
       }
     });
@@ -69,10 +68,10 @@ export class CreateArticleComponent implements OnInit {
     // Admin needs to review article before published, so first set to review
     this.submitted == true;
 
-    if(this.imgPath){
+    if (this.imgPath) {
       console.log("There is an image uploaded");
       this.article.imgPath = this.createImgPath(this.imgPath);
-    } 
+    }
 
     console.log("User wants to submit a new article", this.article);
     this._articleService.addArticle(this.article).subscribe(
@@ -97,11 +96,16 @@ export class CreateArticleComponent implements OnInit {
       this.article.tagID = 1;
     }
     this.article.articleStatusID = 3; // Set to draft
+
+    if (this.imgPath) {
+      console.log("There is an image uploaded");
+      this.article.imgPath = this.createImgPath(this.imgPath);
+    }
+
     console.log("User wants to save his article", this.article);
 
     this._articleService.addArticle(this.article).subscribe(
       result => {
-        // Handle result
         console.log("Add article result:", result)
       },
       error => {
@@ -114,13 +118,13 @@ export class CreateArticleComponent implements OnInit {
       }
     );
 
-
   }
 
   public uploadFinished = (event) => {
     this.response = event;
-    console.log("Response:", this.response.dbPath); // needs to be added to articles creating
+    console.log("Response:", this.response.dbPath); // Needs to be added to articles creating
     this.imgPath = this.response.dbPath;
+    this.uploadIsFinished = true;
   }
 
   public createImgPath = (serverPath: String) => {

@@ -1,27 +1,25 @@
-<div class="row">
+<div *ngIf="!reactions[0]" class="row">
   <div class="col-12">
     <h1>These are all the reactions you've placed on articles:</h1>
   </div>
 </div>
 
-<div id="nothingFound" *ngIf="reactions==undefined" class="row text-center m-5">
+<!-- No reactions/articles -->
+<div id="nothingFound" *ngIf="reactions[0]" class="row text-center m-2 mt-5 mb-5">
   <div class="col-12">
-    You haven't reacted on any articles yet. <br>
+    You haven't responded to any articles yet. <br>
     Go to the home and read some awesome articles, <br>
     and share your thoughts.
   </div>
   <div class="col-12 mt-3">
-    <!-- <button mat-fab color="accent" aria-label="Go to home page" (click)="home()">
-        <mat-icon>home</mat-icon>
-      </button> -->
     <a mat-fab color="accent" routerLink="/">
       <mat-icon>home</mat-icon>
     </a>
   </div>
 </div>
 
-
-<div *ngIf="reactions!=undefined" class="row">
+<!-- Filter -->
+<div *ngIf="reactions[0]" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
       <mat-label>Filter</mat-label>
@@ -30,8 +28,7 @@
   </div>
 </div>
 
-<!-- The paginator doesn't work when usinf conditional rendering ! -->
-<!-- <div *ngIf="reactions!=undefined" class="row"> -->
+<!-- The paginator doesn't work when using conditional rendering ! -->
 <div class="row">
 
   <div class="col-12">
@@ -52,7 +49,7 @@
       <!-- Date Column -->
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let reaction"> {{reaction.date}} </td>
+        <td mat-cell *matCellDef="let reaction"> {{reaction.date | date:"dd/MM/yyyy - HH:mm"}} </td>
       </ng-container>
 
 
@@ -61,7 +58,8 @@
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let reaction" class="text-center">
           <!-- Go to the detail page of the article-->
-          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)">
+          <button mat-icon-button color="accent" (click)="showArticle(reaction.articleID)"
+            matTooltip="Go to '{{reaction.article.title}}'" matTooltipPosition="right">
             <mat-icon>remove_red_eye</mat-icon>
           </button>
         </td>
@@ -69,22 +67,17 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
 
     </table>
 
     <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>
 
   </div>
-  <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator> -->
+
 </div>
 
-
-<!-- </div> -->
-
-<div class="row">
+<div class="row text-center">
   <div class="col-12">
-    <!-- Show spinner when there are no articles -->
-    <!-- <mat-spinner *ngIf="!articles" color="accent" diameter="80"></mat-spinner> -->
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
   </div>
 </div>

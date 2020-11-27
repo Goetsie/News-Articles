@@ -11,12 +11,12 @@ export class JournalistGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // If an admin can do everything that a journalist can, it should be added in the journalist guard
+    // If an admin can do everything that a journalist can, it should be added in the journalist guard
     if (this._authenticateService.ifUser() === "Journalist" || this._authenticateService.ifUser() === "Admin") {
       return true;
     } else {
       this.router.navigate(['/login']); // Redirect user to home page if he is not authenticated
     }
   }
-  
+
 }

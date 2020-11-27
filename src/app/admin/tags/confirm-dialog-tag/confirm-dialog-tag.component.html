@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Delete '{{data.tag.name}}'</h1>
+<div mat-dialog-content>
+  <p>Are you shure you want to delete '{{data.tag.name}}'? <br>
+    <span class="font-weight-bold mt-1 mb-1">All the articles that belong to this tag will also be deleted!</span> <br>
+    You <span class="font-weight-bold">can't</span> undo this action!</p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>No</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">Yes</button>
+</div>

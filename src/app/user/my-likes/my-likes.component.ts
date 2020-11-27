@@ -33,39 +33,34 @@ export class MyLikesComponent implements OnInit {
     this._likeService.getLikes()
       .pipe(
         map(likes => likes.filter(like => like.userID == parseInt(localStorage.getItem("userID")))), // Get all the likes of the logged in user
-        tap(t => console.log("My articles:", t))
+        tap(t => console.log("Likes of the articles that the user likes:", t))
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
+          if (result == null) {
             this.likedArticles = null;
           } else {
             this.likedArticles = result;
             for (let o of this.likedArticles) {
               this.likedArticleIDs.push(o.articleID);
             }
+            console.log("Liked Article ID's (array):", this.likedArticleIDs);
           }
         });
 
     this._articleService.getArticles()
       .pipe(
-        map(articles => articles.filter(article => article.articleID in this.likedArticleIDs)), // Only get the articles that the user has liked
-        tap(t => console.log("My articles:", t))
+        map(articles => articles.filter(article => this.likedArticleIDs.includes(article.articleID) ? true : false)), // Only get the articles that the user has liked
+        tap(t => console.log("Articles I like out of likedArticleID's:", t))
       )
       .subscribe(
         result => {
-          if (result.length == 0) {
-            this.articles = null;
-          } else {
-            this.articles = result;
-          }
+          this.articles = result;
 
           this.dataSource = new MatTableDataSource(this.articles);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         });
-
-    console.log("Articles I like:", this.articles);
 
   }
 
@@ -83,31 +78,32 @@ export class MyLikesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // home(){
-  //   this.router.navigate(['/']);
-  // }
-
   showArticle(id: number) {
     console.log("Show article:", id);
     this.router.navigate(['/articles', id]);
   }
 
   dislikeArticle(id: number) {
-    console.log("Dislike article", id);
+    console.log("Dislike article with ID:", id);
     let like: Like;
 
-    for (let o of this.likedArticles) {
-      if (o.articleID = id) {
-        if (o.userID.toString() == localStorage.getItem("userID")) {
-          like = o;
-          console.log("LikeID:", like.likeID);
-        }
+    for (let likedArticle of this.likedArticles) {
+      if (likedArticle.articleID == id) {
+        console.log("Liked article == article id:", likedArticle.articleID, " ", id);
+        like = likedArticle;
+        console.log("The like that is disliked:", like);
       }
     }
 
     this._likeService.deleteLike(like.likeID).subscribe(
       result => {
-        console.log(result);
+        console.log("Like deleted:", result);
+        // Remove disliked article from html table datasource
+        this.dataSource = this.articles.filter(item => item.articleID !== like.articleID);
+        // Remove the like from the likeArticlesID
+        console.log("LikesArticlesIDs before delete:", this.likedArticleIDs, like.articleID);
+        this.likedArticleIDs.splice(this.likedArticleIDs.indexOf(like.articleID), 1);
+        console.log("LikesArticlesIDs deleted:", this.likedArticleIDs);
         this.openSnackBar("The article is disliked", "Undo", like);
       }
     );
@@ -119,22 +115,38 @@ export class MyLikesComponent implements OnInit {
     console.log("Like in snack", like);
     let snackBarRef = this.snackBar.open(message, action, { duration: 5000 });
 
+    // Dismissed
     snackBarRef.afterDismissed().subscribe(() => {
       console.log("The snackbar was dimissed");
     });
 
+    // Action
     snackBarRef.onAction().subscribe(() => {
-
+      console.log("The snackbar action was triggerd");
       if (action != "Dismiss") {
 
-        console.log("The snackbar action was triggerd");
+        console.log("The snackbar action was triggerd and is no 'Dismiss'");
 
+        // Re-like the article after a dislike is undone
         this._likeService.addLike(new Like(0, like.userID, like.articleID)).subscribe(
-          () => {
-            this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
+          result => {
+            console.log("Like is re-added:", result);
+            // Add the deleted like article id back to the array
+            this.likedArticleIDs.push(result.articleID);
+            console.log("LikesArticlesIDs re-added:", this.likedArticleIDs);
+            // Re-make the list (get all articles back)
+            this._articleService.getArticles()
+              .pipe(
+                map(articles => articles.filter(article => this.likedArticleIDs.includes(article.articleID) ? true : false)), // Only get the articles that the user has liked
+              )
+              .subscribe(
+                result => {
+                  this.dataSource = result;
+                  this.snackBar.open("The action is undone!", "Dismiss", { duration: 5000 });
+                });
           }
-        );
 
+        );
       }
     });
 

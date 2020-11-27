@@ -2,24 +2,31 @@
 
 <form (ngSubmit)="onSubmit()" #addTagForm="ngForm" class="row">
 
-  <div class="col-12">
+  <!-- <div class="col-12">
     <p>New tag: {{tag|json}}</p>
-  </div>
+  </div> -->
 
   <!-- Name -->
-  <div class="col-12">
+  <div class="col-12 col-md-8">
     <mat-form-field class="w-100">
-      <input matInput placeholder="Name" type="text" minlength="2" required
-        [(ngModel)]="tag.name" name="name" />
+      <input matInput placeholder="Name" type="text" minlength="2" required [(ngModel)]="tag.name" name="name" />
     </mat-form-field>
   </div>
+
+  <!-- Color -->
+  <div class="col-12 col-md-4">
+    <mat-form-field class="w-100">
+      <input matInput placeholder="Color" type="color" required [(ngModel)]="tag.color" name="color" />
+    </mat-form-field>
+  </div>
+
 
   <!-- Submit button -->
   <div *ngIf="!update" class="col-12 m-auto text-center mt-2">
     <button type="submit" [disabled]="!addTagForm.form.valid || submitted" mat-raised-button color="accent">Create
       tag</button>
   </div>
-    <div *ngIf="update" class="col-12 m-auto text-center mt-2">
+  <div *ngIf="update" class="col-12 m-auto text-center mt-2">
     <button type="submit" [disabled]="!addTagForm.form.valid || submitted" mat-raised-button color="accent">Update
       tag</button>
   </div>

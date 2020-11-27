@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-upload-file',
@@ -7,9 +7,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./upload-file.component.scss']
 })
 export class UploadFileComponent implements OnInit {
+
   public message: String;
   public progress: number;
+  uploadFinished = false;
   @Output() public onUploadFinished = new EventEmitter();
+  @Input() reset: boolean; // Recieve from parent (reaction component)
 
 
   constructor(private http: HttpClient) { }
@@ -18,6 +21,10 @@ export class UploadFileComponent implements OnInit {
   }
 
   public uploadFile = (files) => {
+    if(this.reset){
+      console.log("Reset is FUCKING TRUEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+      this.uploadFinished = false;
+    }
     if (files.length === 0) {
       return;
     } else {
@@ -39,10 +46,11 @@ export class UploadFileComponent implements OnInit {
           } else if (event.type === HttpEventType.Response) {
             console.log("Upload completed!");
             this.message = 'Upload completed!';
-            this.onUploadFinished.emit(event.body); // event body = database path
+            this.onUploadFinished.emit(event.body);
+            this.uploadFinished = true;
           }
         },
-        error => console.log('oops', error)
+          error => console.log('oops', error)
         )
     }
 

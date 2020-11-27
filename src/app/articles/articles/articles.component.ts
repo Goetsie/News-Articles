@@ -7,8 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
-
-
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -16,17 +14,10 @@ import { MatTableDataSource } from '@angular/material/table';
   providers: [ArticleService]
 })
 export class ArticlesComponent implements OnInit {
-//   @Input() stringFilter: string;
-// // stringFilter = "5";
+
   articles : Article[];
   public searchString = "";
   public tagFilter = "";
-
-  // @ViewChild(MatPaginator) paginator : MatPaginator;
-  // obs: Observable<Article[]>;
-  // dataSource: MatTableDataSource<Article>;
-
-
 
   constructor(private _articleService: ArticleService, private router: Router) { 
     this._articleService.getArticles()
@@ -48,7 +39,7 @@ export class ArticlesComponent implements OnInit {
     this.router.navigate(['/articles', a.articleID]);
   }
 
-  // Show only the articles with this id:
+  // Show only the articles with this tag:
   showTags(tagID){
     console.log("Show articles with tagID:", tagID);
     this.tagFilter = tagID;

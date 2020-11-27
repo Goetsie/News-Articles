@@ -53,36 +53,33 @@
 </div>
 
 <!-- Like -->
-<div *ngIf="likedThisArticle==false" class="row text-center">
+<div *ngIf="likedThisArticle==false && loggedIn" class="row text-center">
   <div class="col-12">
     <div id="like" (click)="like(article.articleID)">
       <div class="noselect">
         <h3>I like this article!</h3>
-        <!-- IF article is liked, show full and do nothing on hover !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+        <!-- Icon changes on hover -->
         <mat-icon class="outline">favorite_outline</mat-icon>
         <mat-icon class="full">favorite</mat-icon>
       </div>
     </div>
   </div>
-  <!-- <div *ngIf="userID in likes['userID']"></div> -->
 </div>
 <hr>
 
 <!-- Reactions -->
 <app-reaction *ngIf="loggedIn" [articleID]="articleID"></app-reaction>
 
+<!-- Reacions - guest -->
 <div *ngIf="!loggedIn" class="row">
   <div class="col-12 text-center">
-    You need to login to see the reactions on this article or to place a reaction!
+    You need to <a [routerLink]="['/login']">login</a> to see the reactions on this article or to place a reaction!
   </div>
 </div>
 
-<div class="row text-warning">
+
+<div class="row text-center">
   <div class="col-12">
-    <p>TO DO</p>
-    <ul>
-      <li>Reactions</li>
-      <li>Likes</li>
-    </ul>
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/']">Back to home</a></div>
   </div>
 </div>

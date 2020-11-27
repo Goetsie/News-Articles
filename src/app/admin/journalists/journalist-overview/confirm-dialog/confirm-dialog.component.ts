@@ -9,12 +9,10 @@ import { User } from 'src/app/security/models/user.model';
 })
 export class ConfirmDialogComponent implements OnInit {
 
-// journalist: User;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     console.log("Data:", data.journalist)
-    // this.journalist = data.journalist;
-   }
+  }
 
   ngOnInit(): void {
   }

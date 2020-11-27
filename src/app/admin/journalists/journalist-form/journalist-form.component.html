@@ -1,17 +1,14 @@
 <div class="row">
     <div class="col-12">
-        <h1>All journalists</h1>
+        <h1 *ngIf="!update">New journalist</h1>
+        <h1 *ngIf="update">Update {{journalist.firstName}} {{journalist.lastName}}</h1>
+        <!-- <p>User: {{journalist|json}}</p> -->
     </div>
 </div>
 
-<div class="row border">
-  <div class="col-12 text-center">
-    <p>User: {{journalist|json}}</p>
-  </div>
-</div>
+<form #journalistForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center">
 
-<form #journalistForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
-
+  <!-- First Name -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Firstname" type="text" required minlength="2" name="firstname"
@@ -19,6 +16,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Last Name -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Lastname" type="text" required minlength="2" name="lastname"
@@ -26,6 +24,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Email -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Email" type="email" required minlength="2" name="email"
@@ -33,6 +32,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Username -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Username" type="text" required minlength="2" name="username"
@@ -40,6 +40,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Password -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
@@ -47,15 +48,16 @@
     </mat-form-field>
   </div>
 
+  <!-- Submit -->
   <div class="col-10 offset-1">
-    Repeat password?
-    <!-- ?????????????????????????????????????? -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="!journalistForm.form.valid || submitted">Save</button>
   </div>
-
-  <div class="col-10 offset-1">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!journalistForm.form.valid || submitted">Save
-      journalist</button>
-  </div>
-
 
 </form>
+
+<div class="row text-center">
+  <div class="col-12">
+    <div class="mt-2 mt-lg-5"><a [routerLink]="['/journalists']">Back to journalists</a></div>
+  </div>
+</div>
+

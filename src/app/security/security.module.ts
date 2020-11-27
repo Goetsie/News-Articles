@@ -4,8 +4,6 @@ import { SecurityComponent } from './security/security.component';
 import { SharedModule } from '../shared/shared.module';
 import { SignupComponent } from './signup/signup.component';
 
-
-
 @NgModule({
   declarations: [SecurityComponent, SignupComponent],
   imports: [

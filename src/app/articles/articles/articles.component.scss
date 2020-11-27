@@ -1,6 +1,6 @@
 mat-card {
   transition: all 0.3s ease-in-out;
-  // transition: border-color 0.9s ease;
+  height: 100%;
 
   &:hover {
     mat-card-title {
@@ -38,11 +38,14 @@ mat-card {
 
 }
 
-img{
-  max-height: 10vh;
+img {
+  //max-height: 10vh;
+  max-height: auto;
   width: auto;
-margin: auto;
+  margin: auto;
 }
+
+
 
 mat-spinner {
   position: absolute;
@@ -59,17 +62,19 @@ mat-spinner {
 }
 
 .tag {
-   
-    text-decoration: none;
-    color: gray;
-    background-color: inherit;
-    &:hover{
-      text-decoration: underline;
-    }
-  
-    z-index: 100;
+
+  position: relative;
+  bottom: auto;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  z-index: 100;
 
   padding: 2px;
   border-top: 1px solid green;
   border-left: 3px solid green;
 }
+

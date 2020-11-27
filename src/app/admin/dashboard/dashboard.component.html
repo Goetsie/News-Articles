@@ -1,27 +1,32 @@
-<ul>
-    <li>Articles to review</li>
-    <li>Journalists</li>
-    <li>Tags</li>
-    <li>BADGES</li>
-    <li></li>
-</ul>
+<div class="row mt-3 mt-md-5">
 
-
-
-<div class="row">
-    <div id="toReview" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/to-review" routerLinkActive="active"
+    <!-- To Review -->
+  <div id="toReview" class="col-12 col-md-6 col-xl-3 p-1 p-lg-3 " routerLink="/to-review" routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }">
-        <span class="dashboard-title">To review</span><br>
-        <mat-icon>preview</mat-icon>
-    </div>
-    <div id="journalists" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/journalists" routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }" >
-        <span class="dashboard-title">Journalists</span><br>
-        <mat-icon>preview</mat-icon>
-    </div>
-    <div id="tags" class="col-12 col-lg-4 p-1 p-lg-3" routerLink="/tags" routerLinkActive="active"
+    <span class="dashboard-title ">To review</span>
+    <span *ngIf="numberArticlesToReview!=0" matBadge="{{numberArticlesToReview}}" matBadgeOverlap="false" matBadgeColor="warn"></span><br>
+    <mat-icon>preview</mat-icon>
+  </div>
+
+  <!-- Journalists -->
+  <div id="journalists" class="col-12 col-md-6 col-xl-3 p-1 p-lg-3" routerLink="/journalists" routerLinkActive="active"
     [routerLinkActiveOptions]="{ exact: true }">
-        <span class="dashboard-title">Tags</span><br>
-        <mat-icon>preview</mat-icon>
-    </div>
+    <span class="dashboard-title">Journalists</span><br>
+    <mat-icon>people</mat-icon>
+  </div>
+
+  <!-- Articles -->
+  <div id="articles" class="col-12 col-md-6 col-xl-3 p-1 p-lg-3 order-12 order-md-1 order-xl-12" routerLink="/my-articles" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <span class="dashboard-title">My articles</span><br>
+    <mat-icon>article</mat-icon>
+  </div>
+  
+  <!-- Tags -->
+  <div id="tags" class="col-12 col-md-6 col-xl-3 p-1 p-lg-3 order-1 order-md-12 order-xl-1" routerLink="/tags" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <span class="dashboard-title">Tags</span><br>
+    <mat-icon>label</mat-icon>
+  </div>
+
 </div>

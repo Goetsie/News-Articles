@@ -1,13 +1,13 @@
-<div class="row border">
+<div class="row">
   <div class="col-12 text-center">
-    <h1>Signup</h1>
-    <p>User: {{newUser|json}}</p>
-
+    <h1>Sign Up</h1>
+    <!-- <p>User: {{newUser|json}}</p> -->
   </div>
 </div>
 
-<form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="row border text-center">
+<form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="row text-center">
 
+  <!-- First name -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Firstname" type="text" required minlength="2" name="firstName"
@@ -15,6 +15,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Last name -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Lastname" type="text" required minlength="2" name="lastName"
@@ -22,6 +23,7 @@
     </mat-form-field>
   </div>
 
+  <!-- E-mail -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Email" type="email" required minlength="2" name="email"
@@ -29,6 +31,7 @@
     </mat-form-field>
   </div>
 
+  <!-- Username -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Username" type="text" required minlength="2" name="username"
@@ -36,10 +39,7 @@
     </mat-form-field>
   </div>
 
-  <div class="col-10 offset-1">
-    Username unique?
-  </div>
-
+  <!-- Password -->
   <div class="col-10 offset-1">
     <mat-form-field>
       <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
@@ -47,14 +47,11 @@
     </mat-form-field>
   </div>
 
+  <!-- Submit -->
   <div class="col-10 offset-1">
-    Repeat password?
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.form.valid || submitted">Sign
+      Up</button>
+    <div class="text-muted mt-2">Already an account? <a [routerLink]="['/login']">Log In</a> immediatly! </div>
   </div>
-
-  <div class="col-10 offset-1">
-    <button mat-raised-button color="primary" type="submit"
-      [disabled]="!signupForm.form.valid || submitted">Signup</button>
-  </div>
-
 
 </form>

@@ -1,24 +1,3 @@
-<!-- <nav>
-    <ul>
-      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a></li>
-      <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a></li>
-      <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
-  
-    </ul>
-  </nav> -->
-
-<!-- <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
-  
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-   -->
 <mat-toolbar color="primary">
   <div class="container">
     <div fxHide.gt-xs>
@@ -26,74 +5,84 @@
         <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div>
-      <a class="align-middle" routerLink="/" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }">Home</a>
 
+    <div>
+      <span fxHide.gt-xs class="aligned-with-icon"><a class="align-middle" routerLink="/" routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">Home</a></span>
+
+      <a fxHide.xs class="align-middle" routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">Home</a>
     </div>
+
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
       <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-        <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Contact</a>
-        </li>
-        <li><a routerLink="/articles" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Articles</a>
-        </li>
-        <li><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Help</a></li>
-        <!-- <li *ngIf="userRole != 'User' && userRole"><a routerLink="/help" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">New article</a></li> -->
-        <li *ngIf="!loggedIn"><a routerLink="/signup" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">Signup</a></li>
-        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }">Login <mat-icon>account_circle</mat-icon></a></li>
-        <!-- <li *ngIf="loggedIn"><a class="align-middle" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{username}} <mat-icon
-                color="accent">account_circle</mat-icon></a></li> -->
 
-        <!-- <li *ngIf="loggedIn"> 
-                  <a [matMenuTriggerFor]="menu" >
-                    {{username}}<mat-icon>more_vert</mat-icon>
-                  </a>
-                </li> -->
+        <!-- Sign Up -->
+        <li *ngIf="!loggedIn"><a class="align-middle" routerLink="/signup" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Sign Up</a></li>
+        <!-- Log In -->
+        <li *ngIf="!loggedIn" class="ml-3"><a class="align-middle" routerLink="/login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Log In</a></li>
+
+        <!-- Logged in -->
         <li *ngIf="loggedIn">
+
+          <!-- Username -->
           <a class="profile-menu" [matMenuTriggerFor]="menu">
             {{username}}<mat-icon>more_vert</mat-icon>
           </a>
+
           <mat-menu #menu="matMenu">
-            <a class="profile-menu-item" mat-menu-item routerLink="/contact" routerLinkActive="active"
+            <!-- Profile -->
+            <a class="profile-menu-item" mat-menu-item routerLink="/profile" routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }">
               <mat-icon>account_circle</mat-icon>
               <span>Profile</span>
             </a>
+            <!-- Likes -->
             <a class="profile-menu-item" mat-menu-item routerLink="/my-likes" routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }">
-              <mat-icon>thumb_up_alt</mat-icon>
+              <mat-icon id="likes">favorite</mat-icon>
               <span>Likes</span>
             </a>
+            <!-- Reactions -->
             <a class="profile-menu-item" mat-menu-item routerLink="/my-reactions" routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }">
               <mat-icon>comment</mat-icon>
               <span>Reactions</span>
             </a>
+
+            <!-- Journalist -->
             <div *ngIf="userRole == 'Journalist'">
               <hr>
+              <!-- New article -->
               <a class="profile-menu-item" mat-menu-item routerLink="/new-article" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon>create</mat-icon>
                 <span>New article</span>
+                <!-- My-articles -->
               </a> <a class="profile-menu-item" mat-menu-item routerLink="/my-articles" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon>article</mat-icon>
                 <span>My articles</span>
               </a>
             </div>
+
+            <!-- Admin -->
             <div *ngIf="userRole == 'Admin'">
               <hr>
+              <!-- Dashboard -->
               <a class="profile-menu-item" mat-menu-item routerLink="/dashboard" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">
                 <mat-icon>dashboard</mat-icon>
                 <span>Dashboard</span>
               </a>
             </div>
+
             <hr>
+            <!-- Logout -->
             <a class="profile-menu-item" mat-menu-item (click)="logout()">
-              <mat-icon color="warn">power_settings_new</mat-icon>
+              <mat-icon id="logout" color="warn">power_settings_new</mat-icon>
               <span>Logout</span>
             </a>
           </mat-menu>

@@ -1,11 +1,13 @@
 <div mat-dialog-content>
 
+  <!-- Title -->
   <div class="row">
     <div class="col-12">
       <h1 mat-dialog-title>{{article.title}}</h1>
     </div>
   </div>
 
+  <!-- Subtitle -->
   <div class="row">
     <div class="col-12">
       <h3 mat-dialog-title class="text-muted">{{article.subTitle}}</h3>
@@ -14,24 +16,27 @@
 
   <!-- Image -->
   <div *ngIf="article.imgPath != null" class="row">
-    <div class="col-12">
+    <div class="col-12 text-center">
       <img mat-card-image [src]="article.imgPath" class="img-fluid" alt="{{article.title}} - image">
     </div>
   </div>
 
+  <!-- Short summary -->
   <div class="row">
-    <div mat-dialog-content class="col-12">
+    <div mat-dialog-content class="col-12 content">
       <p *ngFor="let alinea of alineas_shortSummary" class="font-weight-bold text-justify">{{alinea}}
       </p>
     </div>
   </div>
 
+  <!-- Body -->
   <div class="row mt-2">
-    <div mat-dialog-content class="col-12">
+    <div mat-dialog-content class="col-12 content">
       <p *ngFor="let alinea of alineas_body" class="text-justify">{{alinea}}</p>
     </div>
   </div>
 
+  <!-- Actions -->
   <div class="row">
     <div id="actions" class="col-12">
       <mat-dialog-actions align="center">
@@ -40,7 +45,6 @@
           mat-dialog-close="publish">Publish</button>
         <button mat-button mat-dialog-close>Close</button>
       </mat-dialog-actions>
-
     </div>
   </div>
 

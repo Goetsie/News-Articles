@@ -10,8 +10,5 @@ export class User {
         public roleID: number,
         public role?: Role,
         public token?: string,
-    ) {
-
-
-    }
+    ) { }
 }

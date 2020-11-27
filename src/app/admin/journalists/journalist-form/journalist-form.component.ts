@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/security/models/user.model';
 import { UserService } from 'src/app/security/services/user.service';
 
@@ -11,26 +11,23 @@ import { UserService } from 'src/app/security/services/user.service';
 })
 export class JournalistFormComponent implements OnInit {
 
-
   submitted = false;
   update = false;
 
   journalist: User = new User(0, '', '', '', '', '', 2);
 
-  constructor(private _userService: UserService, private snackBar: MatSnackBar, private route: ActivatedRoute,) {
+  constructor(private _userService: UserService, private snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router) {
     if (this.route.snapshot.paramMap.get('id')) {
       this.update = true;
       const journalistID = this.route.snapshot.paramMap.get('id');
       console.log("Parameter in link --> update journalist with id:", journalistID);
       this._userService.getUser(journalistID).subscribe(
         result => {
-          // this.journalist = new User(result.ID, '', '', '', '', '', 2);
           console.log("Result:", result);
           this.journalist = result;
         }
       );
     }
-    // parseInt(this.route.snapshot.paramMap.get('id'));
   }
 
   onSubmit() {
@@ -41,12 +38,12 @@ export class JournalistFormComponent implements OnInit {
 
       this._userService.addUser(this.journalist).subscribe(
         result => {
-          // Handle result
           console.log("Add journalist result:", result);
           if (result) {
             this.journalist.userID = result.userID; // Save the real ID
-            console.log("Journamist is added");
-            this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "Undo")
+            console.log("Journalist is added");
+            this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "Undo");
+            this.router.navigate(['/journalists']);
           }
 
         }
@@ -57,16 +54,15 @@ export class JournalistFormComponent implements OnInit {
       console.log("The admin wants to update this journalist:", this.journalist);
       this._userService.updateUser(this.journalist.userID, this.journalist).subscribe(
         result => {
-          // Handle result
           console.log("Update journalist result:", result);
           console.log("Journalist is updated");
-          this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "Undo")
+          this.openSnackBar(("Journalist '" + this.journalist.firstName + " " + this.journalist.lastName + "' is saved!"), "")
+          this.router.navigate(['/journalists']);
         },
         error => {
           console.log("Error:", error);
         }
       );
-
     }
   }
 
@@ -82,17 +78,18 @@ export class JournalistFormComponent implements OnInit {
       console.log("The snackbar action was triggerd");
 
       if (action != "Dismiss") {
+        if (!this.update) {
+          // Undo the action --> delete the newly created journalist
+          this._userService.deleteUser(this.journalist.userID).subscribe(
+            () => {
+              console.log("Action is undone, new journalist is deleted");
+              this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
+            }
+          );
+        }
 
-        // Undo the action --> delete the newly created journalist
-        this._userService.deleteUser(this.journalist.userID).subscribe(
-          () => {
-            console.log("Action is undone, new journalist is deleted");
-            this.snackBar.open("Action is undone", 'Dismiss', { duration: 3000 });
-          }
-        );
       }
     });
-
   }
 
   ngOnInit(): void {

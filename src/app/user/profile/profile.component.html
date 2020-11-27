@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <h1>Hi, {{user.firstName}} {{user.lastName}}!</h1>
+    <!-- <p>User: {{user|json}}</p> -->
+  </div>
+</div>
+
+<form #profileForm="ngForm" (ngSubmit)="onSubmit()" class="row mt-2 mt-lg-5 text-center">
+
+  <!-- First name -->
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Firstname" type="text" required minlength="2" name="firstName"
+        [(ngModel)]="user.firstName" />
+    </mat-form-field>
+  </div>
+
+  <!-- Last name -->
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Lastname" type="text" required minlength="2" name="lastName"
+        [(ngModel)]="user.lastName" />
+    </mat-form-field>
+  </div>
+
+  <!-- E-mail -->
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" required minlength="2" name="email" [(ngModel)]="user.email" />
+    </mat-form-field>
+  </div>
+
+  <!-- Username -->
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Username" type="text" required minlength="2" name="username"
+        [(ngModel)]="user.username" />
+    </mat-form-field>
+  </div>
+
+  <!-- Password -->
+  <div class="col-10 offset-1">
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" required name="password" #passwordcontrol
+        [(ngModel)]="user.password" />
+    </mat-form-field>
+  </div>
+
+  <!-- Submit -->
+  <div class="col-10 offset-1">
+    <button mat-raised-button color="primary" type="submit"
+      [disabled]="!profileForm.form.valid || submitted">Save</button>
+  </div>
+
+</form>

@@ -5,13 +5,14 @@
 </div>
 
 <!-- Add reaction -->
-<app-add-reaction *ngIf="!edit_reaction" [articleID]="articleID"></app-add-reaction>
+<app-add-reaction *ngIf="!edit_reaction" [articleID]="articleID" (reactionIsAdded)="onReactionAdded($event)">
+</app-add-reaction>
 
 <!-- Update reaction -->
 <app-update-reaction *ngIf="edit_reaction" [reactionEdit]="reactionEdit"
   (reactionIsUpdated)="onReactionUpdated($event)"></app-update-reaction>
 
-<!-- Reactions -->
+<!-- No reactions -->
 <div *ngIf="reactions.length == 0" class="row reaction mb-1 mb-md-2 text-center">
   <div class="col-12">
     There are no comments on this article yet. <br>
@@ -19,28 +20,31 @@
   </div>
 </div>
 
+<!-- Reactions -->
 <div class="row reaction mb-1 mb-md-2" *ngFor="let reaction of reactions">
+
+  <!-- First name -->
   <div class="col-12 col-md-8 reaction-name mb-1 text-left">
     {{reaction.user.firstName}} {{reaction.user.lastName}}
   </div>
+
+  <!-- DateTime -->
   <div class="col-12 col-md-4 text-right text-muted">
     <small>{{reaction.date | date:"dd/MM/yyyy - HH:mm"}}</small>
   </div>
 
+  <!-- Content -->
   <div *ngIf="!reaction_edit" class="col-10 reaction-content">
     {{reaction.content}}
   </div>
 
-  <!-- <div class="col-10 reaction-content" *ngIf="edit_reaction && editReaction.reactionID == reaction.reactionID">
-  <div class="col-10 reaction-content" *ngIf="edit_reaction">
-    reaction needs to be edited
-  </div> -->
-
-  <!-- Delete your own placed reactions -->
+  <!-- Actions -->
   <div *ngIf="reaction.userID == userID" class="col-2 text-right">
+    <!-- Edit your own article -->
     <button mat-icon-button color="warn" (click)="editReaction(reaction)">
       <mat-icon>edit</mat-icon>
     </button>
+    <!-- Delete your own article -->
     <button mat-icon-button color="warn" (click)="deleteReaction(reaction)">
       <mat-icon>delete_forever</mat-icon>
     </button>

@@ -1,18 +1,37 @@
-<!-- <div class="row">
-  <div class="col-12">
-    <ol>
-      <li *ngFor="let journalist of journalists; trackBy: trackByFn;">{{journalist.firstName}}</li>
-    </ol>
-  </div>
-</div> -->
-
 <div class="row">
-  <div class="col-12 text-right">
-    <button mat-raised-button color="primary" (click)="newJournalist()">New journlist</button>
+  <div class="col-12">
+    <h1>Journalists</h1>
   </div>
 </div>
 
-<div class="row">
+<!-- No journalists -->
+<div *ngIf="!journalists[0]" class="row mt-5 text-center no-journalists">
+  <div class="col-12">
+    You haven't created any journalists yet. <br>
+    In order for them to work on articles, you must create an account for them.
+  </div>
+  <div class="col-12 mt-2 mt-md-4">
+    <button mat-raised-button color="primary" (click)="newJournalist()">New journalist</button>
+  </div>
+  <div class="col-12  mt-5">
+    Or create one later and go back to your dashboard:
+  </div>
+  <div class="col-12 mt-2 mt-md-3 mb-5">
+    <a mat-fab color="accent" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+    </a>
+  </div>
+</div>
+
+<!-- New journalist -->
+<div *ngIf="journalists[0]" class="row">
+  <div class="col-12 text-right">
+    <button mat-raised-button color="primary" (click)="newJournalist()">New journalist</button>
+  </div>
+</div>
+
+<!-- Filter -->
+<div *ngIf="journalists[0]" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
       <mat-label>Filter</mat-label>
@@ -21,16 +40,10 @@
   </div>
 </div>
 
+<!-- Table -->
 <div class="row">
   <div class="col-12">
     <table mat-table [dataSource]="dataSource" [trackBy]="trackByFn" matSort class="mat-elevation-z8">
-
-
-      <!-- displayedColumns: string[] = ['lasName', 'firstName', 'username', 'email', 'actions']; -->
-
-
-      <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
 
       <!-- Title Column -->
       <ng-container matColumnDef="lastName" class="ml-5">
@@ -56,20 +69,15 @@
         <td mat-cell *matCellDef="let journalist" data-label="">{{journalist.email}}</td>
       </ng-container>
 
-
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
         <td mat-cell *matCellDef="let journalist" class="text-center">
-          <!-- <button mat-fab color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-fab color="warn">
-              <mat-icon>delete</mat-icon>
-            </button> -->
-            <button mat-icon-button color="warn" (click)="editJournalist(journalist.userID)">
-                <mat-icon>edit</mat-icon>
-              </button>
+          <!-- Edit -->
+          <button mat-icon-button color="warn" (click)="editJournalist(journalist.userID)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- Delete -->
           <button mat-icon-button color="warn" (click)="deleteJournalist(journalist)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -78,7 +86,6 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
 
     </table>
 
@@ -87,11 +94,8 @@
   </div>
 </div>
 
-
-<!-- <div class="row">
-      <div class="col-12">
-          <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Dismiss')">Snackbar</button>
-          <button mat-raised-button color="accent" (click)="openSnackBar('Snackbar openend', 'Undo')">Delete</button>
-  
-      </div>
-  </div> -->
+<div class="row text-center">
+  <div class="col-12">
+    <div class=" mt-2 mt-lg-5"><a [routerLink]="['/dashboard']">Back to dashboard</a></div>
+  </div>
+</div>

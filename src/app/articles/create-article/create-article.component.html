@@ -2,14 +2,15 @@
 
 <form (ngSubmit)="onSubmit()" #addArticleForm="ngForm" class="row">
 
-  <div class="col-12">
+  <!-- <div class="col-12">
     <p>New article: {{article|json}}</p>
-  </div>
+  </div> -->
 
   <!-- Title -->
   <div class="col-12">
     <mat-form-field class="w-100">
-      <input matInput placeholder="Title" type="text" minlength="5" required autocapitalize="sentences" [(ngModel)]="article.title" name="title" />
+      <input matInput placeholder="Title" type="text" minlength="5" required autocapitalize="sentences"
+        [(ngModel)]="article.title" name="title" />
     </mat-form-field>
   </div>
 
@@ -28,10 +29,6 @@
       <textarea matInput id="shortSummary" name="shortSummary" rows="4" cols="50" required minlength="20"
         [(ngModel)]="article.shortSummary"></textarea>
     </mat-form-field>
-    <!-- <label for="shortSummary">Short summary:</label> <br>
-    <textarea class="w-100" id="shortSummary" name="shortSummary" rows="4" cols="50" required minlength="20"
-      [(ngModel)]="article.shortSummary">
-        </textarea> -->
   </div>
 
   <!-- Body -->
@@ -41,11 +38,6 @@
       <textarea matInput id="body" name="body" rows="10" cols="100" required minlength="100"
         [(ngModel)]="article.body"></textarea>
     </mat-form-field>
-
-    <!-- <label for="body">Content:</label> <br> -->
-    <!-- <textarea class="w-100" id="body" name="body" rows="10" cols="50" required minlength="100"
-      [(ngModel)]="article.body"> 
-        </textarea> -->
   </div>
 
 
@@ -61,15 +53,15 @@
 
   <!-- Image -->
   <div class="col-12 mt-2 text-center">
-    <app-upload-file (onUploadFinished)="uploadFinished($event)"></app-upload-file>
+    <app-upload-file [reset]="reset" (onUploadFinished)="uploadFinished($event)"></app-upload-file>
   </div>
-  <div class="col-12 text-center">
+  <div class="col-12 text-center mb-2">
     <img [src]="createImgPath(imgPath)" class="img-fluid w-25 text-center" alt="">
   </div>
 
   <!-- Submit button -->
   <div class="col-12 m-auto text-center mt-2">
-    <button type="submit" [disabled]="!addArticleForm.form.valid || submitted" mat-raised-button color="accent">Create
+    <button type="submit" [disabled]="!addArticleForm.form.valid || !uploadIsFinished || submitted" mat-raised-button color="accent">Create
       article</button>
   </div>
 
@@ -82,9 +74,3 @@
       article</button>
   </div>
 </div>
-
-<!-- <div class="row">
-  <div class="col-12">
-    <button mat-button (click)="openDialog()" >Open Dialog</button>
-  </div>
-</div> -->
