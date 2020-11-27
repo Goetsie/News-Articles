@@ -1,15 +1,15 @@
-<div *ngIf="!articles[0]" class="row">
+<div *ngIf="articles?.length" class="row">
   <div class="col-12">
     <h1>These are all the articles you've liked:</h1>
   </div>
 </div>
 
 <!-- No likes/articles -->
-<div id="nothingFound" *ngIf="articles[0]" class="row text-center m-2 mt-5 mb-5">
+<div id="nothingFound" *ngIf="!articles?.length" class="row text-center m-2 mt-5 mb-5">
   <div class="col-12">
     You haven't liked any articles yet. <br>
-    Go to the home and read some awesome articles, <br>
-    maybe you read one you really, really like.
+    Go to the home and read some awesome articles. <br>
+    Maybe you read one you really, really like.
   </div>
   <div class="col-12 mt-3">
     <a mat-fab color="accent" routerLink="/">
@@ -19,7 +19,7 @@
 </div>
 
 <!-- Filter -->
-<div *ngIf="articles[0]" class="row">
+  <div *ngIf="articles?.length" class="row">
   <div class="col-12">
     <mat-form-field class="w-100">
       <mat-label>Filter</mat-label>
